@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "HackBox",
+    title: {
+        default: "HackBox",
+        template: "%s | HackBox",
+    },
     description:
         "A secret vault of online superpowers. analyze profiles, automate boring stuff, and pretend to be a hacker. Welcome to HackBox.",
+    keywords: ["hackbox", "tools", "github-profile-comparison", "jwt-decoder"],
+    authors: [{ name: "Kanhaiya Yadav" }],
 };
 
 export default function RootLayout({
