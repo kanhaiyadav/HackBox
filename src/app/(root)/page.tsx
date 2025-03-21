@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>landing page</div>
+    <div className='w-fit m-auto mt-[300px]'>landing page</div>
   )
 }
 

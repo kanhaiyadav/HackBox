@@ -12,7 +12,8 @@ import {
     BookOpenIcon,
     ShieldCheck,
     Shuffle,
-    CircleUser
+    CircleUser,
+    Palette
 } from "lucide-react";
 
 export const data = {
@@ -89,29 +90,29 @@ export const data = {
                 },
             ],
         },
-        // {
-        //     title: "Design & Media",
-        //     url: "#",
-        //     icon: Palette,
-        //     items: [
-        //         {
-        //             title: "Introduction",
-        //             url: "#",
-        //         },
-        //         {
-        //             title: "Get Started",
-        //             url: "#",
-        //         },
-        //         {
-        //             title: "Tutorials",
-        //             url: "#",
-        //         },
-        //         {
-        //             title: "Changelog",
-        //             url: "#",
-        //         },
-        //     ],
-        // },
+        {
+            title: "Design & Media",
+            url: "#",
+            icon: Palette,
+            items: [
+                {
+                    title: "Introduction",
+                    url: "#",
+                },
+                {
+                    title: "Get Started",
+                    url: "#",
+                },
+                {
+                    title: "Tutorials",
+                    url: "#",
+                },
+                {
+                    title: "Changelog",
+                    url: "#",
+                },
+            ],
+        },
         {
             title: "Social Media & Fun",
             url: "social-media-fun",
