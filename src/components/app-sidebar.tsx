@@ -4,7 +4,6 @@ import * as React from "react";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
 import {
     Sidebar,
     SidebarContent,
@@ -18,18 +17,34 @@ import {
 } from "@/components/ui/sidebar";
 import { House } from "lucide-react";
 import { data } from "../../constants";
+import Image from "next/image";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar collapsible="icon" {...props} variant="floating">
+        <Sidebar collapsible="offcanvas" {...props} variant="floating">
             <SidebarHeader>
-                <TeamSwitcher teams={data.teams} />
+                <SidebarMenu>
+                    <SidebarMenuItem className="flex items-center justify-center gap-2">
+                        <Image
+                            src="/logo.png"
+                            alt="app-logo"
+                            width={"35"}
+                            height={"35"}
+                        />
+                        <h2 className="text-primary text-2xl font-semibold">
+                            HackBox
+                        </h2>
+                    </SidebarMenuItem>
+                </SidebarMenu>
             </SidebarHeader>
             <SidebarContent className="no-scrollbar">
                 <SidebarMenu>
                     <SidebarGroup>
                         <SidebarMenuItem>
-                            <SidebarMenuButton tooltip={"Home"} className="hover:bg-gray-600">
+                            <SidebarMenuButton
+                                tooltip={"Home"}
+                                className="hover:bg-gray-600"
+                            >
                                 {true && <House />}
                                 <span>home</span>
                             </SidebarMenuButton>

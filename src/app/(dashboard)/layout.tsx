@@ -23,7 +23,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                         <AppSidebar />
                         <main className="grow">
                             <>
-                                <SidebarTrigger />
+                                <SidebarTrigger className="mt-[10px]"/>
                                 {children}
                             </>
                         </main>
