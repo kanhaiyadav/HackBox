@@ -9,7 +9,8 @@ export const metadata: Metadata = {
         default: "HackBox",
         template: "%s | HackBox",
     },
-    description: "A secret vault of online superpowers. analyze profiles, automate boring stuff, and pretend to be a hacker. Welcome to HackBox.",
+    description:
+        "A secret vault of online superpowers. analyze profiles, automate boring stuff, and pretend to be a hacker. Welcome to HackBox.",
     keywords: ["hackbox", "tools", "github-profile-comparison", "jwt-decoder"],
     authors: [{ name: "Kanhaiya Yadav" }],
 };
@@ -19,13 +20,10 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <html lang="en">
             <body className="h-screen overflow-x-hidden overflow-y-auto">
                 <div className="flex h-fit">
-                    <SidebarProvider>
+                    <SidebarProvider className="relative">
                         <AppSidebar />
-                        <main className="grow">
-                            <>
-                                <SidebarTrigger className="mt-[10px]"/>
-                                {children}
-                            </>
+                        <main className="grow relative px-2">
+                            {children}
                         </main>
                     </SidebarProvider>
                 </div>

@@ -21,6 +21,8 @@ import {
 
 export function NavMain({
     items,
+    active,
+    setActive,
 }: {
     items: {
         title: string;
@@ -32,6 +34,8 @@ export function NavMain({
             url: string;
         }[];
     }[];
+    active: string;
+    setActive: (arg0: string) => void;
 }) {
     return (
         <SidebarGroup>
@@ -45,7 +49,7 @@ export function NavMain({
                         className="group/collapsible"
                     >
                         <SidebarMenuItem>
-                            <CollapsibleTrigger asChild>
+                            <CollapsibleTrigger asChild className="hover:bg-white/5">
                                 <SidebarMenuButton tooltip={item.title}>
                                     {item.icon && <item.icon />}
                                     <span>{item.title}</span>
@@ -56,8 +60,20 @@ export function NavMain({
                                 <SidebarMenuSub>
                                     {item.items?.map((subItem) => (
                                         <SidebarMenuSubItem key={subItem.title}>
-                                            <SidebarMenuSubButton asChild>
-                                                <Link href={`/tools/${item.url}/${subItem.url}`}>
+                                            <SidebarMenuSubButton
+                                                asChild
+                                                className={`${
+                                                    active === subItem.title
+                                                        ? "bg-white/5"
+                                                        : ""
+                                                } hover:bg-white/5`}
+                                                onClick={() =>
+                                                    setActive(subItem.title)
+                                                }
+                                            >
+                                                <Link
+                                                    href={`/tools/${item.url}/${subItem.url}`}
+                                                >
                                                     <span>{subItem.title}</span>
                                                 </Link>
                                             </SidebarMenuSubButton>
