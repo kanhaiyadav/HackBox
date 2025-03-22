@@ -1,8 +1,9 @@
 import React from "react";
 import "../globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Metadata } from "next";
+import ToolNav from "@/components/dashboardHeader";
 
 export const metadata: Metadata = {
     title: {
@@ -23,6 +24,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <SidebarProvider className="relative">
                         <AppSidebar />
                         <main className="grow relative px-2">
+                            <ToolNav />
                             {children}
                         </main>
                     </SidebarProvider>

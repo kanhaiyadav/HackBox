@@ -15,6 +15,7 @@ import {
     CircleUser,
     Palette
 } from "lucide-react";
+import { title } from "process";
 
 export const data = {
     user: {
@@ -46,14 +47,6 @@ export const data = {
             icon: SquareTerminal,
             items: [
                 {
-                    title: "GitHub Profile Analyzer",
-                    url: "github-profile-analyzer",
-                },
-                {
-                    title: "Hash Generator",
-                    url: "hash-generator",
-                },
-                {
                     title: "JSON Formatter & Validator",
                     url: "json-formatter-validator",
                 },
@@ -65,6 +58,38 @@ export const data = {
                     title: "API Status Checker",
                     url: "api-status-checker",
                 },
+                {
+                    title: "Color Code Converter",
+                    url: "color-code-converter",
+                },
+                {
+                    title: "Hash Generator",
+                    url: "hash-generator",
+                },
+                {
+                    title: "HTML to Markdown Converter",
+                    url: "html-to-markdown-converter",
+                },
+                {
+                    title: "Markdown Editor",
+                    url: "markdown-editor",
+                },
+                {
+                    title: "Text Manupulator",
+                    url: "text-manupulator",
+                },
+                {
+                    title: "JSON placeholder",
+                    url: "json-placeholder",
+                },
+                {
+                    title:"HTTP Status Code lookup",
+                    url:"http-status-code-lookup"
+                }, 
+                {
+                    title: "Css unit converter",
+                    url: "css-unit-converter"
+                }
             ],
         },
         {
@@ -118,6 +143,10 @@ export const data = {
             url: "social-media-fun",
             icon: CircleUser,
             items: [
+                {
+                    title: "GitHub Profile Analyzer",
+                    url: "github-profile-analyzer",
+                },
                 {
                     title: "Instagram Hastag generator",
                     url: "instagram-hashtag",

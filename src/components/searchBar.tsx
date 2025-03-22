@@ -1,0 +1,40 @@
+import React from "react";
+import { LuSearch } from "react-icons/lu";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
+const SearchBar = () => {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <div className="flex gap-2 items-center px-4 py-2 rounded-full bg-white/10">
+                    <LuSearch className="text-white" />
+                    <input
+                        type="text"
+                        placeholder={"Search a tool"}
+                        className="bg-transparent border-none outline-none"
+                        readOnly
+                    />
+                </div>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                    <DialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                    </DialogDescription>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
+    );
+};
+
+export default SearchBar;

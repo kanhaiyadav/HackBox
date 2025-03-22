@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/collapsible";
 import {
     SidebarGroup,
-    // SidebarGroupLabel,
+    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -19,7 +19,7 @@ import {
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-export function NavMain({
+export function NavTop({
     items,
     active,
     setActive,
@@ -39,6 +39,7 @@ export function NavMain({
 }) {
     return (
         <SidebarGroup>
+            <SidebarGroupLabel>Tools</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
                     <Collapsible
@@ -48,7 +49,10 @@ export function NavMain({
                         className="group/collapsible"
                     >
                         <SidebarMenuItem>
-                            <CollapsibleTrigger asChild className="hover:bg-white/5">
+                            <CollapsibleTrigger
+                                asChild
+                                className="hover:bg-white/5"
+                            >
                                 <SidebarMenuButton tooltip={item.title}>
                                     {item.icon && <item.icon />}
                                     <span>{item.title}</span>
