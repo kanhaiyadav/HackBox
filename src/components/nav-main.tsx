@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/collapsible";
 import {
     SidebarGroup,
-    // SidebarGroupLabel,
+    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -39,6 +39,7 @@ export function NavMain({
 }) {
     return (
         <SidebarGroup>
+            <SidebarGroupLabel>Tools</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
                     <Collapsible

@@ -15,7 +15,6 @@ import {
     CircleUser,
     Palette
 } from "lucide-react";
-import { title } from "process";
 
 export const data = {
     user: {
