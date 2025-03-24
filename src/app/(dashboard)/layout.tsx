@@ -23,7 +23,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="flex h-fit">
                     <SidebarProvider className="relative">
                         <AppSidebar />
-                        <main className="grow relative px-2">
+                        <main className="grow relative px-2 flex flex-col h-screen min-w-0">
                             <ToolNav />
                             {children}
                         </main>

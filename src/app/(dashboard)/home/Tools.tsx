@@ -1,7 +1,12 @@
-"use client";
-
-import ToolCard from "@/components/toolCard";
 import React from "react";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import ToolCard from "@/components/toolCard";
 
 const tools = [
     {
@@ -88,39 +93,34 @@ const tools = [
     },
 ];
 
-const UserSpecificSection = () => {
-    const [active, setActive] = React.useState(0);
-
-    const navs = [
-        { name: "Recent Used", id: "recent" },
-        { name: "Frequently Used", id: "frequent" },
-        { name: "Favourite", id: "favourite" },
-    ];
-
+const Tools = () => {
     return (
-        <div className="w-full">
-            <div className="flex items-center w-full gap-[1px] border-b-3 border-white/10">
-                {navs.map((nav, index) => (
-                    <button
-                        key={index}
-                        className={`px-6 py-3 rounded-t-xl ${
-                            active === index
-                                ? "bg-gray-200/5 border-2 border-white/5 border-b-0"
-                                : "bg-gray-400/5"
-                        }`}
-                        onClick={() => setActive(index)}
-                    >
-                        {nav.name}
-                    </button>
-                ))}
+        <div className="w-full grow flex flex-col min-h-0">
+            <div className="w-full flex items-center justify-between border-b-3 border-white/10 pb-2">
+                <h2 className="text-xl">Tools</h2>
+                <Select>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="dev">Dev</SelectItem>
+                        <SelectItem value="design">Design</SelectItem>
+                        <SelectItem value="productivity">
+                            Productivity
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
             </div>
-            <div className="grow  py-4 overflow-x-auto overflow-y-hidden no-scrollbar">
-                <div className="flex gap-4 w-fit">
+            <div className="grow py-4 overflow-y-auto no-scrollbar min-h-0">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9 auto-rows-min gap-4">
                     {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                        <ToolCard key={index} tool={tool} />
                     ))}
                     {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                        <ToolCard key={index} tool={tool} />
+                    ))}
+                    {tools.map((tool, index) => (
+                        <ToolCard key={index} tool={tool} />
                     ))}
                 </div>
             </div>
@@ -128,4 +128,4 @@ const UserSpecificSection = () => {
     );
 };
 
-export default UserSpecificSection;
+export default Tools;

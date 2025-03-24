@@ -82,13 +82,13 @@ export const data = {
                     url: "json-placeholder",
                 },
                 {
-                    title:"HTTP Status Code lookup",
-                    url:"http-status-code-lookup"
-                }, 
+                    title: "HTTP Status Code lookup",
+                    url: "http-status-code-lookup",
+                },
                 {
                     title: "Css unit converter",
-                    url: "css-unit-converter"
-                }
+                    url: "css-unit-converter",
+                },
             ],
         },
         {
@@ -110,7 +110,7 @@ export const data = {
                 },
                 {
                     title: "Invoice Generator",
-                    url: "habit-tracker",
+                    url: "invoice-generator",
                 },
             ],
         },
@@ -120,20 +120,20 @@ export const data = {
             icon: Palette,
             items: [
                 {
-                    title: "Introduction",
-                    url: "#",
+                    title: "Background Remover",
+                    url: "background-remover",
                 },
                 {
-                    title: "Get Started",
-                    url: "#",
+                    title: "File Compressor",
+                    url: "file-compressor",
                 },
                 {
-                    title: "Tutorials",
-                    url: "#",
+                    title: "Color Palette Generator",
+                    url: "color-palette-generator",
                 },
                 {
-                    title: "Changelog",
-                    url: "#",
+                    title: "File type Converter",
+                    url: "file-type-converter",
                 },
             ],
         },
@@ -148,18 +148,18 @@ export const data = {
                 },
                 {
                     title: "Instagram Hastag generator",
-                    url: "instagram-hashtag",
+                    url: "instagram-hashtag-generator",
                 },
                 {
                     title: "YouTube Video Summarizer",
                     url: "youtube-video-summarizer",
                 },
                 {
-                    title: "Twitter Thread to Blog Converter",
-                    url: "twitter-thread-to-blog-converter",
+                    title: "Twitter Thread to Blog",
+                    url: "twitter-thread-to-blog",
                 },
                 {
-                    title: "'Am I Internet Famous?' Checker",
+                    title: "Am I Internet Famous?",
                     url: "am-i-internet-famous",
                 },
                 {
@@ -175,8 +175,8 @@ export const data = {
                     url: "fake-news-detector",
                 },
                 {
-                    title: "LinkedIn Profile Strength Checker",
-                    url: "linkedin-profile-strength-checker",
+                    title: "LinkedIn Profile Strength",
+                    url: "linkedin-profile-strength",
                 },
             ],
         },
@@ -186,112 +186,108 @@ export const data = {
             icon: CircleDollarSign,
             items: [
                 {
-                    title: "General",
-                    url: "#",
+                    title: "Currency Converter",
+                    url: "currency-converter",
                 },
                 {
-                    title: "Team",
-                    url: "#",
+                    title: "Stock Market Tracker",
+                    url: "stock-market-tracker",
                 },
                 {
-                    title: "Billing",
-                    url: "#",
+                    title: "Crypto Price Checker",
+                    url: "crypto-price-checker",
                 },
                 {
-                    title: "Limits",
-                    url: "#",
+                    title: "Loan Calculator",
+                    url: "loan-calculator",
+                },
+                {
+                    title: "Invoice Generator",
+                    url: "invoice-generator",
+                },
+                {
+                    title: "Budget Planner",
+                    url: "budget-planner",
+                },
+                {
+                    title: "Tax Calculator",
+                    url: "tax-calculator",
                 },
             ],
         },
         {
             title: "Gaming & Entertainment",
-            url: "#",
+            url: "gaming-entertainment",
             icon: Gamepad2,
             items: [
                 {
-                    title: "General",
-                    url: "#",
+                    title: "Chess.com vs Lichess",
+                    url: "chess-com-vs-lichess",
                 },
                 {
-                    title: "Team",
-                    url: "#",
-                },
-                {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
+                    title: "Esports Schedule",
+                    url: "esports-schedule",
                 },
             ],
         },
         {
             title: "Learning & Educational",
-            url: "#",
+            url: "learning-educational",
             icon: BookOpenIcon,
             items: [
                 {
-                    title: "General",
-                    url: "#",
+                    title: "Flashcard Maker",
+                    url: "flashcard-maker",
                 },
                 {
-                    title: "Team",
-                    url: "#",
+                    title: "Language Translator",
+                    url: "language-translator",
                 },
                 {
-                    title: "Billing",
-                    url: "#",
+                    title: "Periodic Table Explorer",
+                    url: "periodic-table-explorer",
                 },
                 {
-                    title: "Limits",
-                    url: "#",
+                    title: "Random Trivia Generator",
+                    url: "random-trivia-generator",
                 },
             ],
         },
         {
             title: "Security & Privacy",
-            url: "#",
+            url: "security-privacy",
             icon: ShieldCheck,
             items: [
                 {
-                    title: "General",
-                    url: "#",
+                    title: "Password Generator",
+                    url: "password-generator",
                 },
                 {
-                    title: "Team",
-                    url: "#",
+                    title: "URL Safety Checker",
+                    url: "url-safety-checker",
                 },
                 {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
+                    title: "IP Address Lookup",
+                    url: "ip-address-lookup",
                 },
             ],
         },
         {
             title: "Miscellaneous",
-            url: "#",
+            url: "miscellaneous",
             icon: Shuffle,
             items: [
                 {
-                    title: "General",
-                    url: "#",
+                    title: "Random Name Picker",
+                    url: "random-name-picker",
                 },
                 {
-                    title: "Team",
-                    url: "#",
+                    title: "Would You Rather?",
+                    url: "would-you-rather",
                 },
                 {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
+                    title: "Zodiac Compatibility Checker",
+                    url: "zodiac-compatibility-checker",
                 },
             ],
         },
