@@ -4,10 +4,11 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import Search from "./Search";
 
 const SearchBar = () => {
     return (
@@ -24,14 +25,15 @@ const SearchBar = () => {
                 </div>
             </DialogTrigger>
             <DialogContent>
-                <DialogHeader>
+                <VisuallyHidden>
                     <DialogTitle>Are you absolutely sure?</DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently
                         delete your account and remove your data from our
                         servers.
                     </DialogDescription>
-                </DialogHeader>
+                </VisuallyHidden>
+                <Search />
             </DialogContent>
         </Dialog>
     );

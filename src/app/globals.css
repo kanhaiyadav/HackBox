@@ -160,3 +160,21 @@
     text-shadow: 0 0px 50px var(--primary);
     color: var(--primary)
 }
+
+.styled-scrollbar::-webkit-scrollbar {
+    background: var(--background);
+    width: 5px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+    width: 8px;
+}
