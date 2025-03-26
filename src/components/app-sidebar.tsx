@@ -20,10 +20,38 @@ import {
 import { House } from "lucide-react";
 import { data } from "../../constants";
 import Image from "next/image";
+import { useAppDispatch } from "@/lib/hook";
+import { setTools, setLoading } from "@/lib/features/tools/tools.slice";
+import { toolCategories } from "../../constants/tool";
+
+export const revalidate = 86400;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const [active, setActive] = React.useState("home");
     const router = useRouter();
+    const dispatch = useAppDispatch();
+
+
+    React.useEffect(() => {
+        const fetchTools = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tools`, {
+                    cache: "force-cache",
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    dispatch(setTools(data.tools));
+                }
+            } catch (error) {
+                console.error("Failed to fetch tools:", error);
+            }
+            finally {
+                dispatch(setLoading(false));
+            }
+        };
+        
+        fetchTools();
+    }, [dispatch]);
 
     return (
         <Sidebar collapsible="offcanvas" {...props} variant="floating">
@@ -66,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </SidebarGroup>
                 </SidebarMenu>
                 <NavMain
-                    items={data.navMain}
+                    categories={toolCategories}
                     active={active}
                     setActive={setActive}
                 />

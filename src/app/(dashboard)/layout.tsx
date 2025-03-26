@@ -4,6 +4,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Metadata } from "next";
 import ToolNav from "@/components/dashboardHeader";
+import StoreProvider from "../StoreProvider";
 
 export const metadata: Metadata = {
     title: {
@@ -20,15 +21,17 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <body className="h-screen overflow-x-hidden overflow-y-auto">
-                <div className="flex h-fit">
-                    <SidebarProvider className="relative">
-                        <AppSidebar />
-                        <main className="grow relative px-2 flex flex-col h-screen min-w-0">
-                            <ToolNav />
-                            {children}
-                        </main>
-                    </SidebarProvider>
-                </div>
+                <StoreProvider>
+                    <div className="flex h-fit">
+                        <SidebarProvider className="relative">
+                            <AppSidebar />
+                            <main className="grow relative px-2 flex flex-col h-screen min-w-0">
+                                <ToolNav />
+                                {children}
+                            </main>
+                        </SidebarProvider>
+                    </div>
+                </StoreProvider>
             </body>
         </html>
     );

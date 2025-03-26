@@ -28,7 +28,9 @@ export const GET = async () => {
     try {
         await connectToMongoDB();
         const tools = await Tool.find();
-        return new Response(JSON.stringify(tools), {
+        return new Response(JSON.stringify({
+            tools,
+        }), {
             headers: { "Content-Type": "application/json" },
             status: 200,
         });
