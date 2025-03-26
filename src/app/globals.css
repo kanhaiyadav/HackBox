@@ -155,3 +155,8 @@
         @apply bg-background text-foreground;
     }
 }
+
+.card:hover h3 {
+    text-shadow: 0 0px 50px var(--primary);
+    color: var(--primary)
+}

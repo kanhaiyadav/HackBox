@@ -5,6 +5,8 @@ import {
     SidebarMenu,
 } from "@/components/ui/sidebar";
 import CollapsibleItem from "./collapsible";
+import { selectToolLoading } from "@/lib/features/tools/tools.selector";
+import { useSelector } from "react-redux";
 
 export function NavMain({
     categories,
@@ -18,7 +20,9 @@ export function NavMain({
     }[];
     active: string;
     setActive: (arg0: string) => void;
-}) {
+    }) {
+    
+    const loading = useSelector(selectToolLoading);
     
     const items = categories.map((category) => ({
         title: category.title,
@@ -33,7 +37,7 @@ export function NavMain({
             <SidebarGroupLabel>Tools</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
-                    <CollapsibleItem key={item.title} item={item} />
+                    <CollapsibleItem key={item.title} item={item} loading={loading} />
                 ))}
             </SidebarMenu>
         </SidebarGroup>

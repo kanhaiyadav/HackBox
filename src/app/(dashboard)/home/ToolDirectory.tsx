@@ -34,7 +34,7 @@ const ToolDirectory = ({ category }: { category: string }) => {
     }, [category, toolsByCategory, allTools]); // Ensure dependencies are properly set
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9 auto-rows-min gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9 auto-rows-min gap-4 px-1">
             {
                 loading &&
                 Array.from({ length: 27 }).map((_, index) => (

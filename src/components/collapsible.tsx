@@ -16,9 +16,11 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 const CollapsibleItem = ({
     item,
+    loading,
 }: {
     item: {
         title: string;
@@ -26,7 +28,8 @@ const CollapsibleItem = ({
         icon: React.ComponentType;
         slug: string;
         setActive: (arg0: string) => void;
-    };
+        };
+    loading: boolean;
 }) => {
     const tools = useAppSelector(selectToolsByCategory(item.title));
     return (
@@ -41,6 +44,12 @@ const CollapsibleItem = ({
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <SidebarMenuSub>
+                        {
+                            loading &&
+                            Array.from({ length: 5 }).map((_, index) => (
+                                <Skeleton key={index} className="h-6 w-full rounded-sm" />
+                            ))
+                        }
                         {tools?.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.name}>
                                 <SidebarMenuSubButton
