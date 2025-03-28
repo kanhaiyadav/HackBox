@@ -13,6 +13,11 @@ export const selectToolsByCategory = (category: string) => createSelector(
     (tools: ITool[]) => tools.filter((tool) => tool.category === category)
 )
 
+export const selectToolBySlug = (slug: string) => createSelector(
+    [selectAllTools],
+    (tools: ITool[]) => tools.find((tool) => tool.slug === slug)
+)
+
 export const selectToolLoading = createSelector(
     [selectToolsState],
     (state: ToolsState) => state.loading

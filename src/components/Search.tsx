@@ -52,6 +52,7 @@ const Search = () => {
                     value={searchQuery}
                     className="border-none outline-none bg-transparent w-[85%] text-lg placeholder:text-white/30"
                     placeholder="Search a tool"
+                    autoFocus
                 />
             </div>
             <hr className="border-white/10 mt-[20px] mb-[10px]" />

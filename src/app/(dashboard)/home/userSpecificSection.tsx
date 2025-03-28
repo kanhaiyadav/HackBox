@@ -123,7 +123,7 @@ const UserSpecificSection = () => {
                     </button>
                 ))}
             </div>
-            <div className="grow  py-4 overflow-x-auto overflow-y-hidden no-scrollbar">
+            <div className="grow  py-4 overflow-x-auto overflow-y-hidden styled-scrollbar">
                 <div className="flex gap-4 w-fit">
                     {tools.map((tool, index) => (
                         <ToolCard key={index} tool={tool} className="w-[120px]"/>
