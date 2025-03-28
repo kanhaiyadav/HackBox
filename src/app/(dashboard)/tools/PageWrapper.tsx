@@ -13,7 +13,7 @@ const PageWrapper = ({
     children: React.ReactNode;
     }) => {
     const slug = usePathname().split("/").pop();
-    const tool = useSelector(selectToolBySlug(slug));
+    const tool = useSelector(selectToolBySlug(slug || ""));
     console.log(tool);
 
     return (
