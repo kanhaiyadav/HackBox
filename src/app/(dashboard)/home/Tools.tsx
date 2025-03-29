@@ -13,7 +13,7 @@ import { toolCategories } from "../../../../constants/tool";
 import ToolDirectory from "./ToolDirectory";
 
 const Tools = () => {
-    const [category, setCategory] = React.useState("Color");
+    const [category, setCategory] = React.useState("Color Manupulation");
 
     return (
         <div className="w-full grow flex flex-col min-h-0">

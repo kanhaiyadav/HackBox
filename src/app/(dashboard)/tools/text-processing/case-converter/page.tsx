@@ -1,12 +1,14 @@
-import { Textarea } from "@/components/ui/textarea";
 import React from "react";
+import Main from "./index";
 
-const page = () => {
+const Page = () => {
+    
+
     return (
-        <div>
-            <Textarea label="Input text"/>
+        <div className="w-full flex flex-col gap-4 h-full">
+            <Main />
         </div>
     );
 };
 
-export default page;
+export default Page;

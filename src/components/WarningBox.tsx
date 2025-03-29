@@ -1,9 +1,16 @@
 import React from "react";
 import { TiWarningOutline } from "react-icons/ti";
+import { Skeleton } from "./ui/skeleton";
 
-const WarningBox = () => {
+const WarningBox = ({
+    warnings,
+    loading,
+}: {
+    warnings: string[] | undefined;
+    loading: boolean;
+}) => {
     return (
-        <div className="w-fit h-fit bg-yellow-500/10 border-l-[3.5px] border-yellow-500 relative px-[15px] pt-[30px] pb-[15px]">
+        <div className="w-full h-fit min-h-[100px] bg-yellow-500/10 border-l-[3.5px] border-yellow-500 relative px-[15px] pt-[30px] pb-[15px]">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="37.5"
@@ -23,12 +30,29 @@ const WarningBox = () => {
                 ></path>
             </svg>
             <TiWarningOutline className="text-yellow-500 text-4xl absolute top-0 left-0 transform -translate-x-1/2 -translate-y-[15px] z-2" />
-            <p className="">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Asperiores suscipit doloremque tempora labore reiciendis placeat
-                voluptatibus unde quas eligendi magni cupiditate, deleniti sed
-                magnam aspernatur ratione obcaecati, quam nihil eaque?
-            </p>
+            <ul className="flex flex-col gap-3 list-disc ml-[10px]">
+                {loading ? (
+                    <>
+                        <li>
+                            <Skeleton className="h-5 w-[250px] bg-gray-500/20 rounded-md mb-2" />
+                            <Skeleton className="h-5 w-full bg-gray-500/20 rounded-md mb-2" />
+                        </li>
+                        <li>
+                            <Skeleton className="h-5 w-[220] bg-gray-500/20 rounded-md mb-2" />
+                            <Skeleton className="h-5 w-[29px] bg-gray-500/20 rounded-md mb-2" />    
+                        </li>
+                    </>
+                ) : (
+                    warnings?.map((warning, index) => (
+                        <li
+                            key={index}
+                            className="text-yellow-500 text-sm font-semibold"
+                        >
+                            {warning}
+                        </li>
+                    ))
+                )}
+            </ul>
         </div>
     );
 };

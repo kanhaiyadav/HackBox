@@ -4,11 +4,15 @@ import Image from "next/image";
 import { VscFeedback } from "react-icons/vsc";
 import { FaCoffee } from "react-icons/fa";
 import { IoShareSocialSharp } from "react-icons/io5";
+import HeaderSkeleton from "@/components/skeletons/HeaderSkeleton";
 
-const Header = ({ tool }: { tool: ITool }) => {
+const Header = ({ tool, loading = true }: { tool: ITool | undefined, loading: boolean }) => {
+    if (loading) {
+        return <HeaderSkeleton />;
+    }
     return (
         <div className="col-span-full">
-            <h1 className="text-3xl font-semibold">{tool.name}</h1>
+            <h1 className="text-3xl font-semibold">{tool?.name}</h1>
             <div className="py-2 flex items-center gap-4">
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent">
                     <Image
