@@ -44,6 +44,7 @@
     --shadow-foreground: 0px 1.5px 4px 0.5px black;
     --shadow-inset: inset 0px 1.5px 4px 0.5px black;
     --shadow-popover: -3px 5px 8px 2px rgba(0, 0, 0, 0.7), 3px 2px 8px 2px rgba(0, 0, 0, 0.7);
+    --shadow-input: 0px 1.5px 4px 0.5px rgba(0, 0, 0, 0.6);
 }
 
 @layer utilities {

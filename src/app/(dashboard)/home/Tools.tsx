@@ -13,7 +13,7 @@ import { toolCategories } from "../../../../constants/tool";
 import ToolDirectory from "./ToolDirectory";
 
 const Tools = () => {
-    const [category, setCategory] = React.useState("all");
+    const [category, setCategory] = React.useState("Color");
 
     return (
         <div className="w-full grow flex flex-col min-h-0">
@@ -21,7 +21,7 @@ const Tools = () => {
                 <h2 className="text-xl">Tools</h2>
                 <Select onValueChange={(value) => setCategory(value)}>
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="All Tools" />
+                        <SelectValue placeholder="Color" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">

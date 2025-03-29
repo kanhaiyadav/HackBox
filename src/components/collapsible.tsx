@@ -55,7 +55,7 @@ const CollapsibleItem = ({
                                 <SidebarMenuSubButton
                                     asChild
                                     className={`${
-                                        item.active === subItem.slug ? "bg-white/5" : ""
+                                        item.active === subItem.slug ? "bg-white/5 text-primary" : ""
                                     } hover:bg-white/5`}
                                     onClick={() =>
                                         item.setActive(subItem.slug)

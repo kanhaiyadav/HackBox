@@ -1,6 +1,7 @@
 "use client";
 
 import ToolCard from "@/components/toolCard";
+import Image from "next/image";
 import React from "react";
 
 const tools = [
@@ -124,14 +125,18 @@ const UserSpecificSection = () => {
                 ))}
             </div>
             <div className="grow  py-4 overflow-x-auto overflow-y-hidden styled-scrollbar">
-                <div className="flex gap-4 w-fit">
-                    {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
-                    ))}
-                    {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
-                    ))}
+                <div className="mb-[-10px] mt-[10px]">
+                    <Image src={'/no-data.png'} alt="no-data" width={60} height={60} className="mx-auto" />
+                    <p className="w-fit m-auto text-white/40">No data exits!</p>
                 </div>
+                {/* <div className="flex gap-4 w-fit">
+                    {tools.map((tool, index) => (
+                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                    ))}
+                    {tools.map((tool, index) => (
+                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                    ))}
+                </div> */}
             </div>
         </div>
     );

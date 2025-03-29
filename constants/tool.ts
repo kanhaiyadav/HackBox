@@ -8,13 +8,25 @@ import {
     Shuffle,
     CircleUser,
     Palette,
+    LucideTextSearch
 } from "lucide-react";
+import { title } from "process";
 
 export const toolCategories = [
     {
         title: "Developer & Tech",
         slug: "developer-tech",
         icon: SquareTerminal,
+    },
+    {
+        title: "Color Manupulation",
+        slug: "color-manipulation",
+        icon: Palette,
+    },
+    {
+        title: "Text Processing",
+        slug: "text-processing",
+        icon: LucideTextSearch,
     },
     {
         title: "Productivity & Work",
