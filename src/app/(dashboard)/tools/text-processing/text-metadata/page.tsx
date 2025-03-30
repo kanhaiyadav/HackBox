@@ -6,6 +6,7 @@ import Head from 'next/head';
 
 export default function MetadataGenerator() {
     const [inputText, setInputText] = useState("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [metadata, setMetadata] = useState<any>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [useApi, setUseApi] = useState(false);
@@ -231,7 +232,7 @@ export default function MetadataGenerator() {
         const colemanLiauIndex = (0.0588 * L - 0.296 * S - 15.8).toFixed(2);
 
         // Get consensus readability level
-        let scores = [
+        const scores = [
             parseFloat(fleschKincaidGrade),
             parseFloat(gunningFogIndex),
             parseFloat(smogIndex),
@@ -1026,7 +1027,7 @@ export default function MetadataGenerator() {
     ];
 
     return (
-        <div className="min-h-screen p-8 bg-gray-100">
+        <div className="min-h-screen p-3">
             <Head>
                 <title>Advanced Text Metadata Generator</title>
                 <meta
@@ -1036,11 +1037,7 @@ export default function MetadataGenerator() {
             </Head>
 
             <main className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-6">
-                    Advanced Text Metadata Generator
-                </h1>
-
-                <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                <div className="foreground p-6 rounded-lg shadow-input mb-6">
                     <h2 className="text-xl font-bold mb-4">Input Text</h2>
                     <textarea
                         value={inputText}
@@ -1054,10 +1051,10 @@ export default function MetadataGenerator() {
                             <button
                                 onClick={analyzeText}
                                 disabled={isAnalyzing || !inputText.trim()}
-                                className={`w-full py-2 px-4 rounded-lg ${
+                                className={`w-full py-2 px-4 rounded-lg text-black ${
                                     isAnalyzing || !inputText.trim()
-                                        ? "bg-gray-300 cursor-not-allowed"
-                                        : "bg-blue-600 text-white hover:bg-blue-700"
+                                        ? "bg-primary/50 cursor-not-allowed"
+                                        : "bg-primary hover:bg-blue-700"
                                 }`}
                             >
                                 {isAnalyzing ? "Analyzing..." : "Analyze Text"}
@@ -1095,7 +1092,7 @@ export default function MetadataGenerator() {
                                 placeholder="Enter your API key"
                             />
 
-                            <div className="mt-3 text-sm text-gray-600">
+                            <div className="mt-3 text-sm text-white/60">
                                 <p className="font-medium mb-1">
                                     Recommended Free APIs:
                                 </p>
@@ -1121,67 +1118,68 @@ export default function MetadataGenerator() {
                 </div>
 
                 {metadata && (
-                    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <div className="foreground p-6 rounded-lg shadow-input mb-6">
                         <h2 className="text-xl font-bold mb-4">
                             Analysis Results
                         </h2>
 
                         {/* Basic Statistics */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">
-                                Basic Statistics
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Basic Statistics</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Characters
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.characters}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Characters (no spaces)
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.charactersNoSpaces}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Words
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.wordCount}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Sentences
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.sentenceCount}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Paragraphs
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.paragraphCount}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Avg. Word Length
                                     </div>
                                     <div className="text-lg font-medium">
                                         {metadata.basicStats.averageWordLength}
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 p-3 rounded-md">
-                                    <div className="text-sm text-gray-500">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
+                                    <div className="text-sm text-white/70">
                                         Avg. Words per Sentence
                                     </div>
                                     <div className="text-lg font-medium">
@@ -1196,13 +1194,14 @@ export default function MetadataGenerator() {
 
                         {/* Word Analysis */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">
-                                Word Analysis
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Word Analysis</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <div className="mb-3">
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm text-white/70">
                                             Longest Word
                                         </div>
                                         <div className="text-lg font-medium">
@@ -1210,7 +1209,7 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
                                     <div className="mb-3">
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm text-white/70">
                                             Shortest Word
                                         </div>
                                         <div className="text-lg font-medium">
@@ -1218,7 +1217,7 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
                                     <div className="mb-3">
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm text-white/70">
                                             Unique Words
                                         </div>
                                         <div className="text-lg font-medium">
@@ -1226,7 +1225,7 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
                                     <div className="mb-3">
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm text-white/70">
                                             Lexical Diversity
                                         </div>
                                         <div className="text-lg font-medium">
@@ -1238,10 +1237,10 @@ export default function MetadataGenerator() {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className="text-sm text-gray-500 mb-2">
+                                    <div className="text-sm text-white/70 mb-2">
                                         Top Words
                                     </div>
-                                    <div className="bg-gray-50 p-3 rounded-md max-h-64 overflow-y-auto">
+                                    <div className="bg-background/30 shadow-inset p-3 rounded-md max-h-64 overflow-y-auto">
                                         {metadata.wordAnalysis.topWords.map(
                                             ([word, count], index) => (
                                                 <div
@@ -1262,15 +1261,16 @@ export default function MetadataGenerator() {
 
                         {/* Character Distribution */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">
-                                Character Distribution
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Character Distribution</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
-                            <div className="bg-gray-50 p-3 rounded-md grid grid-cols-3 sm:grid-cols-5 gap-2">
+                            <div className="bg-background/30 shadow-inset p-3 rounded-md grid grid-cols-3 sm:grid-cols-7 gap-2">
                                 {metadata.charDistribution.map(
                                     ([char, count], index) => (
                                         <div
                                             key={index}
-                                            className="flex justify-between"
+                                            className="flex justify-evenly"
                                         >
                                             <span className="font-mono">
                                                 {char === " "
@@ -1288,13 +1288,14 @@ export default function MetadataGenerator() {
 
                         {/* Readability Metrics */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">
-                                Readability
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Readability</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <div className="bg-blue-50 p-4 rounded-md mb-4">
-                                        <div className="text-sm text-gray-600">
+                                    <div className="bg-blue-400/10 p-4 rounded-md mb-4">
+                                        <div className="text-sm text-white/60">
                                             Consensus Reading Level
                                         </div>
                                         <div className="text-xl font-bold text-blue-800">
@@ -1303,7 +1304,7 @@ export default function MetadataGenerator() {
                                                     .readabilityConsensus
                                             }
                                         </div>
-                                        <div className="text-sm text-gray-600 mt-2">
+                                        <div className="text-sm text-white/60 mt-2">
                                             Average Grade Level:{" "}
                                             {
                                                 metadata.readability
@@ -1312,8 +1313,8 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-green-50 p-4 rounded-md">
-                                        <div className="text-sm text-gray-600">
+                                    <div className="bg-green-400/10 p-4 rounded-md">
+                                        <div className="text-sm text-white/60">
                                             Estimated Reading Time
                                         </div>
                                         <div className="text-xl font-bold text-green-800">
@@ -1325,7 +1326,7 @@ export default function MetadataGenerator() {
                                     </div>
                                 </div>
 
-                                <div className="bg-gray-50 p-3 rounded-md">
+                                <div className="bg-background/30 shadow-inset p-3 rounded-md">
                                     <h4 className="font-medium mb-2">
                                         Readability Scores
                                     </h4>
@@ -1388,13 +1389,14 @@ export default function MetadataGenerator() {
 
                         {/* Sentiment Analysis */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">
-                                Sentiment Analysis
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Sentiment Analysis</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <div className="bg-gray-50 p-4 rounded-md mb-4">
-                                        <div className="text-sm text-gray-600">
+                                    <div className="bg-background/30 shadow-inset p-4 rounded-md mb-4">
+                                        <div className="text-sm text-white/60">
                                             Overall Sentiment
                                         </div>
                                         <div
@@ -1407,7 +1409,7 @@ export default function MetadataGenerator() {
                                                           "Negative"
                                                       )
                                                     ? "text-red-600"
-                                                    : "text-gray-600"
+                                                    : "text-white/60"
                                             }`}
                                         >
                                             {metadata.sentiment.overall}
@@ -1434,8 +1436,8 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-purple-50 p-4 rounded-md">
-                                        <div className="text-sm text-gray-600">
+                                    <div className="bg-purple-400/10 p-4 rounded-md">
+                                        <div className="text-sm text-white/60">
                                             Primary Emotion
                                         </div>
                                         <div className="text-xl font-bold text-purple-800">
@@ -1445,7 +1447,7 @@ export default function MetadataGenerator() {
                                 </div>
 
                                 <div>
-                                    <div className="bg-gray-50 p-3 rounded-md mb-4">
+                                    <div className="bg-background/30 shadow-inset p-3 rounded-md mb-4">
                                         <h4 className="font-medium mb-2">
                                             Word Sentiment
                                         </h4>
@@ -1502,7 +1504,7 @@ export default function MetadataGenerator() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-gray-50 p-3 rounded-md">
+                                    <div className="bg-background/30 shadow-inset p-3 rounded-md">
                                         <h4 className="font-medium mb-2">
                                             Emotion Breakdown
                                         </h4>
@@ -1531,16 +1533,17 @@ export default function MetadataGenerator() {
 
                         {/* Language Detection */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-3">
-                                Language Detection
+                            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <span className='whitespace-nowrap'>Language Detection</span>
+                                <hr className='border-1 border-white/30 w-full grow'/>
                             </h3>
-                            <div className="bg-gray-50 p-4 rounded-md">
-                                <div className="text-sm text-gray-600">
+                            <div className="bg-background/30 shadow-inset p-4 rounded-md">
+                                <div className="text-sm text-white/60">
                                     Detected Language
                                 </div>
                                 <div className="text-xl font-bold">
                                     {metadata.language.detectedLanguage}
-                                    <span className="ml-2 text-sm font-normal text-gray-500">
+                                    <span className="ml-2 text-sm font-normal text-white/70">
                                         (Confidence:{" "}
                                         {metadata.language.confidence})
                                     </span>
@@ -1551,7 +1554,7 @@ export default function MetadataGenerator() {
                                         <div className="font-medium">
                                             Alternative Possibilities:
                                         </div>
-                                        <div className="text-gray-600">
+                                        <div className="text-white/60">
                                             {metadata.language.alternativePossibilities.join(
                                                 ", "
                                             )}
@@ -1564,7 +1567,7 @@ export default function MetadataGenerator() {
                                         <div className="font-medium">
                                             Detected Scripts:
                                         </div>
-                                        <div className="text-gray-600">
+                                        <div className="text-white/60">
                                             {metadata.language.detectedScripts
                                                 .map(
                                                     (script: string) =>

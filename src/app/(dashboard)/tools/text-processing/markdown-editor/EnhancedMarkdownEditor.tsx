@@ -70,7 +70,7 @@ function hello() {
         }
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, isDragActive } = useDropzone({
         onDrop,
         accept: {
             "text/markdown": [".md", ".markdown"],
@@ -189,7 +189,7 @@ function hello() {
             if (response.ok) {
                 const html = await response.text();
                 // Make sure lists are properly styled by adding task-list-item classes
-                let enhancedHtml = html
+                const enhancedHtml = html
                     // Fix for list styling
                     .replace(/<ul>/g, '<ul class="contains-task-list">')
                     .replace(/<ol>/g, '<ol class="contains-task-list">');
@@ -543,6 +543,8 @@ export default EnhancedMarkdownEditor;
 // Add to _app.tsx or a script tag in pages/_document.tsx
 declare global {
     interface Window {
-        hljs: any;
+        hljs: {
+            highlightElement: (element: HTMLElement) => void;
+        };
     }
 }
