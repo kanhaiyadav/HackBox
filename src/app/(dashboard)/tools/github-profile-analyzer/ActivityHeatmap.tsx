@@ -5,10 +5,7 @@ export default function ActivityHeatmap({ contributions }: { contributions: GitH
   const allDays = contributions.weeks.flatMap(week => week.contributionDays);
   
 // Group by month for labels
-// Define interface for month string array
-interface MonthLabels extends Array<string> {}
-
-const months: MonthLabels = Array.from(new Set(
+const months: string[] = Array.from(new Set(
     allDays.map((day) => new Date(day.date).toLocaleString('default', { month: 'short' }))
 ));
 
@@ -16,7 +13,7 @@ const months: MonthLabels = Array.from(new Set(
     <div className="overflow-x-auto">
       <div className="inline-block min-w-full">
         <div className="flex mb-2">
-          {months.map((month, index) => (
+          {months.map((month) => (
             <div key={month} className="text-xs text-gray-500" style={{ width: `${100 / months.length}%` }}>
               {month}
             </div>

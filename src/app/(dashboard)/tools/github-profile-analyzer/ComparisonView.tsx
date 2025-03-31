@@ -96,7 +96,7 @@ export default function ComparisonView({
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <h4 className="font-medium mb-2">
-                                {user1.user.login}'s Unique Languages
+                                {user1.user.login}&apos;s Unique Languages
                             </h4>
                             {uniqueLanguages.user1.length > 0 ? (
                                 <div className="flex flex-wrap gap-2">
@@ -118,7 +118,7 @@ export default function ComparisonView({
 
                         <div>
                             <h4 className="font-medium mb-2">
-                                {user2.user.login}'s Unique Languages
+                                {user2.user.login}&apos;s Unique Languages
                             </h4>
                             {uniqueLanguages.user2.length > 0 ? (
                                 <div className="flex flex-wrap gap-2">
@@ -218,13 +218,13 @@ export default function ComparisonView({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-lg shadow-md p-6">
                     <h3 className="text-lg font-semibold mb-4">
-                        {user1.user.login}'s Languages
+                        {user1.user.login}&apos;s Languages
                     </h3>
                     <LanguageChart languages={user1.languages} />
                 </div>
                 <div className="bg-white rounded-lg shadow-md p-6">
                     <h3 className="text-lg font-semibold mb-4">
-                        {user2.user.login}'s Languages
+                        {user2.user.login}&apos;s Languages
                     </h3>
                     <LanguageChart languages={user2.languages} />
                 </div>

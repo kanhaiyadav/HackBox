@@ -100,6 +100,7 @@ const RepoItem = ({
     metric,
     metricName,
 }: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     repo: any;
     metric: string | number;
     metricName: string;

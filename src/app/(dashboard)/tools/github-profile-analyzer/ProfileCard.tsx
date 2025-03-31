@@ -1,4 +1,5 @@
 import { ProfileAnalysis } from "@/types";
+import Image from "next/image";
 
 export default function ProfileCard({ profile }: { profile: ProfileAnalysis }) {
     const { user, starCount, forkCount } = profile;
@@ -7,10 +8,12 @@ export default function ProfileCard({ profile }: { profile: ProfileAnalysis }) {
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6">
                 <div className="flex items-center space-x-6">
-                    <img
+                    <Image
                         src={user.avatar_url}
                         alt={`${user.login}'s avatar`}
-                        className="w-24 h-24 rounded-full border-2 border-blue-500"
+                        className="rounded-full border-2 border-blue-500"
+                        width={96}
+                        height={96}
                     />
                     <div>
                         <h2 className="text-2xl font-bold">

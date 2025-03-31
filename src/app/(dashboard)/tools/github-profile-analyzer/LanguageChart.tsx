@@ -71,7 +71,7 @@ export default function LanguageChart({
                         ))}
                     </Pie>
                     <Tooltip
-                        formatter={(value, name, props) => [
+                        formatter={(value, name) => [
                             `${value} repos`,
                             name,
                         ]}
