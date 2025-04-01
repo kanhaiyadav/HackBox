@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 interface ITool extends Document {
     name: string;
     description: string;
-    warnings: string[];
+    warning: string;
     slug: string;
     category: string;
     categorySlug: string;
@@ -14,7 +14,7 @@ interface ITool extends Document {
 const toolSchema = new Schema<ITool>({
     name: { type: String, required: true },
     description: { type: String, required: true },
-    warnings: { type: [String], default: [] },
+    warning: { type: String, default: "" },
     slug: { type: String, required: true },
     category: { type: String, required: true },
     categorySlug: { type: String, required: true },

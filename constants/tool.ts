@@ -8,9 +8,10 @@ import {
     Shuffle,
     CircleUser,
     Palette,
-    LucideTextSearch
+    LucideTextSearch,
+    ChartNoAxesCombined,
+    ArrowLeftRight
 } from "lucide-react";
-import { title } from "process";
 
 export const toolCategories = [
     {
@@ -67,5 +68,15 @@ export const toolCategories = [
         title: "Miscellaneous",
         slug: "miscellaneous",
         icon: Shuffle,
+    },
+    {
+        title: "Data Analysis",
+        slug: "data-analysis",
+        icon: ChartNoAxesCombined,
+    },
+    {
+        title: "Conversion & Calculators",
+        slug: "conversion-calculators",
+        icon: ArrowLeftRight,
     },
 ];
