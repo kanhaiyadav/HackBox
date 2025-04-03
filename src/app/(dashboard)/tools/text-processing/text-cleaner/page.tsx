@@ -5,19 +5,19 @@ import { useDebounce } from "@/hooks/debounce";
 import {
     FaTrash,
     FaCopy,
-    FaRandom,
-    FaAlignLeft,
-    FaAlignCenter,
-    FaAlignRight,
-    FaBold,
-    FaItalic,
-    FaUnderline,
-    FaListUl,
-    FaListOl,
-    FaQuoteLeft,
-    FaCode,
-    FaLink,
-    FaImage,
+    // FaRandom,
+    // FaAlignLeft,
+    // FaAlignCenter,
+    // FaAlignRight,
+    // FaBold,
+    // FaItalic,
+    // FaUnderline,
+    // FaListUl,
+    // FaListOl,
+    // FaQuoteLeft,
+    // FaCode,
+    // FaLink,
+    // FaImage,
 } from "react-icons/fa";
 import { titleCase } from "title-case";
 
@@ -26,8 +26,10 @@ export default function TextCleaner() {
     const [outputText, setOutputText] = useState<string>("");
     const [findText, setFindText] = useState<string>("");
     const [replaceText, setReplaceText] = useState<string>("");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [activeTab, setActiveTab] = useState<string>("whitespace");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [history, setHistory] = useState<string[]>([]);
     const debouncedInput = useDebounce(inputText, 500);
 
@@ -109,6 +111,7 @@ export default function TextCleaner() {
                         2
                     );
                 } catch (e) {
+                    console.error("Invalid JSON:", e);
                     processedText = "Invalid JSON";
                 }
                 break;

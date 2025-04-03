@@ -13,8 +13,10 @@ import {
 
 const StatisticsCalculator = () => {
     const [inputData, setInputData] = useState<string>("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [results, setResults] = useState<any>(null);
     const [error, setError] = useState<string>("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [chartData, setChartData] = useState<any[]>([]);
 
     const calculateStatistics = () => {
@@ -141,6 +143,7 @@ const StatisticsCalculator = () => {
 
             setError("");
         } catch (err) {
+            console.error(err);
             setError("An error occurred during calculation.");
             setResults(null);
             setChartData([]);

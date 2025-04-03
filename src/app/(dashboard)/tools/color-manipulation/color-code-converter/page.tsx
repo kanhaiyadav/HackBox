@@ -27,8 +27,8 @@ const ColorConverter = () => {
     const [colorPalette, setColorPalette] = useState<string[]>([]);
     const [paletteType, setPaletteType] = useState<string>("analogous");
     const [paletteCount, setPaletteCount] = useState<number>(5);
-    const [showAdvancedOptions, setShowAdvancedOptions] =
-        useState<boolean>(false);
+    // const [showAdvancedOptions, setShowAdvancedOptions] =
+    //     useState<boolean>(false);
     const [hue, setHue] = useState<number>(0);
     const [saturation, setSaturation] = useState<number>(0);
     const [lightness, setLightness] = useState<number>(0);
@@ -41,6 +41,7 @@ const ColorConverter = () => {
             setSaturation(hslValues[1] || 0);
             setLightness(hslValues[2] || 0);
         } catch (e) {
+            console.error(e);
             // Handle invalid colors
         }
     }, [chromaColor]);
@@ -58,6 +59,7 @@ const ColorConverter = () => {
             setColor(inputColor);
             setChromaColor(newChromaColor);
         } catch (e) {
+            console.error(e);
             // Keep the input value but don't update the chroma color if invalid
             setColor(inputColor);
         }
@@ -69,7 +71,7 @@ const ColorConverter = () => {
         value: number
     ) => {
         try {
-            let newHsl = [...chromaColor.hsl()];
+            const newHsl = [...chromaColor.hsl()];
 
             if (type === "hue") {
                 newHsl[0] = value;
@@ -82,10 +84,11 @@ const ColorConverter = () => {
                 setLightness(value);
             }
 
-            const newColor = chroma.hsl(...newHsl);
+            const newColor = chroma.hsl(newHsl[0] || 0, newHsl[1] || 0, newHsl[2] || 0);
             setChromaColor(newColor);
             setColor(newColor.hex());
         } catch (e) {
+            console.error(e);
             // Handle errors
         }
     };
@@ -130,6 +133,7 @@ const ColorConverter = () => {
                     return chromaColor.hex();
             }
         } catch (e) {
+            console.error(e);
             return "Invalid color";
         }
     };
@@ -244,6 +248,7 @@ const ColorConverter = () => {
 
             setColorPalette(newPalette);
         } catch (e) {
+            console.error(e);
             setColorPalette([]);
         }
     };
@@ -269,6 +274,7 @@ const ColorConverter = () => {
                     parseFloat(whiteContrast) >= 7.0,
             };
         } catch (e) {
+            console.error(e);
             return {
                 blackContrast: "-",
                 whiteContrast: "-",

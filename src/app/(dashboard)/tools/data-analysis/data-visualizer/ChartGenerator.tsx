@@ -119,6 +119,7 @@ const ChartGenerator: React.FC<ChartGeneratorProps> = ({
                 return;
             }
         } catch (e) {
+            console.error(e);
             // If not JSON, try CSV format
             const lines = inputData.trim().split("\n");
             if (lines.length < 2) return;
@@ -126,6 +127,7 @@ const ChartGenerator: React.FC<ChartGeneratorProps> = ({
             const headers = lines[0].split(",").map((h) => h.trim());
             const newData = lines.slice(1).map((line) => {
                 const values = line.split(",").map((v) => v.trim());
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const obj: any = {};
                 headers.forEach((header, i) => {
                     obj[header] = isNaN(Number(values[i]))

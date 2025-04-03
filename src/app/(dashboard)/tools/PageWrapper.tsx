@@ -13,11 +13,6 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     const slug = usePathname().split("/").pop();
     const tool = useSelector(selectToolBySlug(slug || ""));
 
-    const warnings = [
-        "This tool is in beta, please report any bugs. It may not work as expected.",
-        "This tool is not available in your region. Please use a VPN to access it.",
-    ];
-
     return (
         <div className="grow min-h-0 flex flex-col w-full px-[50px]">
             <Header tool={tool} loading={loading} />
@@ -31,7 +26,7 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
                         loading={loading}
                     />
 
-                    <WarningBox warnings={warnings} loading={loading} />
+                    <WarningBox warning={tool?.warning} loading={loading} />
                 </div>
             </div>
         </div>

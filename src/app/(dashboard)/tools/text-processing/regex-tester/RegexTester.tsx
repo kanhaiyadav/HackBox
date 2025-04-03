@@ -59,6 +59,7 @@ export default function RegexTester() {
             }
 
             const activeFlags = Object.entries(flags)
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 .filter(([_, value]) => value)
                 .map(([key]) => key[0]) // Take first letter of each flag
                 .join("");
@@ -192,6 +193,7 @@ export default function RegexTester() {
 
             setExplanation(explanations.join("\n\n"));
         } catch (err) {
+            console.error(err);
             setExplanation("Could not generate explanation");
         }
     };
@@ -199,7 +201,7 @@ export default function RegexTester() {
     const getHighlightedText = () => {
         if (!matches.length || !isValidRegex) return testString;
 
-        let result = [];
+        const result = [];
         let lastIndex = 0;
 
         matches.forEach((match) => {
@@ -255,6 +257,7 @@ export default function RegexTester() {
                         <span className="inline-flex items-center px-3 rounded-r-md bg-accent text-gray-500">
                             /
                             {Object.entries(flags)
+                                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                                 .filter(([_, value]) => value)
                                 .map(([key]) => key[0])
                                 .join("")}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Bell, Settings, BarChart, PlayCircle, PauseCircle, RotateCcw, CheckCircle, Coffee, BookOpen } from 'lucide-react';
+import { Settings, BarChart, PlayCircle, PauseCircle, RotateCcw, CheckCircle, BookOpen } from 'lucide-react';
 
 // Define types
 type TimerMode = 'pomodoro' | 'shortBreak' | 'longBreak';

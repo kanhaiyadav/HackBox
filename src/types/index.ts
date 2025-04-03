@@ -1,7 +1,7 @@
 export interface ITool {
     name: string;
     description: string;
-    warnings: string[];
+    warning: string;
     slug: string;
     category: string;
     categorySlug: string;

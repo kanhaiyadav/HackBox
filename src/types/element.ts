@@ -1,0 +1,48 @@
+export interface Element {
+    number: number;
+    boil: number | null;
+    category: string;
+    discovered_by: string | null;
+    melt: number | null;
+    molar_heat: number | null;
+    named_by: string | null;
+    symbol: string;
+    name: string;
+    phase: string;
+    source: string;
+    bohr_model_image: string | null;
+    bohr_model_3d: string | null;
+    spectral_img: string | null;
+    summary: string;
+    atomic_mass: number;
+    "cpk-hex": string | null;
+    image: {
+        title: string;
+        url: string;
+        attribution: string;
+    };
+    electron_configuration: string;
+    electron_configuration_semantic: string;
+    electronegativity_pauling: number | null;
+    // atomicRadius: number | null;
+    ionization_energies: number[];
+    electron_affinity: number | null;
+    // oxidationStates: string;
+    // standardState: string;
+    density: number | null;
+    // yearDiscovered: number | string;
+    block: "s" | "p" | "d" | "f";
+    period: number;
+    group: number | null;
+    // radioactive?: boolean;
+    natural?: boolean;
+    metal?: boolean;
+    nonmetal?: boolean;
+    metalloid?: boolean;
+    appearance?: string | null;
+    xpos: number;
+    ypos: number;
+    wxpos: number;
+    wypos: number;
+    shells: number[];
+}

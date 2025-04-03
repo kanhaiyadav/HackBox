@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
 import { useState, useMemo } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { diffChars, diffWords, diffLines, diffJson, diffArrays } from "diff";
 import {
     FaCopy,
     FaExchangeAlt,
     FaAlignLeft,
     FaAlignCenter,
-    FaAlignRight,
+    // FaAlignRight,
     FaFileExport,
 } from "react-icons/fa";
 
@@ -68,18 +69,19 @@ export default function TextDiffTool() {
     // Copy diff results
     const copyDiffResults = () => {
         const diffText = differences
-            ?.map((part, index) => {
+            ?.map((part) => {
                 const prefix = part.added ? "[+]" : part.removed ? "[-]" : "";
                 return `${prefix}${part.value}`;
             })
             .join("");
+        if(!diffText) return;
         navigator.clipboard.writeText(diffText);
     };
 
     // Export diff as HTML
     const exportDiffHTML = () => {
         const html = differences
-            ?.map((part, index) => {
+            ?.map((part) => {
                 const color = part.added
                     ? "bg-green-100"
                     : part.removed

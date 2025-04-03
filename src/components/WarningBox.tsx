@@ -3,10 +3,10 @@ import { TiWarningOutline } from "react-icons/ti";
 import { Skeleton } from "./ui/skeleton";
 
 const WarningBox = ({
-    warnings,
+    warning,
     loading,
 }: {
-    warnings: string[] | undefined;
+    warning: string | undefined;
     loading: boolean;
 }) => {
     return (
@@ -30,29 +30,22 @@ const WarningBox = ({
                 ></path>
             </svg>
             <TiWarningOutline className="text-yellow-500 text-4xl absolute top-0 left-0 transform -translate-x-1/2 -translate-y-[15px] z-2" />
-            <ul className="flex flex-col gap-3 list-disc ml-[10px]">
+            <div>
                 {loading ? (
-                    <>
+                    <ul className="flex flex-col gap-3 list-disc ml-[10px]">
                         <li>
                             <Skeleton className="h-5 w-[250px] bg-gray-500/20 rounded-md mb-2" />
                             <Skeleton className="h-5 w-full bg-gray-500/20 rounded-md mb-2" />
                         </li>
                         <li>
                             <Skeleton className="h-5 w-[220] bg-gray-500/20 rounded-md mb-2" />
-                            <Skeleton className="h-5 w-[29px] bg-gray-500/20 rounded-md mb-2" />    
+                            <Skeleton className="h-5 w-[29px] bg-gray-500/20 rounded-md mb-2" />
                         </li>
-                    </>
+                    </ul>
                 ) : (
-                    warnings?.map((warning, index) => (
-                        <li
-                            key={index}
-                            className="text-yellow-500 text-sm font-semibold"
-                        >
-                            {warning}
-                        </li>
-                    ))
+                    <div dangerouslySetInnerHTML={{ __html: warning || "" }} />
                 )}
-            </ul>
+            </div>
         </div>
     );
 };

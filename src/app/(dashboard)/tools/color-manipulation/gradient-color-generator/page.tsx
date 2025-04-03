@@ -21,7 +21,7 @@ const GradientGenerator = () => {
     const [conicPosition, setConicPosition] = useState("center");
 
     // Preview size state
-    const [previewSize, setPreviewSize] = useState({ width: 400, height: 300 });
+    const [previewSize] = useState({ width: 400, height: 300 });
 
     // CSS output state
     const [cssOutput, setCssOutput] = useState("");
@@ -85,14 +85,14 @@ const GradientGenerator = () => {
     };
 
     // Remove a color stop
-    const removeColorStop = (index) => {
+    const removeColorStop = (index: number) => {
         if (colorStops.length > 2) {
             setColorStops(colorStops.filter((_, i) => i !== index));
         }
     };
 
     // Update color stop
-    const updateColorStop = (index, field, value) => {
+    const updateColorStop = (index: number, field: string, value: string | number) => {
         const newStops = [...colorStops];
         newStops[index] = { ...newStops[index], [field]: value };
         setColorStops(newStops);

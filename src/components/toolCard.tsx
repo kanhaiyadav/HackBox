@@ -1,5 +1,4 @@
 import React from "react";
-import { ImTextWidth } from "react-icons/im";
 import Link from "next/link";
 import { ITool } from "@/types";
 import Image from "next/image";

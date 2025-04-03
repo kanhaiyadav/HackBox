@@ -56,6 +56,7 @@ export default function FileConverter() {
                 try {
                     jsonData = JSON.parse(inputText);
                 } catch (e) {
+                    console.error(e);
                     throw new Error("Invalid JSON format");
                 }
 
@@ -199,7 +200,7 @@ Jane Smith,25,jane@example.com`);
                                 className="w-full p-2 border border-gray-300 rounded-md"
                             >
                                 <option value='"'>&quot; (Double Quote)</option>
-                                <option value="'">' (Single Quote)</option>
+                                <option value="'">&apos; (Single Quote)</option>
                                 <option value="`">` (Backtick)</option>
                             </select>
                         </div>

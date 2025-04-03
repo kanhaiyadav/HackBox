@@ -40,8 +40,8 @@ export const toolCategories = [
         icon: Palette,
     },
     {
-        title: "Social Media & Fun",
-        slug: "social-media-fun",
+        title: "Fun",
+        slug: "fun",
         icon: CircleUser,
     },
     {

@@ -7,7 +7,6 @@ import {
     Upload,
     Download,
     Code,
-    BookOpen,
     Eye,
 } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -60,6 +59,7 @@ const JsonFormatter: React.FC = () => {
                 const parsed = JSON.parse(jsonInput);
                 setJsonInput(JSON.stringify(parsed, null, indentSize));
             } catch (error) {
+                console.error(error);
                 // This shouldn't happen as we already validated
             }
         }
@@ -72,6 +72,7 @@ const JsonFormatter: React.FC = () => {
                 const parsed = JSON.parse(jsonInput);
                 setJsonInput(JSON.stringify(parsed));
             } catch (error) {
+                console.error(error);
                 // This shouldn't happen as we already validated
             }
         }

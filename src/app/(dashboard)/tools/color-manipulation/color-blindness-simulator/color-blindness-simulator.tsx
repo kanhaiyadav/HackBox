@@ -210,7 +210,7 @@ const ColorBlindnessSimulator: React.FC = () => {
 
     // Suggest alternative colors for better accessibility
     const suggestAccessibleColors = (color: string): string[] => {
-        const baseColor = chroma(color);
+        // const baseColor = chroma(color);
         const suggestions: string[] = [];
 
         // Increase contrast
@@ -419,7 +419,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                             </h3>
                             <ul className="list-disc pl-5 text-sm">
                                 <li>
-                                    Ensure important information isn't conveyed
+                                    Ensure important information isn&apos;t conveyed
                                     by color alone
                                 </li>
                                 <li>
@@ -450,7 +450,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                 </h2>
                 <p className="mb-4">
                     Color blindness affects approximately 1 in 12 men and 1 in
-                    200 women worldwide. It's usually inherited genetically but
+                    200 women worldwide. It&apos;s usually inherited genetically but
                     can also result from eye, nerve, or brain damage, or due to
                     exposure to certain chemicals.
                 </p>

@@ -1,7 +1,7 @@
 'use client';
 
 // pages/metadata-generator.tsx
-import { useState } from 'react';
+import { Key, useState } from 'react';
 import Head from 'next/head';
 
 export default function MetadataGenerator() {
@@ -566,7 +566,8 @@ export default function MetadataGenerator() {
             if (negators.includes(word)) negatorCount++;
 
             // Check for emotions
-            for (const [emotion, emotionWordList] of Object.entries(emotions)) {
+            for (const [emotion] of Object.entries(emotions)) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 if ((emotionWords as any)[emotion].includes(word)) {
                     emotions[emotion]++;
                 }
@@ -599,6 +600,7 @@ export default function MetadataGenerator() {
         const primaryEmotion =
             Object.entries(emotions)
                 .sort((a, b) => b[1] - a[1])
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 .filter(([_, count]) => count > 0)[0]?.[0] || "neutral";
 
         // Determine sentiment label
@@ -938,6 +940,7 @@ export default function MetadataGenerator() {
                 confidence,
                 alternativePossibilities: sortedScores
                     .slice(1, 3)
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     .map(([lang, _]) => lang),
             };
         }
@@ -1242,7 +1245,8 @@ export default function MetadataGenerator() {
                                     </div>
                                     <div className="bg-background/30 shadow-inset p-3 rounded-md max-h-64 overflow-y-auto">
                                         {metadata.wordAnalysis.topWords.map(
-                                            ([word, count], index) => (
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                            ([word, count]: any, index: Key | null | undefined) => (
                                                 <div
                                                     key={index}
                                                     className="flex justify-between mb-1 text-sm"
@@ -1267,7 +1271,8 @@ export default function MetadataGenerator() {
                             </h3>
                             <div className="bg-background/30 shadow-inset p-3 rounded-md grid grid-cols-3 sm:grid-cols-7 gap-2">
                                 {metadata.charDistribution.map(
-                                    ([char, count], index) => (
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    ([char, count]: any, index: Key | null | undefined) => (
                                         <div
                                             key={index}
                                             className="flex justify-evenly"
@@ -1521,7 +1526,7 @@ export default function MetadataGenerator() {
                                                         {emotion}:
                                                     </span>
                                                     <span className="font-medium">
-                                                        {count}
+                                                        {count as number}
                                                     </span>
                                                 </div>
                                             ))}

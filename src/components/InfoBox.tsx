@@ -39,7 +39,7 @@ const InfoBox = ({
                       <Skeleton className="h-5 w-[290px] bg-gray-500/20 rounded-md mb-2" />
                   </>
                 ) : (
-                    <p className="text-blue-500 text-sm font-semibold">{description}</p>
+                    <div dangerouslySetInnerHTML={{__html: description || ""}} className='text-blue-400'/>
                 )
           }
       </div>

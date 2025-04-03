@@ -5,7 +5,7 @@ import Head from "next/head";
 import chroma from "chroma-js";
 import {
     ArrowUpCircle,
-    PaletteIcon,
+    // PaletteIcon,
     SwatchBook,
     Table,
     ShareIcon,
@@ -27,6 +27,7 @@ const ColorExtractor: React.FC = () => {
     >("dominant");
     const [colorCount, setColorCount] = useState<number>(5);
     const [quality, setQuality] = useState<number>(10);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
     const [brightnessSort, setBrightnessSort] = useState<boolean>(false);
@@ -317,7 +318,7 @@ const ColorExtractor: React.FC = () => {
             return colors.map((c) => c.hex);
         }
 
-        let buckets: { hex: string; rgb: number[]; weight: number }[][] = [
+        const buckets: { hex: string; rgb: number[]; weight: number }[][] = [
             colors,
         ];
 
