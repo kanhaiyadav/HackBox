@@ -1,7 +1,10 @@
-import React from "react";
+// File: app/page.tsx
+import StatusDashboard from "./StatusDashboard";
 
-const page = () => {
-    return <div>api status checker</div>;
-};
-
-export default page;
+export default function Home() {
+    return (
+        <main className="min-h-screen bg-gray-900 text-gray-100">
+            <StatusDashboard />
+        </main>
+    );
+}

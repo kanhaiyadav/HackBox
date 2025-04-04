@@ -107,3 +107,14 @@ export interface ComparisonResult {
         user2: string[];
     };
 }
+
+// types/index.ts
+export type FileType = 'robots' | 'sitemap';
+
+export interface FetchFileResponse {
+  content: string;
+}
+
+export interface FetchFileError {
+  message: string;
+}
