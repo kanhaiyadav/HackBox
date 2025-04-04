@@ -1,9 +1,9 @@
-import React from 'react'
+import HashGenerator from "./HashGenerator";
 
-const page = () => {
-  return (
-    <div>hash generator</div>
-  )
+export default function HashGeneratorPage() {
+    return (
+        <main>
+            <HashGenerator />
+        </main>
+    );
 }
-
-export default page

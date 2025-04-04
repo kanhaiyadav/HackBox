@@ -1,9 +1,9 @@
-import React from 'react'
+import JwtDecoder from "./JwtDecoder";
 
-const page = () => {
-  return (
-    <div>jwt decoder</div>
-  )
+export default function JwtDecoderPage() {
+    return (
+        <div>
+            <JwtDecoder />
+        </div>
+    );
 }
-
-export default page
