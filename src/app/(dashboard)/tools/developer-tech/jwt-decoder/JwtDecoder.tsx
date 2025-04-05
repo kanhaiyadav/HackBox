@@ -15,7 +15,9 @@ import { MdDelete } from "react-icons/md";
 interface JwtHeader {
     alg: string;
     typ: string;
-    [key: string]: any;
+    kid?: string;
+    x5t?: string;
+    [key: string]: string | undefined;
 }
 
 interface JwtPayload {
