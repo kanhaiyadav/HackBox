@@ -35,19 +35,9 @@ export const toolCategories = [
         icon: SquareKanban,
     },
     {
-        title: "Design & Media",
-        slug: "design-media",
-        icon: Palette,
-    },
-    {
         title: "Fun",
         slug: "fun",
         icon: CircleUser,
-    },
-    {
-        title: "Finance & Business",
-        slug: "finance-business",
-        icon: CircleDollarSign,
     },
     {
         title: "Gaming & Entertainment",
