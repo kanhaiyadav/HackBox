@@ -16,6 +16,7 @@ export default function Stats({ endpoints }: StatsProps) {
     const upCount = getStatusCount("up");
     const degradedCount = getStatusCount("degraded");
     const downCount = getStatusCount("down");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const unknownCount = endpoints.length - upCount - degradedCount - downCount;
 
     // Calculate uptime percentage

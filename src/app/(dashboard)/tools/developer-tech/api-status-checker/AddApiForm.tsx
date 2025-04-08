@@ -9,7 +9,7 @@ interface AddApiFormProps {
 }
 
 export default function AddApiForm({ onAdd }: AddApiFormProps) {
-    const [formData, setFormData] = useState<Partial<ApiEndpoint>>({
+    const [formData, setFormData] = useState<Partial<ApiEndpoint> & { tags?: string }>({
         name: "",
         url: "",
         method: "GET",
@@ -49,6 +49,7 @@ export default function AddApiForm({ onAdd }: AddApiFormProps) {
             // Basic URL validation
             new URL(formData.url);
         } catch (err) {
+            console.error(err);
             setError("Please enter a valid URL");
             return;
         }
@@ -64,9 +65,11 @@ export default function AddApiForm({ onAdd }: AddApiFormProps) {
             body: formData.body,
             tags:
                 formData.tags
-                    ?.split(",")
-                    .map((tag) => tag.trim())
-                    .filter(Boolean) || [],
+                    ? formData.tags
+                        .split(",")
+                        .map((tag) => tag.trim())
+                        .filter(Boolean)
+                    : [],
             notifications: formData.notifications || false,
             history: [],
         };

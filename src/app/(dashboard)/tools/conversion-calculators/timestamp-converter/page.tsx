@@ -100,12 +100,14 @@ const TimestampConverter = () => {
                     const d = new Date(dateString);
                     dateString = d.toISOString().replace("Z", "");
                 } catch (e) {
+                    console.error(e);
                     dateString = date.toISOString().replace("Z", "");
                 }
             }
 
             setDateTime(dateString.slice(0, 19).replace("T", " "));
         } catch (error) {
+            console.error("Error converting timestamp:", error);
             setDateTime("Invalid timestamp");
         }
     };
@@ -120,6 +122,7 @@ const TimestampConverter = () => {
                     : unixTime.toString()
             );
         } catch (error) {
+            console.error("Error converting date to timestamp:", error);
             setTimestamp("Invalid date");
         }
     };
@@ -220,6 +223,7 @@ const TimestampConverter = () => {
                         timeZone: timezone,
                     });
                 } catch (e) {
+                    console.error(e);
                     return date.toLocaleString("en-US", options);
                 }
             } else if (timezone === "UTC") {
@@ -228,6 +232,7 @@ const TimestampConverter = () => {
                 return date.toLocaleString("en-US", options);
             }
         } catch (error) {
+            console.error("Error formatting timestamp:", error);
             return "Invalid timestamp";
         }
     };
@@ -271,6 +276,7 @@ const TimestampConverter = () => {
                 return `${Math.floor(diffSec / 2592000)} months ago`;
             return `${Math.floor(diffSec / 31536000)} years ago`;
         } catch (error) {
+            console.error("Error calculating relative time:", error);
             return "Invalid timestamp";
         }
     };
@@ -489,6 +495,10 @@ const TimestampConverter = () => {
                                             );
                                             return date.toUTCString();
                                         } catch (error) {
+                                            console.error(
+                                                "Error formatting UTC time:",
+                                                error
+                                            );
                                             return "Invalid timestamp";
                                         }
                                     })()}

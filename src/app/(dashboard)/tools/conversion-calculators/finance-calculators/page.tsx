@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import type { JSX } from 'react';
 import { 
   FaCalculator, 
   FaPercentage, 
@@ -293,7 +294,9 @@ const FinanceCalculator: React.FC = () => {
             const interestPayment = balance * monthlyRate;
             const principalPayment = emi - interestPayment;
 
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             totalPrincipalPaid += principalPayment;
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             totalInterestPaid += interestPayment;
             balance -= principalPayment;
 
@@ -411,7 +414,7 @@ const FinanceCalculator: React.FC = () => {
         let runningTotal = initialAmount;
 
         for (let year = 1; year <= Math.min(5, time); year++) {
-            let yearStart = runningTotal;
+            const yearStart = runningTotal;
 
             for (let period = 1; period <= periodsPerYear; period++) {
                 // Interest earned this period

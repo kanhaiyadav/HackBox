@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import type { JSX } from "react";
 import {
     FaPlay,
     FaStop,
@@ -9,9 +10,9 @@ import {
     FaRandom,
     FaHeart,
     FaDownload,
-    FaShareAlt,
+    // FaShareAlt,
 } from "react-icons/fa";
-import { FiRefreshCw } from "react-icons/fi";
+// import { FiRefreshCw } from "react-icons/fi";
 
 // Define sound types
 interface Sound {

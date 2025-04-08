@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 // pages/index.tsx
@@ -11,8 +12,8 @@ import {
   FaNetworkWired,
   FaLock,
   FaFirefox,
-  FaLanguage,
-  FaClock,
+//   FaLanguage,
+//   FaClock,
   FaHistory,
   FaRegWindowMaximize
 } from 'react-icons/fa';
@@ -91,7 +92,7 @@ const Home = () => {
             const doNotTrack = navigator.doNotTrack || "Not available";
 
             // Get plugins
-            let pluginsList: string[] = [];
+            const pluginsList: string[] = [];
             if (navigator.plugins) {
                 for (let i = 0; i < navigator.plugins.length; i++) {
                     pluginsList.push(navigator.plugins[i].name);
@@ -220,6 +221,7 @@ const Home = () => {
 
             return "Fingerprinting possible";
         } catch (e) {
+            console.error("Canvas fingerprinting error:", e);
             return "Not detected";
         }
     };
@@ -229,7 +231,7 @@ const Home = () => {
             const canvas = document.createElement("canvas");
             const gl =
                 canvas.getContext("webgl") ||
-                canvas.getContext("experimental-webgl");
+                canvas.getContext("experimental-webgl") as WebGLRenderingContext | null;
             if (!gl) return "Not detected";
 
             const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
@@ -244,6 +246,7 @@ const Home = () => {
             }
             return "Limited fingerprinting";
         } catch (e) {
+            console.error("WebGL fingerprinting error:", e);
             return "Not detected";
         }
     };
@@ -598,7 +601,7 @@ const Home = () => {
                     </h2>
                     <p className="mb-4 text-gray-300">
                         Fingerprinting techniques allow websites to identify and
-                        track you based on your browser's unique
+                        track you based on your browser&apos;s unique
                         characteristics, even without cookies or local storage.
                     </p>
 

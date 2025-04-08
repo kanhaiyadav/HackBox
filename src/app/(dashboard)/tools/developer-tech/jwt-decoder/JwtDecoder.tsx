@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useState, useEffect } from "react";
@@ -6,7 +7,7 @@ import {
     FaKey,
     FaShieldAlt,
     FaCopy,
-    FaSync,
+    // FaSync,
     FaHistory,
 } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -61,6 +62,7 @@ const JwtDecoder = () => {
             try {
                 setTokenHistory(JSON.parse(savedHistory));
             } catch (e) {
+                console.error("Failed to parse JWT history:", e);
                 console.error("Failed to parse JWT history");
                 localStorage.removeItem("jwt-history");
             }
@@ -123,6 +125,7 @@ const JwtDecoder = () => {
                 validTimestamp,
             };
         } catch (e) {
+            console.error("Error decoding JWT:", e);
             setError("Error decoding JWT: Invalid token encoding");
             return null;
         }

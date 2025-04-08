@@ -1,7 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import chroma from "chroma-js";
+import { useDropzone } from "react-dropzone";
+import { TbLibraryPhoto } from "react-icons/tb";
 
 // Types of color blindness
 type ColorBlindnessType =
@@ -58,6 +60,29 @@ const ColorBlindnessSimulator: React.FC = () => {
     const [currentView, setCurrentView] =
         useState<ColorBlindnessType>("normal");
     const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setUploadedImage(event.target?.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    }, []);
+
+    const { getRootProps, getInputProps ,isDragActive } = useDropzone({
+        onDrop,
+        accept: {
+            "image/*": [
+                "image/jpeg",
+                "image/png",
+                "image/jpg",
+                "image/webp",
+            ]
+        },
+    });
 
     // Process image for selected color blindness type
     useEffect(() => {
@@ -227,18 +252,27 @@ const ColorBlindnessSimulator: React.FC = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold text-center mb-8">
-                Color Blindness Simulator
-            </h1>
-
-            {/* Mode Toggle */}
-            <div className="flex justify-center mb-6">
+        <div className="max-w-6xl mx-auto px-4 pb-2">
+            <div className="flex justify-center mb-6 outline-primary outline-2 bg-accent w-fit m-auto rounded-md">
                 <button
                     onClick={toggleMode}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    className={` transition-colors px-8 py-2 rounded-md ${
+                        colorMode
+                            ? "bg-primary text-black hover:bg-primary/80"
+                            : ""
+                    }`}
                 >
-                    Switch to {colorMode ? "Image" : "Color"} Mode
+                    Color Mode
+                </button>
+                <button
+                    onClick={toggleMode}
+                    className={` transition-colors px-8 py-2 rounded-md ${
+                        !colorMode
+                            ? "bg-primary text-black hover:bg-primary/80"
+                            : ""
+                    }`}
+                >
+                    Image Mode
                 </button>
             </div>
 
@@ -246,7 +280,7 @@ const ColorBlindnessSimulator: React.FC = () => {
             {colorMode && (
                 <div className="mb-8">
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-6">
-                        <div>
+                        <div className="w-full">
                             <label className="block text-sm font-medium mb-1">
                                 Select a Color:
                             </label>
@@ -256,22 +290,13 @@ const ColorBlindnessSimulator: React.FC = () => {
                                 onChange={(e) =>
                                     setSelectedColor(e.target.value)
                                 }
-                                className="h-12 w-24 cursor-pointer"
+                                className="h-12 w-full cursor-pointer "
                             />
-                        </div>
-                        <div className="bg-gray-100 p-4 rounded-lg">
-                            <div className="text-lg font-semibold mb-2">
-                                Original Color:
-                            </div>
-                            <div
-                                className="h-16 w-full md:w-64 rounded-md mb-2"
-                                style={{ backgroundColor: selectedColor }}
-                            ></div>
                             <div className="font-mono">{selectedColor}</div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                         {(
                             Object.keys(
                                 colorBlindnessDescriptions
@@ -279,14 +304,14 @@ const ColorBlindnessSimulator: React.FC = () => {
                         ).map((type) => (
                             <div
                                 key={type}
-                                className="bg-gray-100 p-4 rounded-lg"
+                                className="foreground shadow-foreground p-4 rounded-lg"
                             >
                                 <div className="text-lg font-semibold mb-2">
                                     {type.charAt(0).toUpperCase() +
                                         type.slice(1)}
                                 </div>
                                 <div
-                                    className="h-16 w-full rounded-md mb-2"
+                                    className="h-16 w-full rounded-md mb-2 shadow-inset"
                                     style={{
                                         backgroundColor: simulateColor(
                                             selectedColor,
@@ -304,7 +329,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+                    <div className="foreground shadow-inset p-6 rounded-lg mb-8">
                         <h2 className="text-xl font-bold mb-4">
                             Suggested Accessible Alternatives
                         </h2>
@@ -313,7 +338,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                                 (color, index) => (
                                     <div key={index} className="text-center">
                                         <div
-                                            className="h-16 w-full rounded-md mb-2"
+                                            className="h-16 w-full rounded-md mb-2 shadow-input"
                                             style={{ backgroundColor: color }}
                                         ></div>
                                         <div className="font-mono text-sm">
@@ -323,7 +348,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                                 )
                             )}
                         </div>
-                        <div className="mt-4 p-4 bg-gray-100 rounded-md">
+                        <div className="mt-4 p-4 bg-accent shadow-foreground rounded-md">
                             <h3 className="font-semibold mb-2">
                                 Accessibility Tips:
                             </h3>
@@ -353,16 +378,36 @@ const ColorBlindnessSimulator: React.FC = () => {
             {/* Image Upload Mode */}
             {!colorMode && (
                 <div className="mb-8">
-                    <div className="mb-6">
-                        <label className="block text-sm font-medium mb-1">
-                            Upload an Image:
-                        </label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                        />
+                    <div {...getRootProps()} className="mb-6">
+                        <input {...getInputProps()} />
+                        <div
+                            className={`border-3 border-dashed border-accent rounded-md p-4 text-center py-[50px] ${
+                                isDragActive
+                                    ? "bg-primary/10 border-primary/60"
+                                    : "bg-accent/10"
+                            }`}
+                        >
+                            {isDragActive ? (
+                                <div className="flex flex-col items-center justify-center">
+                                    <TbLibraryPhoto className="inline-block mr-2 text-6xl text-gray-600" />
+                                    <p className="text-gray-500">
+                                        Drop the image file here
+                                    </p>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center">
+                                    <TbLibraryPhoto className="inline-block mr-2 text-6xl text-gray-600" />
+                                    <p className="text-gray-500">
+                                        Drop the image file here, or click to
+                                        select
+                                    </p>
+                                </div>
+                                // <p className="text-gray-500">
+                                //     Drag & drop an image file here, or click to
+                                //     select one
+                                // </p>
+                            )}
+                        </div>
                     </div>
 
                     <div className="flex flex-wrap gap-4 mb-4">
@@ -376,8 +421,8 @@ const ColorBlindnessSimulator: React.FC = () => {
                                 onClick={() => setCurrentView(type)}
                                 className={`px-3 py-1 rounded-md ${
                                     currentView === type
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-gray-200 hover:bg-gray-300"
+                                        ? "bg-primary text-black shadow-input"
+                                        : "bg-accent shadow-input"
                                 }`}
                             >
                                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -385,26 +430,26 @@ const ColorBlindnessSimulator: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="bg-gray-100 p-4 rounded-lg">
-                        <h3 className="text-lg font-semibold mb-2">
+                    <div className="foreground shadow-inset py-6 px-8 rounded-lg">
+                        <h3 className="text-lg font-semibold mb-0 text-white/80 underline underline-offset-2">
                             {currentView.charAt(0).toUpperCase() +
                                 currentView.slice(1)}{" "}
                             View
                         </h3>
-                        <p className="mb-4">
+                        <p className="mb-4 text-white/80">
                             {colorBlindnessDescriptions[currentView]}
                         </p>
 
                         {uploadedImage ? (
-                            <div className="overflow-auto max-h-96 border border-gray-300 rounded-md bg-white">
+                            <div className="overflow-auto border border-gray-300 rounded-md">
                                 <canvas
                                     ref={canvasRef}
                                     className="max-w-full h-auto"
                                 ></canvas>
                             </div>
                         ) : (
-                            <div className="flex items-center justify-center h-64 bg-gray-200 rounded-md">
-                                <p className="text-gray-500">
+                            <div className="flex items-center justify-center h-64 bg-accent rounded-md">
+                                <p className="text-white/50">
                                     Upload an image to see how it appears with
                                     different color vision deficiencies
                                 </p>
@@ -413,14 +458,14 @@ const ColorBlindnessSimulator: React.FC = () => {
                     </div>
 
                     {uploadedImage && (
-                        <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+                        <div className="mt-6 p-4 foreground shadow-inset rounded-lg">
                             <h3 className="font-semibold mb-2">
                                 Image Accessibility Recommendations:
                             </h3>
                             <ul className="list-disc pl-5 text-sm">
                                 <li>
-                                    Ensure important information isn&apos;t conveyed
-                                    by color alone
+                                    Ensure important information isn&apos;t
+                                    conveyed by color alone
                                 </li>
                                 <li>
                                     Add text labels or patterns to differentiate
@@ -444,15 +489,15 @@ const ColorBlindnessSimulator: React.FC = () => {
                 </div>
             )}
 
-            <div className="bg-blue-50 p-6 rounded-lg">
+            <div className="foreground shadow-inset p-6 rounded-lg">
                 <h2 className="text-xl font-bold mb-4">
                     About Color Blindness
                 </h2>
                 <p className="mb-4">
                     Color blindness affects approximately 1 in 12 men and 1 in
-                    200 women worldwide. It&apos;s usually inherited genetically but
-                    can also result from eye, nerve, or brain damage, or due to
-                    exposure to certain chemicals.
+                    200 women worldwide. It&apos;s usually inherited genetically
+                    but can also result from eye, nerve, or brain damage, or due
+                    to exposure to certain chemicals.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {(
@@ -464,7 +509,7 @@ const ColorBlindnessSimulator: React.FC = () => {
                         .map((type) => (
                             <div
                                 key={type}
-                                className="bg-white p-4 rounded-md shadow-sm"
+                                className="bg-accent shadow-foreground p-4 rounded-md"
                             >
                                 <h3 className="font-semibold mb-2">
                                     {type.charAt(0).toUpperCase() +

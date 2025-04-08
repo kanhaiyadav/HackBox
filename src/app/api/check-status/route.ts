@@ -45,6 +45,7 @@ export async function GET(request: Request) {
                 .lookup(parsedUrl.hostname)
                 .then(({ address }) => address);
         } catch (dnsError) {
+            console.error("DNS lookup error:", dnsError);
             result.ipAddress = "Unknown";
         }
 
@@ -56,6 +57,7 @@ export async function GET(request: Request) {
                     "ANY"
                 );
             } catch (dnsError) {
+                console.error("DNS records error:", dnsError);
                 result.dnsRecords = [];
             }
         }
@@ -105,8 +107,9 @@ export async function GET(request: Request) {
                         parsedUrl,
                         { method: "HEAD" },
                         (res) => {
-                            const cert = res.socket.getPeerCertificate();
-                            const valid = res.socket.authorized || false;
+                            const socket = res.socket as any;
+                            const cert = socket.getPeerCertificate();
+                            const valid = socket.authorized || false;
                             const expires = cert.valid_to
                                 ? new Date(cert.valid_to).toISOString()
                                 : undefined;
@@ -121,6 +124,7 @@ export async function GET(request: Request) {
                 result.sslValid = sslInfo.valid;
                 result.sslExpires = sslInfo.expires;
             } catch (sslError) {
+                console.error("SSL check error:", sslError);
                 result.sslValid = false;
             }
         }

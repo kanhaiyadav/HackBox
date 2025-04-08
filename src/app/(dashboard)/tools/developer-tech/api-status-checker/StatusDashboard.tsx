@@ -70,6 +70,7 @@ export default function StatusDashboard() {
     };
 
     // Simulate API status check (in a real app, this would make actual HTTP requests)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const checkApiStatus = async (url: string): Promise<ApiStatus> => {
         // Simulate network request with random success/failure
         await new Promise((resolve) => setTimeout(resolve, 500));

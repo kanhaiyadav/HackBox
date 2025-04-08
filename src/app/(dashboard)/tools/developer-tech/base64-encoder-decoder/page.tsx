@@ -107,10 +107,12 @@ const Base64Tool: React.FC = () => {
                     
                     addToHistory(input, isBinary ? "[Binary content]" : decoded.substring(0, 50) + "...", "decode");
                 } catch (e) {
+                    console.error(e);
                     setError("Invalid Base64 string");
                 }
             }
         } catch (e) {
+            console.error(e);
             setError("Conversion failed. Make sure your input is valid.");
         }
     };
@@ -183,6 +185,7 @@ const Base64Tool: React.FC = () => {
                         "decode"
                     );
                 } catch (e) {
+                    console.error(e);
                     setError("Invalid Base64 input or file");
                 }
             }
@@ -214,6 +217,7 @@ const Base64Tool: React.FC = () => {
             await navigator.clipboard.writeText(output);
             setIsCopied(true);
         } catch (err) {
+            console.error(err);
             setError("Failed to copy text to clipboard");
         }
     };
@@ -253,6 +257,7 @@ const Base64Tool: React.FC = () => {
                             "encode"
                         );
                     } catch (e) {
+                        console.error(e);
                         setError("Failed to encode file. The file might be too large.");
                     }
                 }
@@ -312,8 +317,8 @@ const Base64Tool: React.FC = () => {
         setOutputFileName("");
     };
 
-    // Use an item from history
-    const useHistoryItem = (item: HistoryItem) => {
+    // Apply an item from history
+    const applyHistoryItem = (item: HistoryItem) => {
         setInput(item.input);
         setOutput(item.output);
         setMode(item.mode);
@@ -603,7 +608,7 @@ const Base64Tool: React.FC = () => {
                                 When <strong>decoding</strong>, paste Base64 data or upload a text file containing Base64
                             </li>
                             <li>
-                                For binary files (images, PDFs, etc.), select "File" mode and use the{" "}
+                                For binary files (images, PDFs, etc.), select &quot;File&quot; mode and use the{" "}
                                 <strong>Download</strong> button to save the
                                 decoded file
                             </li>
@@ -646,7 +651,7 @@ const Base64Tool: React.FC = () => {
                                         <div
                                             key={item.id}
                                             className="p-3 border-b border-gray-700 hover:bg-gray-700 cursor-pointer"
-                                            onClick={() => useHistoryItem(item)}
+                                            onClick={() => applyHistoryItem(item)}
                                         >
                                             <div className="flex justify-between items-start">
                                                 <div className="flex-1">

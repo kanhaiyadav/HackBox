@@ -1,9 +1,9 @@
 import {
     SquareTerminal,
     SquareKanban,
-    CircleDollarSign,
-    Gamepad2,
-    BookOpenIcon,
+    // CircleDollarSign,
+    // Gamepad2,
+    // BookOpenIcon,
     ShieldCheck,
     Shuffle,
     CircleUser,
@@ -38,16 +38,6 @@ export const toolCategories = [
         title: "Fun",
         slug: "fun",
         icon: CircleUser,
-    },
-    {
-        title: "Gaming & Entertainment",
-        slug: "gaming-entertainment",
-        icon: Gamepad2,
-    },
-    {
-        title: "Learning & Educational",
-        slug: "learning-educational",
-        icon: BookOpenIcon,
     },
     {
         title: "Security & Privacy",

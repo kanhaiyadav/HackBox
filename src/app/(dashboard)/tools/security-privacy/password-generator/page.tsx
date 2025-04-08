@@ -90,6 +90,7 @@ const PasswordGenerator = () => {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleOptionChange = (key: keyof PasswordOptions, value: any) => {
         setOptions((prev) => ({
             ...prev,

@@ -60,6 +60,7 @@ export default function UrlEncoderDecoder() {
                         result = decodeURIComponent(inputText);
                     }
                 } catch (e) {
+                    console.error("Decoding error:", e);
                     // Fallback for partial decoding
                     result = inputText.replace(/%[0-9A-Fa-f]{2}/g, (match) => {
                         try {

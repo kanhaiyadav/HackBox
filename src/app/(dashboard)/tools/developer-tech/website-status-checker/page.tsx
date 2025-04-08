@@ -6,9 +6,9 @@ import {
     FiRefreshCw,
     FiAlertCircle,
     FiCheckCircle,
-    FiClock,
+    // FiClock,
     FiGlobe,
-    FiInfo,
+    // FiInfo,
     FiExternalLink,
 } from "react-icons/fi";
 
