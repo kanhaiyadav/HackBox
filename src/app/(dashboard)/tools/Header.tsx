@@ -5,6 +5,7 @@ import { VscFeedback } from "react-icons/vsc";
 import { FaCoffee } from "react-icons/fa";
 import HeaderSkeleton from "@/components/skeletons/HeaderSkeleton";
 import ShareButton from "@/components/ShareButton";
+import BuyMeCoffeeModal from "@/components/BuyMeACoffee";
 
 const Header = ({
     tool,
@@ -35,11 +36,13 @@ const Header = ({
                 </div>
                 
                 <ShareButton />
+
+                <BuyMeCoffeeModal />
                 
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
+                {/* <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <FaCoffee size={20} className="text-white/50" />
                     <span>Buy me a coffee</span>
-                </div>
+                </div> */}
             </div>
             <hr className="my-4 border-white/40" />
         </div>
