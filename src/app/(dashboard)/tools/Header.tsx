@@ -3,10 +3,16 @@ import { ITool } from "@/types";
 import Image from "next/image";
 import { VscFeedback } from "react-icons/vsc";
 import { FaCoffee } from "react-icons/fa";
-import { IoShareSocialSharp } from "react-icons/io5";
 import HeaderSkeleton from "@/components/skeletons/HeaderSkeleton";
+import ShareButton from "@/components/ShareButton";
 
-const Header = ({ tool, loading = true }: { tool: ITool | undefined, loading: boolean }) => {
+const Header = ({
+    tool,
+    loading = true,
+}: {
+    tool: ITool | undefined;
+    loading: boolean;
+}) => {
     if (loading) {
         return <HeaderSkeleton />;
     }
@@ -14,7 +20,7 @@ const Header = ({ tool, loading = true }: { tool: ITool | undefined, loading: bo
         <div className="col-span-full">
             <h1 className="text-3xl font-semibold">{tool?.name}</h1>
             <div className="py-2 flex items-center gap-4">
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent">
+                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <Image
                         src={"/star.png"}
                         alt="star"
@@ -23,15 +29,14 @@ const Header = ({ tool, loading = true }: { tool: ITool | undefined, loading: bo
                     />
                     <span>2,343</span>
                 </div>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent">
+                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <VscFeedback size={20} className="text-white/50" />
                     <span>Feedback</span>
                 </div>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent">
-                    <IoShareSocialSharp size={20} className="text-white/50" />
-                    <span>Share</span>
-                </div>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent">
+                
+                <ShareButton />
+                
+                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <FaCoffee size={20} className="text-white/50" />
                     <span>Buy me a coffee</span>
                 </div>
