@@ -1,11 +1,11 @@
 import React from "react";
 import { ITool } from "@/types";
 import Image from "next/image";
-import { VscFeedback } from "react-icons/vsc";
 import { FaCoffee } from "react-icons/fa";
 import HeaderSkeleton from "@/components/skeletons/HeaderSkeleton";
 import ShareButton from "@/components/ShareButton";
 import BuyMeCoffeeModal from "@/components/BuyMeACoffee";
+import FeedbackModal from "@/components/FeedbackModal";
 
 const Header = ({
     tool,
@@ -30,10 +30,8 @@ const Header = ({
                     />
                     <span>2,343</span>
                 </div>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
-                    <VscFeedback size={20} className="text-white/50" />
-                    <span>Feedback</span>
-                </div>
+            
+                <FeedbackModal />
                 
                 <ShareButton />
 
