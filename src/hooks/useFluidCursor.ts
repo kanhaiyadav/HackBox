@@ -2,8 +2,10 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-const useFluidCursor = () => {
+const useFluidCursor = (customConfig = {}) => {
     const canvas = document.getElementById("fluid");
+    if (!canvas) return;
+    
     resizeCanvas();
 
     //try to adjust settings
@@ -24,6 +26,7 @@ const useFluidCursor = () => {
         PAUSED: false,
         BACK_COLOR: { r: 0.5, g: 0, b: 0 },
         TRANSPARENT: true,
+        ...customConfig
     };
 
     function pointerPrototype() {

@@ -55,6 +55,9 @@
     .foreground {
         background: linear-gradient(#2d2d2d 0%, #232323 100%);
     }
+    .gradient-darken {
+        background: radial-gradient(ellipse, transparent 0%, #222222 100%);
+    }
 }
 
 @layer components {

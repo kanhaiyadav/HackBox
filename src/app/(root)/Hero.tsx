@@ -3,23 +3,38 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import fluidCursor from '@/hooks/useFluidCursor';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion';
 
 const Hero = () => {
 
-    useEffect(() => {
-        // // Initialize the fluid cursor effect
-        // const { initFluidCursor } = fluidCursor();
-        // initFluidCursor();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
 
-        // // Cleanup function to remove the cursor effect on component unmount
-        // return () => {
-        //     const cursor = document.querySelector('.fluid-cursor');
-        //     if (cursor) {
-        //         cursor.remove();
-        //     }
-        // };
-        fluidCursor();
+    useEffect(() => {
+        // Check if it's a lower-end device or mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isLowPerformance = window.navigator.hardwareConcurrency < 4;
+
+        setIsLowPowerDevice(isMobile || isLowPerformance);
+
+        console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
+
+        // Only initialize fluid cursor on more powerful devices
+        if (!isMobile && !isLowPerformance) {
+            // Pass optimized config to reduce CPU/GPU usage
+            const optimizedConfig = {
+                SIM_RESOLUTION: 64, // Reduced from 128
+                DYE_RESOLUTION: 720, // Reduced from 1440
+                VELOCITY_DISSIPATION: 4, // Increased to fade quicker
+                PRESSURE_ITERATIONS: 12, // Reduced from 20
+                SPLAT_RADIUS: 0.2,
+                SPLAT_FORCE: 4000, // Reduced from 6000
+                DENSITY_DISSIPATION: 4, // Increased to fade quicker
+            };
+
+            fluidCursor(optimizedConfig);
+        }
     }, []);
     
   return (
@@ -48,14 +63,18 @@ const Hero = () => {
                   View All Tools
               </Button>
           </div>
-          <div className="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-gray-700 shadow-2xl hover:shadow-glow transition-all duration-300 hover:scale-105 hover:-translate-y-[30px]">
+          <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-gray-700 shadow-2xl hover:shadow-glow transition-transform duration-300 hover:scale-105 hover:-translate-y-[30px]">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5"></div>
               <img
                   src="/dashboard.png"
                   alt="HackBox Dashboard"
                   className="relative w-full h-auto"
               />
-          </div>
+          </motion.div>
       </section>
   );
 }
