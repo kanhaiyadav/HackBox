@@ -1,7 +1,7 @@
 import React from "react";
 import { ITool } from "@/types";
 import Image from "next/image";
-import { FaCoffee } from "react-icons/fa";
+// import { FaCoffee } from "react-icons/fa";
 import HeaderSkeleton from "@/components/skeletons/HeaderSkeleton";
 import ShareButton from "@/components/ShareButton";
 import BuyMeCoffeeModal from "@/components/BuyMeACoffee";

@@ -18,8 +18,8 @@ import { SiKofi, SiBuymeacoffee } from "react-icons/si";
 import { AnimatedInput } from "./AnimatedInput";
 
 interface BuyMeCoffeeModalProps {
-    isOpen: boolean;
-    onClose: () => void;
+    isOpen?: boolean;
+    onClose?: () => void;
 }
 
 export default function BuyMeCoffeeModal({
@@ -47,7 +47,7 @@ export default function BuyMeCoffeeModal({
                 setAmount(5);
                 setMessage("");
                 setPaymentMethod("paypal");
-                onClose();
+                if (onClose) onClose();
             }, 2000);
         }, 1500);
     };

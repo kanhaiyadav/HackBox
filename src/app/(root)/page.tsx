@@ -7,88 +7,18 @@ import {
     CardContent,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import {
     FiCode,
-    FiLayers,
-    FiZap,
-    FiShield,
-    FiPieChart,
     FiMail,
     FiGithub,
     FiTwitter,
 } from "react-icons/fi";
+import Hero from "./Hero";
+import Features from "./Features";
+import Tools from "./Tools";
 
 export default function LandingPage() {
-    const toolCategories = [
-        {
-            name: "Development",
-            icon: <FiCode className="w-5 h-5" />,
-            tools: [
-                "JSON Formatter",
-                "Base64 Encoder",
-                "Regex Tester",
-                "SQL Formatter",
-                "JWT Debugger",
-            ],
-        },
-        {
-            name: "Text",
-            icon: <FiLayers className="w-5 h-5" />,
-            tools: [
-                "Markdown Preview",
-                "Text Diff",
-                "Lorem Ipsum",
-                "Case Converter",
-                "Character Counter",
-            ],
-        },
-        {
-            name: "Productivity",
-            icon: <FiZap className="w-5 h-5" />,
-            tools: [
-                "URL Shortener",
-                "QR Generator",
-                "Password Generator",
-                "Timer",
-                "Meeting Cost Calculator",
-            ],
-        },
-        {
-            name: "Calculators",
-            icon: <FiPieChart className="w-5 h-5" />,
-            tools: [
-                "BMI Calculator",
-                "Loan Calculator",
-                "Currency Converter",
-                "Age Calculator",
-                "Tip Calculator",
-            ],
-        },
-        {
-            name: "Security",
-            icon: <FiShield className="w-5 h-5" />,
-            tools: [
-                "Password Strength",
-                "IP Lookup",
-                "User Agent Parser",
-                "Hash Generator",
-                "SSL Checker",
-            ],
-        },
-        {
-            name: "Fun",
-            icon: <FiZap className="w-5 h-5" />,
-            tools: [
-                "Meme Generator",
-                "Name Combiner",
-                "Horoscope",
-                "Love Calculator",
-                "Bored Button",
-            ],
-        },
-    ];
-
+    
     const testimonials = [
         {
             name: "Sarah Johnson",
@@ -117,7 +47,7 @@ export default function LandingPage() {
                     </div>
                     <span className="text-xl font-bold">HackBox</span>
                 </div>
-                <div className="hidden md:flex space-x-6">
+                <div className="hidden md:flex space-x-6 items-center">
                     <a
                         href="#features"
                         className="hover:text-primary transition-colors"
@@ -142,144 +72,19 @@ export default function LandingPage() {
                     >
                         FAQ
                     </a>
-                </div>
-                <div className="flex space-x-4">
                     <Button variant="outline">Login</Button>
                     <Button>Get Started</Button>
                 </div>
             </nav>
 
             {/* Hero Section */}
-            <section className="container mx-auto px-6 py-20 text-center">
-                <Badge variant="secondary" className="mb-4">
-                    50+ TOOLS AT YOUR FINGERTIPS
-                </Badge>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                    Your Ultimate{" "}
-                    <span className="text-primary">Developer</span> Toolbox
-                </h1>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-                    HackBox is a curated collection of powerful, lightweight
-                    tools to supercharge your productivity and development
-                    workflow.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                    <Button size="lg" className="px-8">
-                        Start Exploring
-                    </Button>
-                    <Button size="lg" variant="outline" className="px-8">
-                        View All Tools
-                    </Button>
-                </div>
-                <div className="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-gray-700 shadow-2xl">
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5"></div>
-                    <img
-                        src="/dashboard.png"
-                        alt="HackBox Dashboard"
-                        className="relative w-full h-auto"
-                    />
-                </div>
-            </section>
+            <Hero />
 
             {/* Features Section */}
-            <section id="features" className="container mx-auto px-6 py-20">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold mb-4">
-                        Why Choose HackBox?
-                    </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
-                        HackBox brings together all the essential tools you need
-                        in one beautifully designed, easy-to-use platform.
-                    </p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8">
-                    <Card className="border-gray-700 hover:border-primary transition-colors">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <FiZap className="w-6 h-6 text-primary" />
-                            </div>
-                            <CardTitle>Lightning Fast</CardTitle>
-                            <CardDescription>
-                                All tools load instantly with no unnecessary
-                                bloat.
-                            </CardDescription>
-                        </CardHeader>
-                    </Card>
-                    <Card className="border-gray-700 hover:border-primary transition-colors">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <FiLayers className="w-6 h-6 text-primary" />
-                            </div>
-                            <CardTitle>Comprehensive</CardTitle>
-                            <CardDescription>
-                                50+ carefully selected tools covering all your
-                                needs.
-                            </CardDescription>
-                        </CardHeader>
-                    </Card>
-                    <Card className="border-gray-700 hover:border-primary transition-colors">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                                <FiShield className="w-6 h-6 text-primary" />
-                            </div>
-                            <CardTitle>Privacy Focused</CardTitle>
-                            <CardDescription>
-                                All processing happens in your browser - no data
-                                sent to servers.
-                            </CardDescription>
-                        </CardHeader>
-                    </Card>
-                </div>
-            </section>
+            <Features />
 
             {/* Tools Section */}
-            <section
-                id="tools"
-                className="container mx-auto px-6 py-20 bg-gray-900/50 rounded-3xl my-10"
-            >
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold mb-4">
-                        Explore Our Tool Categories
-                    </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Organized by category for easy discovery. New tools
-                        added regularly.
-                    </p>
-                </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {toolCategories.map((category, index) => (
-                        <Card
-                            key={index}
-                            className="border-gray-700 hover:border-primary transition-colors"
-                        >
-                            <CardHeader className="flex flex-row items-center space-x-4 space-y-0">
-                                <div className="p-3 rounded-lg bg-primary/10">
-                                    {category.icon}
-                                </div>
-                                <div>
-                                    <CardTitle>{category.name}</CardTitle>
-                                    <CardDescription>
-                                        {category.tools.length}+ tools
-                                    </CardDescription>
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-2">
-                                    {category.tools.map((tool, i) => (
-                                        <li
-                                            key={i}
-                                            className="flex items-center"
-                                        >
-                                            <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
-                                            {tool}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            </section>
+            <Tools />
 
             {/* Testimonials */}
             <section id="testimonials" className="container mx-auto px-6 py-20">
@@ -307,7 +112,7 @@ export default function LandingPage() {
                                     ))}
                                 </div>
                                 <p className="mb-6 italic">
-                                    "{testimonial.quote}"
+                                    &ldquo;{testimonial.quote}&rdquo;
                                 </p>
                                 <div>
                                     <p className="font-medium">
@@ -355,8 +160,8 @@ export default function LandingPage() {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Can't find what you're looking for? Contact our support
-                        team.
+                        Can&apos;t find what you&apos;re looking for? Contact
+                        our support team.
                     </p>
                 </div>
                 <div className="max-w-3xl mx-auto space-y-4">

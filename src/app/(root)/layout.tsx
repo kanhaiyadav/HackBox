@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import Image from "next/image";
+import { Josefin_Sans, Comic_Neue, Space_Grotesk } from "next/font/google";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+const josefin = Josefin_Sans({
     subsets: ["latin"],
+    weight: ["400", "700"], // or whatever weights you need
+    variable: "--font-josefin",
+    display: "swap",
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const comic = Comic_Neue({
     subsets: ["latin"],
+    weight: ["400", "700"], // or whatever weights you need
+    variable: "--font-comic",
+    display: "swap",
+});
+
+const space = Space_Grotesk({
+    subsets: ["latin"],
+    weight: ["400", "700"], // or whatever weights you need
+    variable: "--font-space",
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,21 +37,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${comic.variable} ${space.variable} ${josefin.variable} antialiased`}
             >
-                {/* <nav className="flex items-center justify-between px-[100px] py-[20px]">
-                    <div className="flex items-center space-x-4">
-                        <Image src="/logo.png" width={40} height={40} alt="app-logo"/>
-                        <h2 className="text-2xl">HackBox</h2>
-                    </div>
-                    <div className="flex gap-8 items-center">
-                        <span>Home</span>
-                        <span>About</span>
-                        <span>Product</span>
-                        <span>Pricing</span>
-                        <span>FAQ</span>
-                    </div>
-                </nav> */}
                 {children}
             </body>
         </html>
