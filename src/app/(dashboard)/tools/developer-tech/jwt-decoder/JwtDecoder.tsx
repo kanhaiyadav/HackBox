@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+"use client";
 
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { useState, useEffect } from "react";
 import {
     FaLock,
     FaKey,
-    FaShieldAlt,
     FaCopy,
     // FaSync,
     FaHistory,
@@ -176,49 +177,38 @@ const JwtDecoder = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 text-gray-200 p-4 sm:p-6">
+        <div>
             <div className="max-w-6xl mx-auto">
-                <header className="mb-8">
-                    <h1 className="text-3xl font-bold mb-2 flex items-center text-blue-400">
-                        <FaShieldAlt className="mr-2" /> JWT Decoder
-                    </h1>
-                    <p className="text-gray-400">
-                        Decode and inspect JSON Web Tokens without requiring the
-                        secret key
-                    </p>
-                </header>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col gap-4">
                     {/* Input Section */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
+                    <div className="">
+                        <div className="foreground shadow-input rounded-lg p-4">
                             <div className="flex flex-col space-y-4">
                                 <h2 className="text-xl font-semibold flex items-center">
                                     <FaKey className="mr-2 text-yellow-500" />{" "}
                                     Token Input
                                 </h2>
 
-                                <textarea
+                                <Textarea
                                     value={token}
                                     onChange={handleTokenChange}
-                                    className="w-full h-32 bg-gray-950 text-gray-200 p-3 rounded border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                                     placeholder="Paste your JWT token here..."
+                                    className="h-[100px]"
                                 />
 
                                 <div className="flex flex-wrap gap-3">
-                                    <button
+                                    <Button
                                         onClick={handleDecode}
-                                        className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-200"
                                     >
                                         <FaLock className="mr-2" /> Decode Token
-                                    </button>
+                                    </Button>
 
-                                    <button
+                                    <Button
+                                        variant={'secondary'}
                                         onClick={clearToken}
-                                        className="flex items-center bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition duration-200"
                                     >
                                         <MdDelete className="mr-2" /> Clear
-                                    </button>
+                                    </Button>
                                 </div>
 
                                 {error && (
@@ -232,7 +222,7 @@ const JwtDecoder = () => {
 
                     {/* History Section */}
                     <div className="lg:col-span-1">
-                        <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
+                        <div className="foreground shadow-input rounded-lg p-4">
                             <div className="flex flex-col space-y-4">
                                 <h2 className="text-xl font-semibold flex items-center justify-between">
                                     <span className="flex items-center">
@@ -288,7 +278,7 @@ const JwtDecoder = () => {
 
                 {/* Results Section */}
                 {decoded && (
-                    <div className="mt-8 bg-gray-800 rounded-lg p-4 shadow-lg">
+                    <div className="mt-8 foreground shadow-input rounded-lg p-4">
                         <div className="mb-6">
                             <h2 className="text-xl font-semibold mb-2">
                                 Token Information

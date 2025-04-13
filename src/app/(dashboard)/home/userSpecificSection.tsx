@@ -1,10 +1,15 @@
 "use client";
 
-import Image from "next/image";
+import ToolCard from "@/components/toolCard";
+// import Image from "next/image";
 import React from "react";
+import { selectAllTools } from "@/lib/features/tools/tools.selector";
+import { useSelector } from "react-redux";
 
 const UserSpecificSection = () => {
     const [active, setActive] = React.useState(0);
+
+    const tools = useSelector(selectAllTools);   
 
     const navs = [
         { name: "Recent Used", id: "recent" },
@@ -20,8 +25,8 @@ const UserSpecificSection = () => {
                         key={index}
                         className={`px-6 py-3 rounded-t-xl ${
                             active === index
-                                ? "bg-gray-200/5 border-2 border-white/5 border-b-0"
-                                : "bg-gray-400/5"
+                                ? "bg-accent border-2 border-white/5 border-b-0"
+                                : "bg-gray-400/10"
                         }`}
                         onClick={() => setActive(index)}
                     >
@@ -30,18 +35,18 @@ const UserSpecificSection = () => {
                 ))}
             </div>
             <div className="grow  py-4 overflow-x-auto overflow-y-hidden styled-scrollbar">
-                <div className="mb-[-10px] mt-[10px]">
+                {/* <div className="mb-[-10px] mt-[10px]">
                     <Image src={'/no-data.png'} alt="no-data" width={60} height={60} className="mx-auto" />
                     <p className="w-fit m-auto text-white/40">No data exits!</p>
-                </div>
-                {/* <div className="flex gap-4 w-fit">
-                    {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
-                    ))}
-                    {tools.map((tool, index) => (
-                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
-                    ))}
                 </div> */}
+                <div className="flex gap-4 w-fit">
+                    {tools.slice(23, 35).map((tool, index) => (
+                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                    ))}
+                    {/* {tools.map((tool, index) => (
+                        <ToolCard key={index} tool={tool} className="w-[120px]"/>
+                    ))} */}
+                </div>
             </div>
         </div>
     );

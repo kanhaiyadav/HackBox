@@ -21,7 +21,7 @@ const Tools = () => {
                 <h2 className="text-xl">Tools</h2>
                 <Select onValueChange={(value) => setCategory(value)}>
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Color" />
+                        <SelectValue placeholder="Category" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">

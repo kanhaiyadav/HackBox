@@ -17,16 +17,17 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         <div className="grow min-h-0 flex flex-col w-full px-[50px]">
             <Header tool={tool} loading={loading} />
             <div className="grow min-h-0 flex gap-8 overflow-y-auto styled-scrollbar pr-[15px] pt-4">
-                <div className="grow">
-                    {children}
-                </div>
-                <div className="sticky shrink-0 top-8 flex flex-col gap-8 w-[300px] pt-[15px]">
+                <div className="grow">{children}</div>
+                <div className="shrink-0 flex flex-col gap-8 w-[300px] pt-[15px] h-fit">
                     <InfoBox
                         description={tool?.description}
                         loading={loading}
                     />
 
-                    <WarningBox warning={tool?.warning} loading={loading} />
+                    <WarningBox
+                        warning={tool?.warning}
+                        loading={loading}
+                    />
                 </div>
             </div>
         </div>

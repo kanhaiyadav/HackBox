@@ -38,7 +38,7 @@ const CollapsibleItem = ({
                 <CollapsibleTrigger asChild className="hover:bg-white/5">
                     <SidebarMenuButton tooltip={item.title}>
                         {item.icon && <item.icon />}
-                        <span>{item.title}</span>
+                        <span className=" whitespace-nowrap overflow-hidden text-ellipsis">{item.title}</span>
                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                 </CollapsibleTrigger>

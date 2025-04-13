@@ -43,7 +43,7 @@ const WarningBox = ({
                         </li>
                     </ul>
                 ) : (
-                    <div dangerouslySetInnerHTML={{ __html: warning || "" }} />
+                    <div dangerouslySetInnerHTML={{ __html: warning || "" }} className="text-yellow-500"/>
                 )}
             </div>
         </div>
