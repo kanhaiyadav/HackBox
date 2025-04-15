@@ -8,34 +8,34 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
 
-    // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
 
-    // useEffect(() => {
-    //     // Check if it's a lower-end device or mobile
-    //     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    //     const isLowPerformance = window.navigator.hardwareConcurrency < 4;
+    useEffect(() => {
+        // Check if it's a lower-end device or mobile
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isLowPerformance = window.navigator.hardwareConcurrency < 4;
 
-    //     setIsLowPowerDevice(isMobile || isLowPerformance);
+        setIsLowPowerDevice(isMobile || isLowPerformance);
 
-    //     console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
+        console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
 
-    //     // Only initialize fluid cursor on more powerful devices
-    //     if (!isMobile && !isLowPerformance) {
-    //         // Pass optimized config to reduce CPU/GPU usage
-    //         const optimizedConfig = {
-    //             SIM_RESOLUTION: 64, // Reduced from 128
-    //             DYE_RESOLUTION: 720, // Reduced from 1440
-    //             VELOCITY_DISSIPATION: 4, // Increased to fade quicker
-    //             PRESSURE_ITERATIONS: 12, // Reduced from 20
-    //             SPLAT_RADIUS: 0.2,
-    //             SPLAT_FORCE: 4000, // Reduced from 6000
-    //             DENSITY_DISSIPATION: 4, // Increased to fade quicker
-    //         };
+        // Only initialize fluid cursor on more powerful devices
+        if (!isMobile && !isLowPerformance) {
+            // Pass optimized config to reduce CPU/GPU usage
+            const optimizedConfig = {
+                SIM_RESOLUTION: 64, // Reduced from 128
+                DYE_RESOLUTION: 720, // Reduced from 1440
+                VELOCITY_DISSIPATION: 4, // Increased to fade quicker
+                PRESSURE_ITERATIONS: 12, // Reduced from 20
+                SPLAT_RADIUS: 0.2,
+                SPLAT_FORCE: 4000, // Reduced from 6000
+                DENSITY_DISSIPATION: 4, // Increased to fade quicker
+            };
 
-    //         fluidCursor(optimizedConfig);
-    //     }
-    // }, []);
+            fluidCursor(optimizedConfig);
+        }
+    }, []);
     
   return (
       <section className="container mx-auto px-6 py-20 text-center relative">
@@ -65,10 +65,11 @@ const Hero = () => {
           </div>
           <motion.div
               initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-gray-700 shadow-2xl hover:shadow-glow transition-transform duration-300 hover:scale-105 hover:-translate-y-[30px]">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5"></div>
+              animate={{ opacity: 1, y: 0, transition: {duration: 0.5, type: 'spring', stiffness: 200} }}
+              whileHover={{boxShadow: '0px 40px 100px 10px oklch(50.83% 0.1436 177.23)', scale: 1.05, y: -30, transition: { duration: 0.3, type: 'spring', stiffness: 300, damping: 20 }}}
+              whileTap={{ scale: 0.95 }}
+              className="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-gray-700 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/5"></div>
               <img
                   src="/dashboard.png"
                   alt="HackBox Dashboard"

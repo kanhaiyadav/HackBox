@@ -1,11 +1,46 @@
+'use client';
+
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { toolCategories } from "../../../constants/tool";
 
 const Tools = () => {
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    // Container variants for staggered animation
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1, // Delay between each child animation
+                delayChildren: 0.2, // Initial delay before starting animations
+            },
+        },
+    };
+
+    // Individual item variants for the pop-up effect
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20, scale: 0.8 },
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 10,
+            },
+        },
+    };
+
     return (
         <section
             id="tools"
             className="container mx-auto px-6 py-20 foreground rounded-3xl my-10 px-[100px]"
+            ref={ref}
         >
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">
@@ -16,11 +51,17 @@ const Tools = () => {
                     regularly.
                 </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "show" : "hidden"}
+            >
                 {toolCategories.map((category, index) => (
-                    <div
+                    <motion.div
                         key={index}
                         className="flex items-center gap-4 bg-accent p-4 rounded-lg shadow-input"
+                        variants={itemVariants}
                     >
                         <div className="p-2 rounded-sm bg-primary/20">
                             <category.icon className="text-primary" />
@@ -28,9 +69,9 @@ const Tools = () => {
                         <span className="text-lg font-bold">
                             {category.title}
                         </span>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };

@@ -1,10 +1,26 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import React from 'react'
+import { motion } from 'framer-motion';
 
 const CTA = () => {
+
+    const floatingAnimation = {
+        y: [-5, 5],
+        transition: {
+            y: {
+                duration: 1,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+            },
+        },
+    };
+    
   return (
-      <section className="container mx-auto px-6 py-20">
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 md:p-16 text-center border border-gray-700">
+      <section className="flex items-center justify-between m-[100px] mt-[200px] foreground rounded-3xl p-8 md:p-16 text-center shadow-inset">
+          <div>
               <h2 className="text-3xl font-bold mb-6">
                   Ready to Boost Your Productivity?
               </h2>
@@ -24,6 +40,14 @@ const CTA = () => {
                       Learn More
                   </Button>
               </div>
+          </div>
+          <div>
+              <motion.img
+                  animate={floatingAnimation}
+                  src="/app.png"
+                  alt="CTA Image"
+                  className="hidden md:block  ml-10 drop-shadow-2xl"
+              />
           </div>
       </section>
   );
