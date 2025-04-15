@@ -5,7 +5,7 @@ const Tools = () => {
     return (
         <section
             id="tools"
-            className="container mx-auto px-6 py-20 foreground rounded-3xl my-10"
+            className="container mx-auto px-6 py-20 foreground rounded-3xl my-10 px-[100px]"
         >
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">

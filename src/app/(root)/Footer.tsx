@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 const Footer = () => {
   return (
       <footer className="border-t-2 relative bg-[url('/footer.svg')] bg-cover bg-center border-primary py-12">
-          <div className="absolute top-0 left-0 w-full h-full gradient-darken" />
+          <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
           <div className="container relative mx-auto px-6">
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
                   <div className="col-span-2">

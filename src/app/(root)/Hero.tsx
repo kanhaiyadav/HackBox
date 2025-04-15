@@ -8,34 +8,34 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
+    // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
 
-    useEffect(() => {
-        // Check if it's a lower-end device or mobile
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        const isLowPerformance = window.navigator.hardwareConcurrency < 4;
+    // useEffect(() => {
+    //     // Check if it's a lower-end device or mobile
+    //     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    //     const isLowPerformance = window.navigator.hardwareConcurrency < 4;
 
-        setIsLowPowerDevice(isMobile || isLowPerformance);
+    //     setIsLowPowerDevice(isMobile || isLowPerformance);
 
-        console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
+    //     console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
 
-        // Only initialize fluid cursor on more powerful devices
-        if (!isMobile && !isLowPerformance) {
-            // Pass optimized config to reduce CPU/GPU usage
-            const optimizedConfig = {
-                SIM_RESOLUTION: 64, // Reduced from 128
-                DYE_RESOLUTION: 720, // Reduced from 1440
-                VELOCITY_DISSIPATION: 4, // Increased to fade quicker
-                PRESSURE_ITERATIONS: 12, // Reduced from 20
-                SPLAT_RADIUS: 0.2,
-                SPLAT_FORCE: 4000, // Reduced from 6000
-                DENSITY_DISSIPATION: 4, // Increased to fade quicker
-            };
+    //     // Only initialize fluid cursor on more powerful devices
+    //     if (!isMobile && !isLowPerformance) {
+    //         // Pass optimized config to reduce CPU/GPU usage
+    //         const optimizedConfig = {
+    //             SIM_RESOLUTION: 64, // Reduced from 128
+    //             DYE_RESOLUTION: 720, // Reduced from 1440
+    //             VELOCITY_DISSIPATION: 4, // Increased to fade quicker
+    //             PRESSURE_ITERATIONS: 12, // Reduced from 20
+    //             SPLAT_RADIUS: 0.2,
+    //             SPLAT_FORCE: 4000, // Reduced from 6000
+    //             DENSITY_DISSIPATION: 4, // Increased to fade quicker
+    //         };
 
-            fluidCursor(optimizedConfig);
-        }
-    }, []);
+    //         fluidCursor(optimizedConfig);
+    //     }
+    // }, []);
     
   return (
       <section className="container mx-auto px-6 py-20 text-center relative">

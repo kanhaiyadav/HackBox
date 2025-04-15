@@ -5,7 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Metadata } from "next";
 import ToolNav from "@/components/dashboardHeader";
 import StoreProvider from "../StoreProvider";
-import { Josefin_Sans, Comic_Neue, Space_Grotesk } from "next/font/google";
+import { Josefin_Sans, Comic_Neue, Space_Grotesk, Borel } from "next/font/google";
 
 const josefin = Josefin_Sans({
     subsets: ["latin"],
@@ -28,6 +28,13 @@ const space = Space_Grotesk({
     display: "swap",
 });
 
+const borel = Borel({
+    subsets: ["latin"],
+    weight: ["400"], 
+    variable: "--font-borel",
+    display: "swap",
+});
+
 
 export const metadata: Metadata = {
     title: {
@@ -42,7 +49,7 @@ export const metadata: Metadata = {
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <html lang="en" className={`${josefin.variable} ${comic.variable} ${space.variable}`}>
+        <html lang="en" className={`${josefin.variable} ${comic.variable} ${space.variable} ${borel.variable}`}>
             <body className="h-screen overflow-x-hidden overflow-y-auto">
                 <StoreProvider>
                     <div className="flex h-fit">

@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FaCoffee, FaHeart, FaPaypal, FaCreditCard } from "react-icons/fa";
+import { FaHeart, FaPaypal, FaCreditCard } from "react-icons/fa";
 import { SiKofi, SiBuymeacoffee } from "react-icons/si";
 import { AnimatedInput } from "./AnimatedInput";
 
@@ -58,14 +58,14 @@ export default function BuyMeCoffeeModal({
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogTrigger>
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
-                    <FaCoffee size={20} className="text-white/50" />
-                    <span>Buy me a coffee</span>
+                    <SiBuymeacoffee size={20} className="text-white/50" />
+                    <span className="font-stylish relative bottom-[-5px]">Buy me a coffee</span>
                 </div>
             </DialogTrigger>
             <DialogContent className="bg-slate-900 text-slate-100 border-slate-700 sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2 text-2xl font-bold text-primary">
-                        <FaCoffee className="text-primary" />
+                        <SiBuymeacoffee className="text-primary" />
                         <span>Buy Me a Coffee</span>
                     </DialogTitle>
                     <DialogDescription className="text-slate-300">
@@ -218,7 +218,7 @@ export default function BuyMeCoffeeModal({
                                     </span>
                                 ) : (
                                     <span className="flex items-center gap-2">
-                                        <FaCoffee />
+                                        <SiBuymeacoffee />
                                         Buy{" "}
                                         {amount > 1
                                             ? `${amount} Coffees`
