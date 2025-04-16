@@ -19,13 +19,13 @@ const CTA = () => {
     };
     
   return (
-      <section className="flex items-center justify-between m-[100px] mt-[200px] foreground rounded-3xl p-8 md:p-16 text-center shadow-inset">
+      <section className="flex items-center justify-between m-[100px] mt-[200px] foreground rounded-3xl p-8 md:p-16 text-center border-1 border-accent">
           <div>
               <h2 className="text-3xl font-bold mb-6">
                   Ready to Boost Your Productivity?
               </h2>
               <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
-                  Join thousands of developers who already supercharge their
+                  Join thousands of users who already supercharge their
                   workflow with HackBox.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">

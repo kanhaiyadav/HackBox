@@ -8,7 +8,7 @@ import {
 
 const Faq = () => {
     return (
-        <section id="faq" className="container mx-auto px-6 py-20">
+        <section id="faq" className=" min-h-screen container mx-auto px-6 pt-[100px] ">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4">
                     Frequently Asked Questions
