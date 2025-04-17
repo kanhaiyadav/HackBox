@@ -57,12 +57,12 @@ export default function ColorInput({
                         type="color"
                         value={format === "hex" ? color : chroma(color).hex()}
                         onChange={(e) => onColorChange(e.target.value, "hex")}
-                        className="w-12 h-10 p-1 cursor-pointer"
+                        className="w-14 h-12 p-1 cursor-pointer"
                     />
                 </div>
 
                 <div
-                    className="h-24 rounded-md border border-gray-200"
+                    className="h-24 rounded-md border-1 border-accent"
                     style={{
                         backgroundColor:
                             format === "hex" ? color : chroma(color).hex(),

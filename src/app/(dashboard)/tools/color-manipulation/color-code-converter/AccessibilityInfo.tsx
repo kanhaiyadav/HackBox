@@ -48,7 +48,7 @@ export default function AccessibilityInfo({
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-                <div className="p-4 border rounded-md">
+                <div className="p-4 foreground shadow-inset rounded-md ">
                     <h3 className="font-medium mb-2">Contrast Ratios</h3>
                     <div className="space-y-2">
                         <div className="flex justify-between">
@@ -70,7 +70,7 @@ export default function AccessibilityInfo({
                     </div>
                 </div>
 
-                <div className="p-4 border rounded-md">
+                <div className="p-4 foreground shadow-inset rounded-md">
                     <h3 className="font-medium mb-2">WCAG Compliance</h3>
                     <div className="space-y-2">
                         <div className="flex justify-between">

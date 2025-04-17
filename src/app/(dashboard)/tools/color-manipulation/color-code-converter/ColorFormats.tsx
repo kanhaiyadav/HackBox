@@ -52,8 +52,6 @@ export default function ColorFormats({
 
     return (
         <div className="w-full space-y-4">
-            <h3 className="font-medium">Color Conversion</h3>
-
             <div className="flex items-center gap-2 mb-4">
                 <span>Convert from {formatNames[inputFormat]} to:</span>
                 <Select
@@ -75,7 +73,7 @@ export default function ColorFormats({
                 </Select>
             </div>
 
-            <div className=" p-4 rounded-md">
+            <div className=" p-4 rounded-md foreground shadow-inset">
                 <div className="flex items-center justify-between">
                     <div>
                         <span className="font-medium text-sm uppercase">
@@ -111,7 +109,7 @@ export default function ColorFormats({
                     .map((format) => (
                         <div
                             key={format}
-                            className="flex items-center justify-between  p-3 rounded-md"
+                            className="flex items-center justify-between  p-3 rounded-md foreground shadow-inset"
                         >
                             <div>
                                 <span className="font-medium text-sm uppercase">
