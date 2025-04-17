@@ -182,8 +182,12 @@
 }
 
 .styled-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--accent);
+    background: transparent;
     border-radius: 10px;
+}
+
+.styled-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: var(--accent);
 }
 
 .styled-scrollbar::-webkit-scrollbar-thumb:hover {

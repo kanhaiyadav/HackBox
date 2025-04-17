@@ -61,7 +61,7 @@ export default function FeedbackModal() {
             <DialogTrigger asChild>
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <VscFeedback size={20} className="text-white/50" />
-                    <span>Feedback</span>
+                    <span className="hidden sm:block">Feedback</span>
                 </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md md:max-w-lg bg-gray-900 text-gray-100 border-gray-800 shadow-lg">

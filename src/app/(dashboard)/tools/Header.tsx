@@ -18,7 +18,7 @@ const Header = ({
         return <HeaderSkeleton />;
     }
     return (
-        <div className="col-span-full">
+        <div className="flex flex-col items-center sm:items-start">
             <h1 className="text-3xl font-semibold">{tool?.name}</h1>
             <div className="py-2 flex items-center gap-4">
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
@@ -42,7 +42,7 @@ const Header = ({
                     <span>Buy me a coffee</span>
                 </div> */}
             </div>
-            <hr className="my-4 border-white/40" />
+            <hr className="my-4 border-white/40 w-full" />
         </div>
     );
 };

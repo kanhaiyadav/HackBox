@@ -266,9 +266,7 @@ export default function TextCleaner() {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <h1 className="text-3xl font-bold mb-6">Text Cleaner</h1>
-
+        <div className="max-w-6xl mx-auto md:p-6">
             {/* Settings Bar */}
             <div className="flex flex-wrap gap-4 mb-4 items-center">
                 <div className="flex items-center gap-2">

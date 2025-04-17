@@ -19,7 +19,7 @@ const SearchBar = () => {
                     <input
                         type="text"
                         placeholder={"Search a tool"}
-                        className="bg-transparent border-none outline-none"
+                        className="bg-transparent border-none outline-none hidden sm:block"
                         readOnly
                     />
                 </div>

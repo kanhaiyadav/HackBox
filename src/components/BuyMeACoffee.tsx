@@ -59,7 +59,7 @@ export default function BuyMeCoffeeModal({
             <DialogTrigger>
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <SiBuymeacoffee size={20} className="text-white/50" />
-                    <span className="font-stylish relative bottom-[-5px]">Buy me a coffee</span>
+                    <span className="font-stylish relative bottom-[-5px] hidden sm:block">Buy me a coffee</span>
                 </div>
             </DialogTrigger>
             <DialogContent className="bg-slate-900 text-slate-100 border-slate-700 sm:max-w-md">

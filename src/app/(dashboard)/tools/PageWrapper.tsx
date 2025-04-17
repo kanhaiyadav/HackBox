@@ -14,11 +14,11 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     const tool = useSelector(selectToolBySlug(slug || ""));
 
     return (
-        <div className="grow min-h-0 flex flex-col w-full px-[50px]">
+        <div className="grow min-h-0 flex flex-col w-full sm:px-[20px] lg:px-[50px] pb-[20px]">
             <Header tool={tool} loading={loading} />
-            <div className="grow min-h-0 flex gap-8 overflow-y-auto styled-scrollbar pr-[15px] pt-4">
+            <div className="grow min-h-0 flex flex-col xl:flex-row gap-4 lg:gap-8 overflow-y-auto styled-scrollbar pr-[5px] md:pr-[10px] pt-4">
                 <div className="grow">{children}</div>
-                <div className="shrink-0 flex flex-col gap-8 w-[300px] pt-[15px] h-fit">
+                <div className="shrink-0 flex flex-col sm:flex-row xl:flex-col gap-8 w-full xl:w-[300px] pt-[15px] h-fit pl-4 pr-2 md:px-6 xl:px-0">
                     <InfoBox
                         description={tool?.description}
                         loading={loading}

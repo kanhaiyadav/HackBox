@@ -26,7 +26,7 @@ const ShareButton = () => {
           className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer"
       >
           <IoShareSocialSharp size={20} className="text-white/50" />
-          <span>Share</span>
+          <span className='hidden sm:block'>Share</span>
       </div>
   );
 }

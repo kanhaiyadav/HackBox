@@ -23,7 +23,7 @@ const ToolNav = () => {
     return (
         <nav className="flex justify-between items-center px-4 py-4 rounded-xl w-full foreground shadow-foreground my-4">
             <SearchBar />
-            <div className="w-fit flex items-center gap-6">
+            <div className="w-fit flex items-center gap-4 sm:gap-6">
                 {/* <div className="flex items-center gap-1">
                     <HiOutlineStar className="cursor-pointer text-xl text-white/40 hover:text-orange-300" />
                     <span className="text-white/40 cursor-default">4,534</span>
