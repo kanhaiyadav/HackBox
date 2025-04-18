@@ -21,7 +21,7 @@ const StreamCard = ({ stream, onRefresh }: StreamCardProps) => {
     };
 
     return (
-        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <div className="foreground shadow-foreground rounded-lg overflow-hidden">
             <div className="p-4 flex items-center space-x-4">
                 <div className="relative h-16 w-16 rounded-full overflow-hidden bg-gray-700">
                     {stream.profileImageUrl ? (
