@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Label } from "@/components/ui/label";
 
 function toUpperCase(text: string) {
     return text.toUpperCase();
@@ -147,10 +148,10 @@ const Main = () => {
 
     return (
         <>
-            <Textarea
-                label="Input text"
-                onChange={(e) => setInputText(e.target.value)}
-            />
+            <div>
+                <Label className="text-white/80 text-sm mb-2">Input Text</Label>
+                <Textarea onChange={(e) => setInputText(e.target.value)} />
+            </div>
             <Select
                 onValueChange={(value) => {
                     const selectedTextCase = textCases.find(
@@ -177,7 +178,8 @@ const Main = () => {
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40">
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40"
+                    >
                         Output will be shown here
                     </motion.p>
                 ) : (
@@ -185,8 +187,8 @@ const Main = () => {
                 )}
             </div>
             <div className="flex items-center justify-end gap-4">
-                <Button variant={'secondary'}>Copy Output</Button>
-                <Button variant={'secondary'}>Reset</Button>
+                <Button variant={"secondary"}>Copy Output</Button>
+                <Button variant={"secondary"}>Reset</Button>
             </div>
         </>
     );
