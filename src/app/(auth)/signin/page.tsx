@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { signIn } from "@/auth";
 import {
     Card,
     CardContent,
@@ -30,6 +31,14 @@ const SignInPage = () => {
             </CardHeader>
 
             <CardContent>
+                <form
+                    action={async () => {
+                        "use server";
+                        await signIn("google");
+                    }}
+                >
+                    <button type="submit">Signin with Google</button>
+                </form>
                 <SigninForm />
                 <div className="relative my-6 flex items-center gap-2">
                     <hr className="bg-gray-700 grow border-1 border-accent" />
