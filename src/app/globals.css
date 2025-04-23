@@ -50,8 +50,9 @@
     --shadow-popover: -3px 5px 8px 2px rgba(0, 0, 0, 0.2), 3px 2px 8px 2px rgba(0, 0, 0, 0.2);
     --shadow-input: 0px 1.5px 4px 0.5px rgba(0, 0, 0, 0.6);
     --shadow-glow: 0px 40px 100px 10px oklch(50.83% 0.1436 177.23);
-    --breakpoint-xs: 350px;
+    --breakpoint-xss: 353px;
     --breakpoint-xll: 1370px;
+    --breakpoint-xs:450px;
 }
 
 @layer utilities {
@@ -176,7 +177,7 @@
     color: var(--primary)
 }
 
-.styled-scrollbar::-webkit-scrollbar {
+/* .styled-scrollbar::-webkit-scrollbar {
     background: transparent;
     width: 5px;
     height: 5px;
@@ -194,6 +195,11 @@
 
 .styled-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
+} */
+
+.styled-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
 }
 
 /* src/app/globals.css (add this to your existing CSS) */

@@ -17,7 +17,7 @@ const Tools = () => {
 
     return (
         <div className="w-full grow flex flex-col min-h-0">
-            <div className="w-full flex items-center justify-between border-b-3 border-white/10 pb-2 pr-6">
+            <div className="w-full flex items-center justify-between border-b-3 border-white/10 pb-2 pr-2 pl-2 sm:pr-6">
                 <h2 className="text-xl">Tools</h2>
                 <Select onValueChange={(value) => setCategory(value)}>
                     <SelectTrigger className="w-[180px]">
@@ -41,7 +41,7 @@ const Tools = () => {
                     </SelectContent>
                 </Select>
             </div>
-            <div className="grow py-4 overflow-y-auto no-scrollbar min-h-0">
+            <div className="grow py-4 overflow-y-auto styled-scrollbar min-h-0">
                 <ToolDirectory category={category} />
             </div>
         </div>

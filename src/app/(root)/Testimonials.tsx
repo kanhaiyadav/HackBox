@@ -33,6 +33,27 @@ const features = [
 ];
 
 const Testimonials = () => {
+    // Client-side only media query with useEffect
+    const [isLg, setIsLg] = useState(false);
+    const [isSm, setIsSm] = useState(false);
+
+    useEffect(() => {
+        // Check media query on client side only
+        const checkMediaQuery = () => {
+            setIsLg(window.innerWidth <= 1024);
+            setIsSm(window.innerWidth <= 640);
+        };
+
+        // Initial check
+        checkMediaQuery();
+
+        // Add resize listener
+        window.addEventListener("resize", checkMediaQuery);
+
+        // Cleanup
+        return () => window.removeEventListener("resize", checkMediaQuery);
+    }, []);
+
     const [cards, setCards] = useState<Card[]>([
         {
             id: 1,
@@ -80,90 +101,88 @@ const Testimonials = () => {
         return () => clearInterval(interval);
     }, []);
 
+    // Default orbit radius that will be used on first render (both server and client)
+    const orbitRadius = 180;
+
     return (
-        <div className="px-[100px]">
+        <div className="sm:px-[30px] lg:px-[50px] xl:px-[100px]">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">
                     What People Say
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Trusted by thousands of people and professionals
-                    worldwide.
+                    Trusted by thousands of people and professionals worldwide.
                 </p>
             </div>
-            <div className="flex justify-between items-center">
-                <div>
-                    <div className="relative w-[500px] h-[300px]">
-                        {cards.map((card, index) => (
-                            <motion.div
-                                key={card.id}
-                                className={`absolute w-full h-full rounded-[20px] p-6 text-white bg-gradient-to-br ${card.gradient} to-background shadow-foreground`}
-                                style={{
-                                    transformOrigin: "top center",
-                                }}
-                                animate={{
-                                    top: index * -10,
-                                    scale: 1 - index * 0.06,
-                                    zIndex: cards.length - index,
-                                }}
-                            >
-                                <div className="flex flex-col justify-between relative z-10 h-full">
+            <div className="grid grid-cols-2 grid-rows-[250px_1fr] sm:grid-rows-[300px_1fr] md:grid-rows-2 gap-4">
+                <div className="relative col-start-1 col-end-3 md:col-end-2 row-start-1 row-end-2 w-[90%] mx-auto md:w-[350px] lg:w-[400px] xl:w-[500px] h-[250px] sm:h-[300px]">
+                    {cards.map((card, index) => (
+                        <motion.div
+                            key={card.id}
+                            className={`absolute w-full h-full rounded-[20px] p-6 text-white bg-gradient-to-br ${card.gradient} to-background shadow-foreground`}
+                            style={{
+                                transformOrigin: "top center",
+                            }}
+                            animate={{
+                                top: index * -10,
+                                scale: 1 - index * 0.06,
+                                zIndex: cards.length - index,
+                            }}
+                        >
+                            <div className="flex flex-col justify-between relative z-10 h-full">
+                                <Image
+                                    src={"/quote.svg"}
+                                    alt="Quote"
+                                    width={40}
+                                    height={40}
+                                    className="relative left-[-10px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] object-cover"
+                                />
+                                <p className="tracking-[0.2em] text-sm sm:text-lg font-medium font-comic">
+                                    {card.quote}
+                                </p>
+                                <div className="flex items-center gap-4">
                                     <Image
-                                        src={"/quote.svg"}
-                                        alt="Quote"
-                                        width={40}
-                                        height={40}
-                                        className="relative left-[-10px]"
+                                        src={card.avatar}
+                                        alt="Avatar"
+                                        width={50}
+                                        height={50}
+                                        className="rounded-full shadow-input sm:w-[50px] sm:h-[50px] w-[40px] h-[40px] object-cover"
                                     />
-                                    <p className="tracking-[0.2em] text-lg font-medium font-comic">
-                                        {card.quote}
-                                    </p>
-                                    <div className="flex items-center gap-4">
-                                        <Image
-                                            src={card.avatar}
-                                            alt="Avatar"
-                                            width={50}
-                                            height={50}
-                                            className="rounded-full shadow-input"
-                                        />
-                                        <div className="mt-auto">
-                                            <p className="text-lg opacity-90 font-stylish relative bottom-[-5px]">
-                                                {card.name}
-                                            </p>
-                                            <p className="text-sm text-white/60">
-                                                {card.designation}
-                                            </p>
-                                        </div>
+                                    <div className="mt-auto">
+                                        <p className="text-sm sm:text-lg opacity-90 font-stylish relative bottom-[-5px]">
+                                            {card.name}
+                                        </p>
+                                        <p className="text-xs sm:text-sm text-white/60">
+                                            {card.designation}
+                                        </p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+                <div className="pr-0 xs:pr-4 p-4 col-start-1 col-end-2 row-start-2 row-end-3 m-auto">
+                    <p className="text-white/80 text-sm md:text-lg max-w-md">
+                        Our users are our biggest advocates. They love how easy
+                        it is to use our product and how it helps them achieve
+                        their goals.
+                    </p>
+
+                    <div className="space-y-4 mt-4">
+                        {features.map((feature, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center gap-3"
+                            >
+                                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <CheckCircle className="w-4 h-4 text-primary" />
+                                </div>
+                                <span className="text-sm md:text-base text-white/80">{feature}</span>
+                            </div>
                         ))}
                     </div>
-                    <div className="p-4">
-                        <p className="text-white/80 text-lg max-w-md">
-                            Our users are our biggest advocates. They love how
-                            easy it is to use our product and how it helps them
-                            achieve their goals.
-                        </p>
-
-                        <div className="space-y-4 mt-4">
-                            {features.map((feature, index) => (
-                                <div
-                                    key={index}
-                                    className="flex items-center gap-3"
-                                >
-                                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                                        <CheckCircle className="w-4 h-4 text-primary" />
-                                    </div>
-                                    <span className="text-white/80">
-                                        {feature}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
                 </div>
-                <div className="relative w-[600px] h-[600px] overflow-hidden">
+                <div className="relative col-start-2 col-end-3 row-start-2 md:row-start-1 row-end-3 md:w-[400px] lg:w-[600px] h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden">
                     <OrbitingIcons
                         centerIcon={
                             <div className="p-4 overflow-hidden z-20 flex items-center justify-center rounded-[15px] border-[1.5px] border-[#F3F3F3] bg-gradient-to-br from-[#FBFBFB] via-[#FBFBFB] to-[#E8E8E8] shadow-[0px_123px_35px_0px_rgba(0,0,0,0.00),_0px_79px_32px_0px_rgba(0,0,0,0.01),_0px_44px_27px_0px_rgba(0,0,0,0.05),_0px_20px_20px_0px_rgba(0,0,0,0.09),_0px_5px_11px_0px_rgba(0,0,0,0.10)]">
@@ -176,7 +195,7 @@ const Testimonials = () => {
                                     (testimonial, index) => (
                                         <div
                                             key={index}
-                                            className="w-[120px] h-[120px] overflow-hidden rounded-[133px] bg-gray-400 bg-cover bg-center bg-no-repeat shadow-[0px_44px_12px_0px_rgba(0,0,0,0.00),_0px_28px_11px_0px_rgba(0,0,0,0.03),_0px_16px_10px_0px_rgba(0,0,0,0.11),_0px_7px_7px_0px_rgba(0,0,0,0.19),_0px_2px_4px_0px_rgba(0,0,0,0.22)]"
+                                            className="w-[80px] sm:w-[100px] lg:w-[120px] h-[80px] sm:h-[100px] lg:h-[120px] overflow-hidden rounded-[133px] bg-gray-400 bg-cover bg-center bg-no-repeat shadow-[0px_44px_12px_0px_rgba(0,0,0,0.00),_0px_28px_11px_0px_rgba(0,0,0,0.03),_0px_16px_10px_0px_rgba(0,0,0,0.11),_0px_7px_7px_0px_rgba(0,0,0,0.19),_0px_2px_4px_0px_rgba(0,0,0,0.22)]"
                                         >
                                             <Image
                                                 src={testimonial.image}
@@ -188,7 +207,7 @@ const Testimonials = () => {
                                         </div>
                                     )
                                 ),
-                                radius: 180,
+                                radius: isSm ? 120: (isLg ? 150 : orbitRadius),
                                 speed: 25,
                             },
                         ]}
@@ -414,8 +433,8 @@ const OrbitingIcons = ({
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
                         style={{
-                            width: orbit.radius * 2 + "px",
-                            height: orbit.radius * 2 + "px",
+                            width: orbit.radius * 2,
+                            height: orbit.radius * 2,
                         }}
                     />
 

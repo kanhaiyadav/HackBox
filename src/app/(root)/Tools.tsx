@@ -39,8 +39,7 @@ const Tools = () => {
     return (
         <section
             id="tools"
-            className="container mx-auto px-6 py-20 foreground rounded-3xl my-10 px-[100px]"
-            ref={ref}
+            className="w-full py-20 foreground rounded-3xl my-10 px-[20px] sm:px-[50px] md:px-[100px]"
         >
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">
@@ -52,15 +51,16 @@ const Tools = () => {
                 </p>
             </div>
             <motion.div
-                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "show" : "hidden"}
+                ref={ref}
             >
                 {toolCategories.map((category, index) => (
                     <motion.div
                         key={index}
-                        className="flex items-center gap-4 bg-accent p-4 rounded-lg shadow-input"
+                        className="flex items-center gap-4 bg-accent p-3 sm:p-4 rounded-lg shadow-input"
                         variants={itemVariants}
                     >
                         <div className="p-2 rounded-sm bg-primary/20">

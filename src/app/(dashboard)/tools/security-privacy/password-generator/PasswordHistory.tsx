@@ -20,7 +20,7 @@ const PasswordTile = ({ password }: { password: string }) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="flex items-center justify-between w-full px-3 rounded-lg">
-            <span className="font-mono mr-4 max-w-[120px] xs:max-w-[150px] sm:max-w-[300px] md:max-w-[450px] whitespace-nowrap overflow-hidden text-ellipsis">
+            <span className="font-mono mr-4 max-w-[120px] xss:max-w-[150px] sm:max-w-[300px] md:max-w-[450px] whitespace-nowrap overflow-hidden text-ellipsis">
                 {showPassword ? password : "•".repeat(8)}
             </span>
             <Button

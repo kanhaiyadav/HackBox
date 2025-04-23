@@ -23,7 +23,7 @@ const UserSpecificSection = () => {
                 {navs.map((nav, index) => (
                     <button
                         key={index}
-                        className={`px-6 py-3 rounded-t-xl ${
+                        className={`px-3 md:px-6 py-2 md:py-3 rounded-t-lg md:rounded-t-xl text-xs xss:text-sm md:text-base ${
                             active === index
                                 ? "bg-accent border-2 border-white/5 border-b-0"
                                 : "bg-gray-400/10"

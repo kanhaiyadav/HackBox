@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FiLayers, FiShield, FiZap } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const cardData = [
     {
@@ -45,8 +45,26 @@ const FeatureCard = ({
         },
     };
 
+    // Individual item variants for the pop-up effect
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20, scale: 0.8 },
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 10,
+            },
+        },
+    };
+
     return (
-        <div className="w-fit max-w-[400px] h-fit min-h-[100px] bg-primary/10 border-l-[3.5px] border-primary relative px-[15px] pt-[30px] pb-[15px]">
+        <motion.div
+            className="w-full sm:w-[300px] lg:w-fit max-w-[400px] h-fit min-h-[100px] bg-primary/10 border-l-[3.5px] border-primary relative px-[15px] pt-[30px] pb-[15px]"
+            variants={itemVariants}
+        >
             <motion.div
                 className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 z-2"
                 animate={floatingAnimation}
@@ -72,16 +90,31 @@ const FeatureCard = ({
                 ></path>
             </svg>
             <div>
-                <h2 className="text-primary font-bold text-xl">{title}</h2>
-                <p className="text-muted-foreground">{description}</p>
+                <h2 className="text-primary font-bold text-lg lg:text-xl">{title}</h2>
+                <p className="text-muted-foreground text-sm lg:text-base">{description}</p>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
 const Features = () => {
+
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+    // Container variants for staggered animation
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1, // Delay between each child animation
+                delayChildren: 0.2, // Initial delay before starting animations
+            },
+        },
+    };
+
     return (
-        <section id="features" className="container mx-auto px-6 py-20">
+        <section id="features" className="mx-auto px-6 py-20">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">
                     Why Choose HackBox?
@@ -91,7 +124,13 @@ const Features = () => {
                     one beautifully designed, easy-to-use platform.
                 </p>
             </div>
-            <div className="flex items-center gap-8 justify-around">
+            <motion.div
+                ref={ref}
+                className="flex flex-col sm:flex-row flex-wrap items-center gap-8 justify-around"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "show" : "hidden"}
+            >
                 {cardData.map((card, index) => (
                     <FeatureCard
                         key={index}
@@ -100,7 +139,7 @@ const Features = () => {
                         icon={card.icon}
                     />
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };

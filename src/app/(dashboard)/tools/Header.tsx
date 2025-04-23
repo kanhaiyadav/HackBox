@@ -19,7 +19,7 @@ const Header = ({
     }
     return (
         <div className="flex flex-col items-center sm:items-start">
-            <h1 className="text-2xl xs:text-3xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis w-full text-center sm:text-start">{tool?.name}</h1>
+            <h1 className="text-2xl xss:text-3xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis w-full text-center sm:text-start">{tool?.name}</h1>
             <div className="py-2 flex items-center gap-4">
                 <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
                     <Image

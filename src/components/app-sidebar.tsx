@@ -57,8 +57,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <Sidebar collapsible="offcanvas" {...props} variant="floating">
             <SidebarHeader>
                 <SidebarMenu>
-                    <SidebarMenuItem className="flex items-center justify-between w-full">
-                        <div className="flex items-center justify-center gap-2">
+                    <SidebarMenuItem className="flex items-center justify-between w-full cursor-pointer">
+                        <div className="flex items-center justify-center gap-2"
+                            onClick={() => {
+                                setActive("home");
+                                router.push("/home");
+                            }}
+                        >
                             <Image
                                 src="/logo.png"
                                 alt="app-logo"

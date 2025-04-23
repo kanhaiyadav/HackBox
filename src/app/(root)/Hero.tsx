@@ -37,7 +37,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section className="container mx-auto px-6 py-20 text-center relative">
+        <section className="w-full px-6 py-20 text-center relative">
             <canvas
                 id="fluid"
                 className="absolute top-0 left-0 w-full h-full"
