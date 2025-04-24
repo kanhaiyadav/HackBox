@@ -9,7 +9,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { FiGithub, FiTwitter } from "react-icons/fi";
+import { FaGoogle } from "react-icons/fa";
+import { TbBrandGithubFilled } from "react-icons/tb";
+import { BsTwitterX } from "react-icons/bs";
 import SigninForm from "./signinForm";
 
 export const metadata = {
@@ -31,14 +33,14 @@ const SignInPage = () => {
             </CardHeader>
 
             <CardContent>
-                <form
+                {/* <form
                     action={async () => {
                         "use server";
-                        await signIn("google", { redirectTo: "/home"});
+                        await signIn("google", { redirectTo: "/home" });
                     }}
                 >
                     <button type="submit">Signin with Google</button>
-                </form>
+                </form> */}
                 <SigninForm />
                 <div className="relative my-6 flex items-center gap-2">
                     <hr className="bg-gray-700 grow border-1 border-accent" />
@@ -48,25 +50,39 @@ const SignInPage = () => {
                     <hr className="bg-gray-700 border-1 grow border-accent" />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
+                    <form
+                        action={async () => {
+                            "use server";
+                            await signIn("google", { redirectTo: "/home" });
+                        }}
+                    >
+                        <Button
+                            variant={"outline"}
+                            type="submit"
+                            className="border-primary bg-primary/5 text-primary w-full"
+                        >
+                            <FaGoogle className="h-4 w-4" /> <span className="hidden xs:block">Google</span>
+                        </Button>
+                    </form>
                     <Button
                         variant="outline"
-                        className="border-gray-700 hover:bg-gray-700 text-gray-300"
+                        className="border-primary bg-primary/5 text-primary"
                     >
-                        <FiGithub className="mr-2 h-4 w-4" />
-                        GitHub
+                        <TbBrandGithubFilled className="text-xl" />
+                        <span className="hidden xs:block">GitHub</span>
                     </Button>
                     <Button
                         variant="outline"
-                        className="border-gray-700 hover:bg-gray-700 text-gray-300"
+                        className="border-primary bg-primary/5 text-primary"
                     >
-                        <FiTwitter className="mr-2 h-4 w-4" />
-                        Twitter
+                        <BsTwitterX className="h-4 w-4" />
+                        <span className="hidden xs:block">Twitter</span>
                     </Button>
                 </div>
             </CardContent>
 
-            <CardFooter className="flex justify-center border-t border-gray-700 p-6">
+            <CardFooter className="flex justify-center border-t border-accent py-6 mx-6">
                 <p className="text-sm text-gray-400">
                     Don&apos;t have an account?{" "}
                     <Link

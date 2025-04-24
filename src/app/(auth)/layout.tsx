@@ -36,7 +36,7 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <div className="h-screen foreground flex flex-col relative">
-                    <main className="flex-1 flex items-center justify-center ">
+                    <main className="flex-1 flex items-center justify-center relative z-10">
                         <div className="w-full max-w-md">
                             {/* Back to home link */}
                             <Link
@@ -52,29 +52,29 @@ export default function RootLayout({
                     </main>
 
                     {/* Footer */}
-                    <footer className="py-6 px-4">
+                    <footer className="py-6 px-4 relative z-10">
                         <div className="container mx-auto">
-                            <div className="flex flex-col sm:flex-row justify-center gap-4 items-center">
-                                <p className="text-sm text-gray-500">
+                            <div className="flex flex-col md:flex-row justify-center md:gap-4 items-center">
+                                <p className="text-sm text-gray-400">
                                     © {new Date().getFullYear()} HackBox. All
                                     rights reserved.
                                 </p>
                                 <div className="flex space-x-4 mt-4 sm:mt-0">
                                     <Link
                                         href="/privacy"
-                                        className="text-sm text-gray-500 hover:text-gray-400"
+                                        className="text-sm text-gray-400 hover:text-gray-400"
                                     >
                                         Privacy Policy
                                     </Link>
                                     <Link
                                         href="/terms"
-                                        className="text-sm text-gray-500 hover:text-gray-400"
+                                        className="text-sm text-gray-400 hover:text-gray-400"
                                     >
                                         Terms of Service
                                     </Link>
                                     <Link
                                         href="/contact"
-                                        className="text-sm text-gray-500 hover:text-gray-400"
+                                        className="text-sm text-gray-400 hover:text-gray-400"
                                     >
                                         Contact
                                     </Link>
@@ -83,20 +83,22 @@ export default function RootLayout({
                         </div>
                     </footer>
 
+                    <div className="w-full h-full absolute top-0 left-0 bg-black/30 z-8"/>
+
                     <img
                         src="/auth/Ellipse.svg"
                         alt=""
-                        className="w-[400px] h-[400px] absolute left-0 top-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        className="w-[300px] md:w-[400px] h-[300px] md:h-[400px] absolute left-0 top-[45%] md:top-[50%] translate-x-[-50%] translate-y-[-50%]"
                     />
                     <img
                         src="/auth/Subtract.svg"
                         alt=""
-                        className="w-[300px] h-[300px] absolute right-0 top-0"
+                        className="w-[220px] md:w-[300px] h-[220px] md:h-[300px] absolute right-0 top-0"
                     />
                     <img
                         src="/auth/Polygons.svg"
                         alt=""
-                        className="w-[300px] h-[300px] absolute right-0 bottom-0"
+                        className="w-[220px] md:w-[300px] h-[220px] md:h-[300px] absolute right-0 bottom-0"
                     />
                 </div>
             </body>

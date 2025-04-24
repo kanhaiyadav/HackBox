@@ -15,7 +15,6 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SearchBar from "./searchBar";
-import { signOut } from "@/auth";
 import { auth } from "@/auth";
 
 
@@ -65,7 +64,7 @@ const ToolNav = async () => {
                             <p>Buy me a Coffee</p>
                         </TooltipContent>
                     </Tooltip>
-                    <Tooltip>
+                    <Tooltip>   
                         <TooltipTrigger asChild>
                             <div>
                                 <LuSunMedium className="cursor-pointer text-[22px] text-white/40 hover:text-primary" />
