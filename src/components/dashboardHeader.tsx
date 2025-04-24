@@ -15,11 +15,17 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import SearchBar from "./searchBar";
+import { signOut } from "@/auth";
+import { auth } from "@/auth";
 
 
 
 
-const ToolNav = () => {
+const ToolNav = async () => {
+
+    const session = await auth();
+    console.log(session, "session");
+    
     return (
         <nav className="flex justify-between items-center px-4 py-4 rounded-xl w-full foreground shadow-foreground my-4">
             <SearchBar />
@@ -78,9 +84,11 @@ const ToolNav = () => {
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <Link href="/">
-                    <Button>Log In</Button>
-                </Link>
+                {!session && (
+                    <Link href="/signin">
+                        <Button>Log In</Button>
+                    </Link>
+                )}
             </div>
         </nav>
     );

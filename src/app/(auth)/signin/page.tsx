@@ -34,7 +34,7 @@ const SignInPage = () => {
                 <form
                     action={async () => {
                         "use server";
-                        await signIn("google");
+                        await signIn("google", { redirectTo: "/home"});
                     }}
                 >
                     <button type="submit">Signin with Google</button>

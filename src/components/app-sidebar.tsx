@@ -23,33 +23,47 @@ import Image from "next/image";
 import { useAppDispatch } from "@/lib/hook";
 import { setTools, setLoading } from "@/lib/features/tools/tools.slice";
 import { toolCategories } from "../../constants/tool";
+import { getSession } from "@/actions/auth";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 export const revalidate = 86400;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const [active, setActive] = React.useState("home");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [user, setUser] = React.useState<any>(null);
     const router = useRouter();
     const dispatch = useAppDispatch();
 
+    React.useEffect(() => {
+        async function setSession() {
+            const session = await getSession();
+            setUser(session?.user);
+        }
+        setSession();
+    }, []);
 
     React.useEffect(() => {
         const fetchTools = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tools`, {
-                    cache: "force-cache",
-                });
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools`,
+                    {
+                        cache: "force-cache",
+                    }
+                );
                 if (res.ok) {
                     const data = await res.json();
                     dispatch(setTools(data.tools));
                 }
             } catch (error) {
                 console.error("Failed to fetch tools:", error);
-            }
-            finally {
+            } finally {
                 dispatch(setLoading(false));
             }
         };
-        
+
         fetchTools();
     }, [dispatch]);
 
@@ -58,7 +72,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem className="flex items-center justify-between w-full cursor-pointer">
-                        <div className="flex items-center justify-center gap-2"
+                        <div
+                            className="flex items-center justify-center gap-2"
                             onClick={() => {
                                 setActive("home");
                                 router.push("/home");
@@ -106,7 +121,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <NavProjects projects={data.projects} />
             </SidebarContent>
             <SidebarFooter>
-                <NavUser user={data.user} />
+                {user ? (
+                    <NavUser user={user} />
+                ) : (
+                    <Link href={'/signin'} className="w-full">
+                        <Button variant={"secondary"} className="w-full">Sign In</Button>
+                    </Link>
+                )}
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>
