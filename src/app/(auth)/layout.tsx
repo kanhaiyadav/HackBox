@@ -41,7 +41,7 @@ export default function RootLayout({
                             {/* Back to home link */}
                             <Link
                                 href="/"
-                                className="flex items-center text-sm text-gray-400 hover:text-primary transition mb-8 group"
+                                className="flex items-center text-sm text-gray-400 hover:text-primary transition mb-2 mx-6 group"
                             >
                                 <FiArrowLeft className="mr-2 h-4 w-4 group-hover:translate-x-[-2px] transition" />
                                 Back to home
@@ -83,7 +83,7 @@ export default function RootLayout({
                         </div>
                     </footer>
 
-                    <div className="w-full h-full absolute top-0 left-0 bg-black/30 z-8"/>
+                    <div className="w-full h-full absolute top-0 left-0 bg-black/40 z-8"/>
 
                     <img
                         src="/auth/Ellipse.svg"

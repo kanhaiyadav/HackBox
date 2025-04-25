@@ -62,23 +62,38 @@ const SignInPage = () => {
                             type="submit"
                             className="border-primary bg-primary/5 text-primary w-full"
                         >
-                            <FaGoogle className="h-4 w-4" /> <span className="hidden xs:block">Google</span>
+                            <FaGoogle className="h-4 w-4" />{" "}
+                            <span className="hidden xs:block">Google</span>
                         </Button>
                     </form>
-                    <Button
-                        variant="outline"
-                        className="border-primary bg-primary/5 text-primary"
+                    <form
+                        action={async () => {
+                            "use server";
+                            await signIn("github", { redirectTo: "/home" });
+                        }}
                     >
-                        <TbBrandGithubFilled className="text-xl" />
-                        <span className="hidden xs:block">GitHub</span>
-                    </Button>
-                    <Button
-                        variant="outline"
-                        className="border-primary bg-primary/5 text-primary"
+                        <Button
+                            variant="outline"
+                            className="border-primary bg-primary/5 text-primary w-full"
+                        >
+                            <TbBrandGithubFilled className="text-xl" />
+                            <span className="hidden xs:block">GitHub</span>
+                        </Button>
+                    </form>
+                    <form
+                        action={async () => {
+                            "use server";
+                            await signIn("twitter", { redirectTo: "/home" });
+                        }}
                     >
-                        <BsTwitterX className="h-4 w-4" />
-                        <span className="hidden xs:block">Twitter</span>
-                    </Button>
+                        <Button
+                            variant="outline"
+                            className="border-primary bg-primary/5 text-primary w-full"
+                        >
+                            <BsTwitterX className="h-4 w-4" />
+                            <span className="hidden xs:block">Twitter</span>
+                        </Button>
+                    </form>
                 </div>
             </CardContent>
 
