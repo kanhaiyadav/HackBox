@@ -3,9 +3,12 @@
 import { Button } from '@/components/ui/button';
 import React from 'react'
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const CTA = () => {
 
+    const router = useRouter();
+    
     const floatingAnimation = {
         y: [-5, 5],
         transition: {
@@ -29,15 +32,22 @@ const CTA = () => {
                   workflow with HackBox.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto"
+                      onClick={() => {
+                        router.push("/signup");
+                    }}
+                  >
                       Get Started for Free
                   </Button>
                   <Button
                       size="lg"
                       variant="outline"
                       className="w-full sm:w-auto"
+                      onClick={() => {
+                          router.push("/home");
+                      }}
                   >
-                      Learn More
+                      Start Exploring
                   </Button>
               </div>
           </div>

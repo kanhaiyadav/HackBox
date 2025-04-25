@@ -5,10 +5,13 @@ import fluidCursor from "@/hooks/useFluidCursor";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Hero = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLowPowerDevice, setIsLowPowerDevice] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         // Check if it's a lower-end device or mobile
@@ -17,7 +20,9 @@ const Hero = () => {
 
         setIsLowPowerDevice(isMobile || isLowPerformance);
 
-        console.log(`isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`);
+        console.log(
+            `isMobile: ${isMobile}, isLowPerformance: ${isLowPerformance}`
+        );
 
         // Only initialize fluid cursor on more powerful devices
         if (!isMobile && !isLowPerformance) {
@@ -70,14 +75,16 @@ const Hero = () => {
                     size="lg"
                     className="px-8"
                     onClick={() => {
-                        alert("Explore tools!");
+                        router.push("/home");
                     }}
                 >
                     Start Exploring
                 </Button>
-                <Button size="lg" variant="outline" className="px-8">
-                    View All Tools
-                </Button>
+                <Link href={"#tools"}>
+                    <Button size="lg" variant="outline" className="px-8">
+                        View All Tools
+                    </Button>
+                </Link>
             </motion.div>
             <motion.div
                 initial={{ y: 100, opacity: 0 }}

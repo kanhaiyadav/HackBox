@@ -58,7 +58,8 @@ const Tools = () => {
                 ref={ref}
             >
                 {toolCategories.map((category, index) => (
-                    <motion.div
+                    <motion.a
+                        href={`/home?category=${category.slug}`}
                         key={index}
                         className="flex items-center gap-4 bg-accent p-3 sm:p-4 rounded-lg shadow-input"
                         variants={itemVariants}
@@ -69,7 +70,7 @@ const Tools = () => {
                         <span className="text-lg font-bold">
                             {category.title}
                         </span>
-                    </motion.div>
+                    </motion.a>
                 ))}
             </motion.div>
         </section>

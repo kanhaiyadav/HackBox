@@ -16,15 +16,18 @@ import { Label } from "@/components/ui/label";
 import { FaHeart, FaPaypal, FaCreditCard } from "react-icons/fa";
 import { SiKofi, SiBuymeacoffee } from "react-icons/si";
 import { AnimatedInput } from "./AnimatedInput";
+import { cn } from "@/utils";
 
 interface BuyMeCoffeeModalProps {
     isOpen?: boolean;
     onClose?: () => void;
+    className?: string;
 }
 
 export default function BuyMeCoffeeModal({
     isOpen,
     onClose,
+    className
 }: BuyMeCoffeeModalProps) {
     const [amount, setAmount] = useState<number>(5);
     const [message, setMessage] = useState<string>("");
@@ -56,8 +59,8 @@ export default function BuyMeCoffeeModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogTrigger>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
+            <DialogTrigger asChild>
+                <div className={cn("flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer", className)}>
                     <SiBuymeacoffee size={20} className="text-white/50" />
                     <span className="font-stylish relative bottom-[-5px] hidden sm:block">Buy me a coffee</span>
                 </div>

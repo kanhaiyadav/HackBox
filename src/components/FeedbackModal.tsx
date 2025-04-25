@@ -16,11 +16,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FiMessageSquare, FiSend, FiXCircle } from "react-icons/fi";
 import { VscFeedback } from "react-icons/vsc";
+import { cn } from "@/utils";
 
 
 type FeedbackType = "suggestion" | "bug" | "compliment" | "other";
 
-export default function FeedbackModal() {
+export default function FeedbackModal({className}: { className?: string }) {
     const [open, setOpen] = useState(false);
     const [feedbackType, setFeedbackType] =
         useState<FeedbackType>("suggestion");
@@ -59,7 +60,7 @@ export default function FeedbackModal() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer">
+                <div className={cn("flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer", className)}>
                     <VscFeedback size={20} className="text-white/50" />
                     <span className="hidden sm:block">Feedback</span>
                 </div>

@@ -10,7 +10,7 @@ export const selectAllTools = createSelector(
 // export const selectAllTools = (state: { toolsSlice: ToolsState }) => state.toolsSlice.tools;
 export const selectToolsByCategory = (category: string) => createSelector(
     [selectAllTools],
-    (tools: ITool[]) => tools.filter((tool) => tool.category === category)
+    (tools: ITool[]) => tools.filter((tool) => tool.categorySlug === category)
 )
 
 export const selectToolBySlug = (slug: string) => createSelector(

@@ -25,10 +25,8 @@ const ToolDirectory = ({ category }: { category: string }) => {
     useEffect(() => {
         console.log(category);
         if (category !== "all") {
-            console.log("setting tools by category");
             setTools(toolsByCategory);
         } else {
-            console.log("setting all tools");
             setTools(allTools);
         }
     }, [category, toolsByCategory, allTools]); // Ensure dependencies are properly set

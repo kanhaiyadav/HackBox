@@ -118,7 +118,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     active={active}
                     setActive={setActive}
                 />
-                <NavProjects projects={data.projects} />
+                <NavProjects />
             </SidebarContent>
             <SidebarFooter>
                 {user ? (
