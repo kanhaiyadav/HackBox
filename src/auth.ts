@@ -19,16 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
         }),
         GitHub,
-        Twitter({
-            clientId: process.env.AUTH_TWITTER_ID,
-            clientSecret: process.env.AUTH_TWITTER_SECRET,
-            authorization: {
-                url: "https://x.com/i/oauth2/authorize",
-                params: {
-                    scope: "user.email",
-                },
-            },
-        }),
+        Twitter,
     ],
     pages: {
         signIn: "/signin",

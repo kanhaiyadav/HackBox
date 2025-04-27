@@ -9,10 +9,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { FaGoogle } from "react-icons/fa";
-import { TbBrandGithubFilled } from "react-icons/tb";
 import { BsTwitterX } from "react-icons/bs";
 import SigninForm from "./signinForm";
+import GoogleBtton from "../GoogleButton";
+import GithubBtton from "../GithubBtton";
 
 export const metadata = {
     title: "Sign in",
@@ -51,35 +51,11 @@ const SignInPage = () => {
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
-                    <form
-                        action={async () => {
-                            "use server";
-                            await signIn("google", { redirectTo: "/home" });
-                        }}
-                    >
-                        <Button
-                            variant={"outline"}
-                            type="submit"
-                            className="border-primary bg-primary/5 text-primary w-full"
-                        >
-                            <FaGoogle className="h-4 w-4" />{" "}
-                            <span className="hidden xs:block">Google</span>
-                        </Button>
-                    </form>
-                    <form
-                        action={async () => {
-                            "use server";
-                            await signIn("github", { redirectTo: "/home" });
-                        }}
-                    >
-                        <Button
-                            variant="outline"
-                            className="border-primary bg-primary/5 text-primary w-full"
-                        >
-                            <TbBrandGithubFilled className="text-xl" />
-                            <span className="hidden xs:block">GitHub</span>
-                        </Button>
-                    </form>
+
+                    <GoogleBtton />
+
+                    <GithubBtton />
+
                     <form
                         action={async () => {
                             "use server";

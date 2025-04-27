@@ -26,17 +26,26 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar";
 import { signOutAction } from "@/actions/auth";
+import { useAppSelector, useAppDispatch } from "@/lib/hook";
+import { selectUserData } from "@/lib/features/user/user.selector";
+import { signOut } from "@/lib/features/user/user.slice";
+import Link from "next/link";
+import { Button } from "./ui/button";
 
-export function NavUser({
-    user,
-}: {
-    user: {
-        name: string;
-        email: string;
-        image: string;
-    };
-}) {
+export function NavUser() {
     const { isMobile } = useSidebar();
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(selectUserData);
+    if (!user) return (
+        <Link href={"/signin"} className="w-full">
+            <Button
+                variant={"outline"}
+                className="w-full border-accent text-white/70"
+            >
+                Sign In
+            </Button>
+        </Link>
+    );
     return (
         <SidebarMenu>
             <SidebarMenuItem>
@@ -117,11 +126,12 @@ export function NavUser({
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                            onClick={signOutAction}
+                            onClick={() => {
+                                signOutAction();
+                                dispatch(signOut());
+                            }}
                         >
-                            <div
-                                className="flex items-center gap-2"
-                            >
+                            <div className="flex items-center gap-2">
                                 <LogOut />
                                 Sign Out
                             </div>

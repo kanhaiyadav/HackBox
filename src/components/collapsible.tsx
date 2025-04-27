@@ -31,11 +31,12 @@ const CollapsibleItem = ({
         };
     loading: boolean;
 }) => {
-    const tools = useAppSelector(selectToolsByCategory(item.title));
+    const tools = useAppSelector(selectToolsByCategory(item.slug));
+    console.log("tools", tools); 
     return (
         <Collapsible key={item.title} asChild className="group/collapsible">
             <SidebarMenuItem>
-                <CollapsibleTrigger asChild className="hover:bg-white/5">
+                <CollapsibleTrigger asChild className="hover:bg-accent">
                     <SidebarMenuButton tooltip={item.title}>
                         {item.icon && <item.icon />}
                         <span className=" whitespace-nowrap overflow-hidden text-ellipsis">{item.title}</span>
@@ -55,8 +56,8 @@ const CollapsibleItem = ({
                                 <SidebarMenuSubButton
                                     asChild
                                     className={`${
-                                        item.active === subItem.slug ? "bg-white/5 text-primary" : ""
-                                    } hover:bg-white/5`}
+                                        item.active === subItem.slug ? "bg-accent text-primary" : ""
+                                    } hover:bg-accent`}
                                     onClick={() =>
                                         item.setActive(subItem.slug)
                                     }

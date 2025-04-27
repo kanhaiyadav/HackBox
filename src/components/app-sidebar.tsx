@@ -18,31 +18,29 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { House } from "lucide-react";
-import { data } from "../../constants";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/hook";
 import { setTools, setLoading } from "@/lib/features/tools/tools.slice";
 import { toolCategories } from "../../constants/tool";
 import { getSession } from "@/actions/auth";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { signIn } from "@/lib/features/user/user.slice";
 
 export const revalidate = 86400;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const [active, setActive] = React.useState("home");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [user, setUser] = React.useState<any>(null);
     const router = useRouter();
     const dispatch = useAppDispatch();
 
     React.useEffect(() => {
         async function setSession() {
             const session = await getSession();
-            setUser(session?.user);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            dispatch(signIn(session?.user as any));
         }
         setSession();
-    }, []);
+    }, [dispatch]);
 
     React.useEffect(() => {
         const fetchTools = async () => {
@@ -100,8 +98,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             <SidebarMenuButton
                                 tooltip={"Home"}
                                 className={`${
-                                    active === "home" ? "bg-white/5" : ""
-                                } hover:bg-white/5`}
+                                    active === "home" ? "bg-accent" : ""
+                                } hover:bg-accent`}
                                 onClick={() => {
                                     setActive("home");
                                     router.push("/home");
@@ -121,13 +119,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <NavProjects />
             </SidebarContent>
             <SidebarFooter>
-                {user ? (
-                    <NavUser user={user} />
-                ) : (
-                    <Link href={'/signin'} className="w-full">
-                        <Button variant={"secondary"} className="w-full">Sign In</Button>
-                    </Link>
-                )}
+                <NavUser />
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>

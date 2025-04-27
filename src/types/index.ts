@@ -118,3 +118,11 @@ export interface FetchFileResponse {
 export interface FetchFileError {
   message: string;
 }
+
+export interface User {
+    name: string;
+    email: string;
+    image: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    emailVerified: any;
+}

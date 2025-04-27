@@ -35,7 +35,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <div className="h-screen foreground flex flex-col relative">
+                <div className="h-screen flex flex-col relative">
                     <main className="flex-1 flex items-center justify-center relative z-10">
                         <div className="w-full max-w-md">
                             {/* Back to home link */}
@@ -83,7 +83,7 @@ export default function RootLayout({
                         </div>
                     </footer>
 
-                    <div className="w-full h-full absolute top-0 left-0 bg-black/40 z-8"/>
+                    {/* <div className="w-full h-full absolute top-0 left-0 z-8"/> */}
 
                     <img
                         src="/auth/Ellipse.svg"
