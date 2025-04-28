@@ -8,8 +8,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { FiGithub, FiTwitter } from "react-icons/fi";
+import { FiTwitter } from "react-icons/fi";
 import SignUpForm from "./signupForm";
+import GoogleBtton from "../GoogleButton";
+import GithubBtton from "../GithubBtton";
 
 export const metadata = {
     title: "Sign up",
@@ -19,7 +21,7 @@ export const metadata = {
 
 const SignInPage = () => {
     return (
-        <Card className="bg-transparent shadow-none border-none">
+        <Card className="bg-transparent shadow-none border-none pb-0">
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl font-bold tracking-tight text-primary">
                     Create your HackBox account
@@ -40,14 +42,9 @@ const SignInPage = () => {
                     <hr className="bg-gray-700 border-1 grow border-accent" />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <Button
-                        variant="outline"
-                        className="border-gray-700 hover:bg-gray-700 text-gray-300"
-                    >
-                        <FiGithub className="mr-2 h-4 w-4" />
-                        GitHub
-                    </Button>
+                <div className="grid grid-cols-3 gap-4">
+                    <GoogleBtton />
+                    <GithubBtton />
                     <Button
                         variant="outline"
                         className="border-gray-700 hover:bg-gray-700 text-gray-300"
@@ -58,7 +55,7 @@ const SignInPage = () => {
                 </div>
             </CardContent>
 
-            <CardFooter className="flex justify-center border-t border-gray-700 p-6">
+            <CardFooter className="flex justify-center border-t border-accent py-6 mx-6">
                 <p className="text-sm text-gray-400">
                     Don&apos;t have an account?{" "}
                     <Link

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -101,6 +102,7 @@ export default function RootLayout({
                         className="w-[220px] md:w-[300px] h-[220px] md:h-[300px] absolute right-0 bottom-0"
                     />
                 </div>
+                <Toaster closeButton/>
             </body>
         </html>
     );

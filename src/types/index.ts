@@ -122,7 +122,10 @@ export interface FetchFileError {
 export interface User {
     name: string;
     email: string;
-    image: string;
+    image?: string;
+    passwordHash?: string;
+    passwordSalt?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     emailVerified: any;
+    createdAt?: Date;
 }

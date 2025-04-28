@@ -36,10 +36,12 @@ const SignInPage = () => {
                 {/* <form
                     action={async () => {
                         "use server";
-                        await signIn("google", { redirectTo: "/home" });
+                        await signIn("nodemailer", {
+                            email: "kanhaiya2004yadav@gmail.com"
+                        });
                     }}
                 >
-                    <button type="submit">Signin with Google</button>
+                    <button type="submit">Sign In with magic link</button>
                 </form> */}
                 <SigninForm />
                 <div className="relative my-6 flex items-center gap-2">
@@ -51,7 +53,6 @@ const SignInPage = () => {
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
-
                     <GoogleBtton />
 
                     <GithubBtton />
