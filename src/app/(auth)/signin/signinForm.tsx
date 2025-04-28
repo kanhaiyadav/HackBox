@@ -5,10 +5,31 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiChevronRight, FiLock, FiMail } from 'react-icons/fi';
+import { toast } from 'sonner';
+import { useSearchParams } from 'next/navigation';
 
 const SigninForm = () => {
+
+    const [hasMounted, setHasMounted] = useState(false);
+    const searchParams = useSearchParams();
+    const emailVerified = searchParams.get("emailVerified");
+
+    useEffect(() => {
+        if (!hasMounted) {
+            setHasMounted(true);
+        }
+    }, [hasMounted]);
+
+    useEffect(() => {
+        if (hasMounted && emailVerified === "true") {
+            setTimeout(() => {
+                toast("Email verified successfully. You can now sign in.");
+            }, 200);
+        }
+    }, [emailVerified, hasMounted]);
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

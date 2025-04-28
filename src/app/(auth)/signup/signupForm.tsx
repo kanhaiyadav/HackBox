@@ -61,6 +61,7 @@ const SignUpForm = () => {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        reset
     } = useForm<signUpSchemaType>({
         resolver: zodResolver(signupFormSchema),
     });
@@ -83,6 +84,7 @@ const SignUpForm = () => {
             toast.success(
                 "Account created successfully! Please check your email for verification link."
             );
+            reset();
         }
     };
 

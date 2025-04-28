@@ -24,7 +24,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Nodemailer({
             server: {
                 host: process.env.EMAIL_SERVER_HOST,
-                port: process.env.EMAIL_SERVER_PORT,
+                port: process.env.EMAIL_SERVER_PORT ? Number(process.env.EMAIL_SERVER_PORT) : undefined,
                 auth: {
                     user: process.env.EMAIL_SERVER_USER,
                     pass: process.env.EMAIL_SERVER_PASSWORD,
@@ -38,9 +38,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     callbacks: {
         // This callback runs before the signin attempt
-        async signIn({ user, account, profile, email, credentials }) {
+        // async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account }) {
             // For magic link (nodemailer provider), check if user exists first
-            if (account.provider === "nodemailer") {
+            if (account?.provider === "nodemailer") {
                 // Connect to your MongoDB collection
                 const db = (await client).db();
                 const usersCollection = db.collection("users");

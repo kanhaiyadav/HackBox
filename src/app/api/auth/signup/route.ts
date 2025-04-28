@@ -4,9 +4,6 @@ import client from "@/db/db";
 import { User } from "@/types";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "@/utils/auth";
-import fs from "fs";
-import path from "path";
-
 
 export async function POST(request: Request) {
     try {
@@ -40,7 +37,7 @@ export async function POST(request: Request) {
         const token = jwt.sign(
             { email },
             process.env.JWT_SECRET as string,
-            { expiresIn: "15m" } // expires in 15 minutes (can be '1h', '1d' etc)
+            { expiresIn: "15m" }
         );
 
         const verificationLink = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/verify-email?token=${token}`;
