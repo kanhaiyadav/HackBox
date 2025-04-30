@@ -1,11 +1,6 @@
 import crypto from "crypto";
 import { transporter } from "@/services/email";
 
-/**
- * Hashes a password with a random salt using PBKDF2
- * @param {string} password - The password to hash
- * @returns {Promise<{hash: string, salt: string}>} - Object containing the hash and salt
- */
 export async function hashPassword(password: string): Promise<{ hash: string; salt: string; }> {
     // Generate a cryptographically strong random salt
     const salt = crypto.randomBytes(16).toString("hex");
@@ -30,13 +25,6 @@ export async function hashPassword(password: string): Promise<{ hash: string; sa
     });
 }
 
-/**
- * Verifies a password against a stored hash and salt
- * @param {string} password - The password to verify
- * @param {string} hash - The stored hash
- * @param {string} salt - The stored salt
- * @returns {Promise<boolean>} - True if password matches
- */
 export async function verifyPassword(
     password: string,
     hash: string,

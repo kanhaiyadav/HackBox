@@ -25,7 +25,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
-import { signOutAction } from "@/actions/auth";
+import { deleteSession, signOutAction } from "@/actions/auth";
 import { useAppSelector, useAppDispatch } from "@/lib/hook";
 import { selectUserData } from "@/lib/features/user/user.selector";
 import { signOut } from "@/lib/features/user/user.slice";
@@ -126,9 +126,10 @@ export function NavUser() {
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                            onClick={() => {
+                            onClick={async () => {
                                 signOutAction();
                                 dispatch(signOut());
+                                await deleteSession(user.id);
                             }}
                         >
                             <div className="flex items-center gap-2">

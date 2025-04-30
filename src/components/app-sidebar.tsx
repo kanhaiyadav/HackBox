@@ -22,7 +22,7 @@ import Image from "next/image";
 import { useAppDispatch } from "@/lib/hook";
 import { setTools, setLoading } from "@/lib/features/tools/tools.slice";
 import { toolCategories } from "../../constants/tool";
-import { getSession } from "@/actions/auth";
+import { createSession, getSession } from "@/actions/auth";
 import { signIn } from "@/lib/features/user/user.slice";
 
 export const revalidate = 86400;
@@ -36,6 +36,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     React.useEffect(() => {
         async function setSession() {
             const session = await getSession();
+            await createSession({
+                userId: session?.user?.id,
+                expires: session?.expires,
+            })
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             dispatch(signIn(session?.user as any));
         }
