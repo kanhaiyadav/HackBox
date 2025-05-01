@@ -39,7 +39,7 @@ const Tools = () => {
     return (
         <section
             id="tools"
-            className="w-full py-20 foreground rounded-3xl my-10 px-[20px] sm:px-[50px] md:px-[100px]"
+            className="min-h-screen md:pt-[100px] lg:pt-[200px] w-full py-20 foreground rounded-3xl my-10 px-[20px] sm:px-[50px] md:px-[100px]"
         >
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">

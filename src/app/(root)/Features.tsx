@@ -114,7 +114,7 @@ const Features = () => {
     };
 
     return (
-        <section id="features" className="mx-auto px-6 py-20">
+        <section id="features" className="md:my-[150px] mx-auto px-6 py-20">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold mb-4 font-josefin">
                     Why Choose HackBox?

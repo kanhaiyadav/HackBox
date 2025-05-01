@@ -22,7 +22,7 @@ const CTA = () => {
     };
     
   return (
-      <section className="flex items-center justify-between m-[20px] sm:m-[50px] md:m-[100px] mt-[200px] foreground rounded-3xl p-8 md:p-16 text-center border-1 border-accent">
+      <section className="flex items-center justify-between m-[20px] sm:m-[50px] md:m-[100px] my-[100px] md:my-[200px] foreground rounded-3xl p-8 md:p-16 text-center border-1 border-accent">
           <div>
               <h2 className="text-3xl font-bold mb-6">
                   Ready to Boost Your Productivity?
@@ -56,7 +56,7 @@ const CTA = () => {
                   animate={floatingAnimation}
                   src="/app.png"
                   alt="CTA Image"
-                  className="hidden md:block  ml-10 drop-shadow-2xl"
+                  className="hidden lg:block ml-10 drop-shadow-2xl"
               />
           </div>
       </section>

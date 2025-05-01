@@ -174,17 +174,17 @@ const CategoryCard = ({value,  category, setCategory }: {
 }) => {
     return (
         <div
-            className={`bg-primary/10 px-4 py-3 rounded-md flex-1 flex items-center justify-center gap-4 hover:outline-2 hover:outline-primary/80 hover:bg-primary/20 transition-colors cursor-default ${category === value ? "bg-primary/20" : ""} shadow-input`}
+            className={`bg-primary/10 px-2 sm:px-4 py-2 sm:py-3 rounded-md flex-1 flex items-center justify-center gap-1 xss:gap-2 sm:gap-4 hover:outline-2 hover:outline-primary/80 hover:bg-primary/20 transition-colors cursor-default ${category === value ? "bg-primary/20" : ""} shadow-input`}
             onClick={() => setCategory(value)}
         >
             {
                 category === value ? (
-                    <FaMinus className="text-primary text-2xl" />
+                    <FaMinus className="text-primary text-xs xs:text-sm sm:text-lg lg:text-2xl" />
                 ) : (
-                    <FaPlus className="text-primary text-2xl" />
+                    <FaPlus className="text-primary text-xs xs:text-sm sm:text-lg lg:text-2xl" />
                 )
             }
-            <span className="text-primary font-bold text-3xl whitespace-nowrap">
+            <span className="text-primary font-bold text-sm xs:text-lg sm:text-xl lg:text-3xl whitespace-nowrap">
                 {value}
             </span>
         </div>
@@ -210,7 +210,7 @@ const FaqContainer = () => {
     return (
         <div className="max-w-3xl mx-auto">
             <SearchBox category={category} setCategory={setCategory} questions={allQuestions} setQuestions={setQuestions} />
-            <div className="flex justify-between items-center my-4 gap-6">
+            <div className="flex justify-between items-center my-4 gap-2 sm:gap-6">
                 <CategoryCard value="Do i need?" category={category} setCategory={setCategory} />
                 <CategoryCard value="What is?" category={category} setCategory={setCategory} />
                 <CategoryCard value="How to?" category={category} setCategory={setCategory} />
