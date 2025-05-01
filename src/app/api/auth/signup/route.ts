@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { hashPassword } from "@/utils/auth";
 import client from "@/db/db";
-import { User } from "@/types";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "@/utils/auth";
 
@@ -120,7 +119,14 @@ async function findUserByEmail(email:string) {
     return user;
 }
 
-async function createUser(userData: User) {
+async function createUser(userData: {
+    email: string;
+    name: string;
+    passwordHash: string;
+    passwordSalt: string;
+    emailVerified: Date | null;
+    createdAt: Date;
+}) {
     const db = client.db();
     const result = await db.collection("users").insertOne(userData);
     const createdUser = await db.collection("users").findOne({ _id: result.insertedId });

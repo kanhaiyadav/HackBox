@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { Josefin_Sans, Comic_Neue, Space_Grotesk } from "next/font/google";
+import { ReactLenis } from "lenis/react";
 
 const josefin = Josefin_Sans({
     subsets: ["latin"],
-    weight: ["400", "700"], // or whatever weights you need
+    weight: ["400", "700"],
     variable: "--font-josefin",
     display: "swap",
 });
 
 const comic = Comic_Neue({
     subsets: ["latin"],
-    weight: ["400", "700"], // or whatever weights you need
+    weight: ["400", "700"],
     variable: "--font-comic",
     display: "swap",
 });
 
 const space = Space_Grotesk({
     subsets: ["latin"],
-    weight: ["400", "700"], // or whatever weights you need
+    weight: ["400", "700"],
     variable: "--font-space",
     display: "swap",
 });
@@ -36,11 +37,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body
-                className={`${comic.variable} ${space.variable} ${josefin.variable} antialiased`}
-            >
-                {children}
-            </body>
+            <ReactLenis root>
+                <body
+                    className={`${comic.variable} ${space.variable} ${josefin.variable} antialiased`}
+                >
+                    {children}
+                </body>
+            </ReactLenis>
         </html>
     );
 }

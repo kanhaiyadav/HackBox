@@ -27,9 +27,9 @@ export async function signInWithCredentials(data: {
             redirectTo: "/home",
         });
     } catch (error) {
-        console.error("error in signing in:");
         return {
             error: "Invalid email or password",
+            errorObj : error,
         }
     }
 }

@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { FiChevronRight, FiLock, FiMail } from "react-icons/fi";
 import { toast } from "sonner";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -25,7 +25,8 @@ const signinFormSchema = z.object({
 
 type SigninFormType = z.infer<typeof signinFormSchema>;
 
-const SigninForm = () => {
+// This component uses useSearchParams and will be wrapped in Suspense
+const SigninFormContent = () => {
     const [hasMounted, setHasMounted] = useState(false);
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -153,6 +154,40 @@ const SigninForm = () => {
                 {!isSubmitting && <FiChevronRight className="ml-2" />}
             </Button>
         </form>
+    );
+};
+
+// Loading fallback for Suspense
+const SigninFormLoading = () => {
+    return (
+        <div className="space-y-4 animate-pulse">
+            <div className="h-10 bg-gray-700/30 rounded"></div>
+            <div className="space-y-2">
+                <div className="h-5 w-16 bg-gray-700/30 rounded"></div>
+                <div className="h-10 bg-gray-700/30 rounded"></div>
+            </div>
+            <div className="space-y-2">
+                <div className="flex justify-between">
+                    <div className="h-5 w-20 bg-gray-700/30 rounded"></div>
+                    <div className="h-5 w-32 bg-gray-700/30 rounded"></div>
+                </div>
+                <div className="h-10 bg-gray-700/30 rounded"></div>
+            </div>
+            <div className="flex items-center space-x-2">
+                <div className="h-5 w-5 bg-gray-700/30 rounded"></div>
+                <div className="h-5 w-48 bg-gray-700/30 rounded"></div>
+            </div>
+            <div className="h-10 bg-gray-700/30 rounded"></div>
+        </div>
+    );
+};
+
+// Main component with Suspense boundary
+const SigninForm = () => {
+    return (
+        <Suspense fallback={<SigninFormLoading />}>
+            <SigninFormContent />
+        </Suspense>
     );
 };
 

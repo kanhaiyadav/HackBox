@@ -1,32 +1,28 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { BiRightArrow } from "react-icons/bi";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-interface SearchParams {
-    code?: string;
-    title?: string;
-    description?: string;
-    suggestion?: string;
-    btntext?: string;
-    btnlink?: string;
-}
+// Create a separate component that uses the hook
+function AuthErrorContent() {
+    // Use the hook to get search params
+    const searchParams = useSearchParams();
 
-export default function AuthErrorPage({
-    searchParams,
-}: {
-    searchParams: SearchParams;
-}) {
     // Extract error information from URL parameters
-    const code = searchParams.code || "Unknown";
-    const title = searchParams.title || "Authentication Error";
+    const code = searchParams.get("code") || "Unknown";
+    const title = searchParams.get("title") || "Authentication Error";
     const description =
-        searchParams.description || "An error occurred during authentication.";
+        searchParams.get("description") ||
+        "An error occurred during authentication.";
     const suggestion =
-        searchParams.suggestion ||
+        searchParams.get("suggestion") ||
         "Please try again or contact support if the problem persists.";
-    const btnText = searchParams.btntext || "Verify Email";
-    const btnLink = searchParams.btnlink || "/verify-email";
+    const btnText = searchParams.get("btntext") || "Verify Email";
+    const btnLink = searchParams.get("btnlink") || "/verify-email";
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-12 max-w-md mx-auto">
@@ -72,5 +68,20 @@ export default function AuthErrorPage({
                 </Link>
             </div>
         </div>
+    );
+}
+
+// Main page component with Suspense boundary
+export default function AuthErrorPage() {
+    return (
+        <Suspense
+            fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                    <p>Loading error details...</p>
+                </div>
+            }
+        >
+            <AuthErrorContent />
+        </Suspense>
     );
 }

@@ -126,7 +126,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.id = user.id;
                 token.email = user.email;
                 token.name = user.name;
-                token.emailVerified = user.emailVerified;
+                
+                // Check if emailVerified exists on the user object
+                if ('emailVerified' in user) {
+                    token.emailVerified = user.emailVerified;
+                }
 
                 // Optional: track the provider used
                 if (account) {
@@ -145,12 +149,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (token.email) session.user.email = token.email as string;
                 if (token.name) session.user.name = token.name as string;
                 if (token.emailVerified) {
-                    session.user.emailVerified = token.emailVerified as string;
-                }
-
-                // Optional: add provider info to session
-                if (token.provider) {
-                    session.provider = token.provider as string;
+                    session.user.emailVerified = token.emailVerified instanceof Date 
+                        ? token.emailVerified 
+                        : new Date(token.emailVerified as string);
                 }
             }
             return session;
