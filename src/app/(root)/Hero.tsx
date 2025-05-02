@@ -45,7 +45,7 @@ const Hero = () => {
         <section className="w-full px-6 py-20 text-center relative">
             <canvas
                 id="fluid"
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute hidden sm:block top-0 left-0 w-full h-full"
             />
             <motion.h1
                 className="text-5xl md:text-6xl font-bold mb-6 leading-tight font-josefin"
@@ -81,7 +81,7 @@ const Hero = () => {
                     Start Exploring
                 </Button>
                 <Link href={"#tools"}>
-                    <Button size="lg" variant="outline" className="px-8">
+                    <Button size="lg" variant="outline" className="px-8 w-full">
                         View All Tools
                     </Button>
                 </Link>

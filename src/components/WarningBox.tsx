@@ -29,6 +29,7 @@ const WarningBox = ({
                     d="M52.1101 4.52096C51.2932 3.07946 49.4625 2.57308 48.021 3.38993C46.5795 4.20678 46.0731 6.03754 46.8899 7.47904L52.1101 4.52096ZM15 54H37.2466V48H15V54ZM0 63V69.5H6V63H0ZM46.8899 7.47904L53.777 19.6328L58.9972 16.6747L52.1101 4.52096L46.8899 7.47904ZM37.2466 54C56.4023 54 68.4412 33.3405 58.9972 16.6747L53.777 19.6328C60.9545 32.2988 51.8049 48 37.2466 48V54ZM15 48C6.71573 48 0 54.7157 0 63H6C6 58.0294 10.0294 54 15 54V48Z"
                 ></path>
             </svg>
+            <div className="absolute top-[-3px] left-[-6px] h-[27px] w-[7px] bg-background" />
             <TiWarningOutline className="text-yellow-500 text-4xl absolute top-0 left-0 transform -translate-x-1/2 -translate-y-[15px] z-2" />
             <div>
                 {loading ? (
@@ -43,7 +44,10 @@ const WarningBox = ({
                         </li>
                     </ul>
                 ) : (
-                    <div dangerouslySetInnerHTML={{ __html: warning || "" }} className="text-yellow-500"/>
+                    <div
+                        dangerouslySetInnerHTML={{ __html: warning || "" }}
+                        className="text-yellow-500"
+                    />
                 )}
             </div>
         </div>

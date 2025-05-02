@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Faq = () => {
     return (
-        <section id="faq" className=" min-h-screen container mx-auto px-6 pt-[50px] pb-[50px] ">
+        <section id="faq" className="min-h-screen xs:mx-auto w-full px-6 pt-[50px] pb-[50px] ">
             <div className="text-center mb-6">
                 <h2 className="text-5xl font-bold mb-4">
                     FAQ
