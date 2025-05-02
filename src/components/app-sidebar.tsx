@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
+import { NavContribute } from "@/components/nav-contribute";
 import { NavUser } from "./nav-user";
 import { useRouter } from "next/navigation";
 import {
@@ -120,7 +120,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     active={active}
                     setActive={setActive}
                 />
-                <NavProjects />
+                <NavContribute />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser />

@@ -21,7 +21,7 @@ import { cn } from "@/utils";
 
 type FeedbackType = "suggestion" | "bug" | "compliment" | "other";
 
-export default function FeedbackModal({className}: { className?: string }) {
+export default function FeedbackModal({className, hideLabel=true}: { className?: string, hideLabel?: boolean }) {
     const [open, setOpen] = useState(false);
     const [feedbackType, setFeedbackType] =
         useState<FeedbackType>("suggestion");
@@ -60,9 +60,16 @@ export default function FeedbackModal({className}: { className?: string }) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <div className={cn("flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer", className)}>
+                <div
+                    className={cn(
+                        "flex items-center gap-2 py-2 px-4 rounded-lg bg-accent shadow-input active:shadow-inset cursor-pointer",
+                        className
+                    )}
+                >
                     <VscFeedback size={20} className="text-white/50" />
-                    <span className="hidden sm:block">Feedback</span>
+                    <span className={`${hideLabel ? "hidden sm:block" : ""}`}>
+                        Feedback
+                    </span>
                 </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md md:max-w-lg bg-gray-900 text-gray-100 border-gray-800 shadow-lg">
