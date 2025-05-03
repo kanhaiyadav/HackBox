@@ -90,11 +90,21 @@ const SigninFormContent = () => {
                     toast.error(resJson.error, {
                         action: {
                             label: resJson.data?.action?.label || "Action",
-                            onClick: () => router.push(resJson.data?.action?.url || "/"),
+                            onClick: () =>
+                                router.push(resJson.data?.action?.url || "/"),
                         },
+                        // classNames: {
+                        //     toast: "!bg-red-500/10 !border-red-500/50",
+                        //     closeButton: "!text-red-500 !border-red-500/50",
+                        // },
                     });
                 } else {
-                    toast.error(resJson.error);
+                    toast.error(resJson.error, {
+                        classNames: {
+                            toast: "!bg-red-500/10 !border-red-500/50",
+                            closeButton: "!text-red-500 !border-red-500/50",
+                        }
+                    });
                 }
                 return;
             }

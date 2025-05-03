@@ -102,7 +102,14 @@ export default function RootLayout({
                         className="w-[220px] md:w-[300px] h-[220px] md:h-[300px] absolute right-0 bottom-0"
                     />
                 </div>
-                <Toaster closeButton/>
+                <Toaster closeButton
+                    toastOptions={{
+                        classNames: {
+                            toast: "glass !bg-primary/10 !border-primary/50",
+                            closeButton: "!border-[2px] !text-primary !border-primary/50",
+                        }
+                    }}
+                />
             </body>
         </html>
     );
