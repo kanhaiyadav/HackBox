@@ -15,23 +15,19 @@ export async function signOutAction() {
 }
 
 export async function signInWithCredentials(data: {
-    email: string;
-    password: string;
+    user: {
+        name: string;
+        email: string;
+        image: string;
+        emailVerified: Date | null;
+    };
 }) {
-    try {
-        
-        return await signIn("credentials", {
-            email: data.email,
-            password: data.password,
-            redirect: true,
-            redirectTo: "/home",
-        });
-    } catch (error) {
-        return {
-            error: "Invalid email or password",
-            errorObj : error,
-        }
-    }
+    console.log("signInWithCredentials data", data);
+    return await signIn("credentials", {
+        user: JSON.stringify(data.user),
+        redirect: true,
+        redirectTo: "/home",
+    });
 }
 
 export async function createSession(data: {

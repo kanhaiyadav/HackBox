@@ -6,7 +6,6 @@ import GitHub from "next-auth/providers/github";
 import Twitter from "next-auth/providers/twitter";
 import Nodemailer from "next-auth/providers/nodemailer";
 import Credentials from "next-auth/providers/credentials";
-import { verifyPassword } from "./utils/auth";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: MongoDBAdapter(client),
@@ -48,46 +47,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 },
             },
             authorize: async (credentials) => {
-                if (!credentials?.email || !credentials?.password) {
-                    console.error("*******Email or password not provided");
+
+                //@ts-expect-error - credentials.user is not defined in the type but is used in our custom implementation
+                if (!credentials?.user) {
+                    console.error("No user data provided");
                     return null;
                 }
 
-                const db = await client.db();
-                const user = await db.collection("users").findOne({
-                    email: credentials.email,
-                });
-
-                if (!user) {
-                    console.error(
-                        "*********User not found:",
-                        credentials.email
-                    );
+                try {
+                    //@ts-expect-error - credentials.user is not defined in the type but is used in our custom implementation
+                    const userData = JSON.parse(credentials.user);
+                    return userData;
+                } catch (error) {
+                    console.error("Error parsing user data:", error);
                     return null;
                 }
-
-                const verify = await verifyPassword(
-                    credentials?.password as string,
-                    user.passwordHash,
-                    user.passwordSalt
-                );
-
-                if (!verify) {
-                    console.error(
-                        "********Password verification failed:",
-                        credentials.email
-                    );
-                    throw new Error("Invalid Credentials");
-                    return null;
-                }
-
-                return {
-                    id: user._id.toString(),
-                    email: user.email,
-                    name: user.name || "",
-                    image: user.image || "",
-                    emailVerified: user.emailVerified || null,
-                };
             },
         }),
     ],
@@ -126,9 +100,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.id = user.id;
                 token.email = user.email;
                 token.name = user.name;
-                
+
                 // Check if emailVerified exists on the user object
-                if ('emailVerified' in user) {
+                if ("emailVerified" in user) {
                     token.emailVerified = user.emailVerified;
                 }
 
@@ -149,9 +123,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (token.email) session.user.email = token.email as string;
                 if (token.name) session.user.name = token.name as string;
                 if (token.emailVerified) {
-                    session.user.emailVerified = token.emailVerified instanceof Date 
-                        ? token.emailVerified 
-                        : new Date(token.emailVerified as string);
+                    session.user.emailVerified =
+                        token.emailVerified instanceof Date
+                            ? token.emailVerified
+                            : new Date(token.emailVerified as string);
                 }
             }
             return session;

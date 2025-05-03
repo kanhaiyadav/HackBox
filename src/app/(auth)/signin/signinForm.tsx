@@ -58,13 +58,51 @@ const SigninFormContent = () => {
 
     const [rememberMe, setRememberMe] = useState(false);
 
+    interface ErrorResponse { 
+        error: string;
+        data?: {
+            action?: {
+                label: string;
+                url: string;
+            };
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            user?: any;
+        };
+    }
+
     const formSubmitHandler: SubmitHandler<SigninFormType> = async (data) => {
         try {
-            setError(null);
-            const res = await signInWithCredentials(data);
-            if (res?.error) {
-                toast.error(res.error);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/signin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password,
+                }),
+            })
+
+            const resJson:ErrorResponse = await res.json()
+
+            if (resJson.error) {
+                if(resJson.data?.action) {
+                    toast.error(resJson.error, {
+                        action: {
+                            label: resJson.data?.action?.label || "Action",
+                            onClick: () => router.push(resJson.data?.action?.url || "/"),
+                        },
+                    });
+                } else {
+                    toast.error(resJson.error);
+                }
+                return;
             }
+
+            const user = resJson?.data?.user;
+            
+            const result = await signInWithCredentials({ user });
+            console.log("Sign in result:", result);
             router.push("/home");
             reset();
         } catch (error) {
