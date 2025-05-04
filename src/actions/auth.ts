@@ -24,7 +24,6 @@ export async function signInWithCredentials(data: {
         emailVerified: Date | null;
     };
 }) {
-    console.log("signInWithCredentials data", data);
     return await signIn("credentials", {
         user: JSON.stringify(data.user),
         redirect: true,
@@ -120,11 +119,19 @@ export async function sendResetPasswordLink(formData: FormData) {
              };
         };
         const token = jwt.sign(
-            { email: user.email, id: user._id },
+            { id: user._id },
             process.env.JWT_SECRET as string,
             { expiresIn: "15m" }
         );
         const resetLink = `${process.env.NEXT_PUBLIC_FE_URL}/reset-password?token=${token}`;
+
+        //store the token in the database
+        await client.db().collection("password-reset-tokens").insertOne({
+            userId: user._id,
+            token: token,
+            createdAt: new Date(),
+        });
+        
         const emailTemplate = `
             <!DOCTYPE html>
             <html lang="en" style="margin: 0; padding: 0;">

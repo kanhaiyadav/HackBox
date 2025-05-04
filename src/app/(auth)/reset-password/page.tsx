@@ -30,17 +30,18 @@ const ResetPasswordPage = () => {
             <CardContent>
                 <ResetForm />
             </CardContent>
-            
-            
-            <CardFooter className="flex justify-center border-t border-accent py-6 mx-6">
+            <CardFooter className="flex flex-col justify-center border-t border-accent py-6 mx-6">
                 <p className="text-sm text-gray-400">
-                    Don&apos;t have an account?{" "}
+                    Need Help?
                     <Link
                         href="/signup"
                         className="text-primary hover:text-cyan-300 font-medium"
                     >
-                        Sign up
+                        &nbsp;Contact us
                     </Link>
+                </p>
+                <p className="text-sm text-gray-500 mt-2">
+                    Your account’s security is our top priority.
                 </p>
             </CardFooter>
         </Card>
