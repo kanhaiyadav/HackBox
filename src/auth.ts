@@ -34,6 +34,78 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 },
             },
             from: process.env.EMAIL_FROM,
+            sendVerificationRequest: async ({ identifier, url, provider }) => {
+                // Log the original URL for debugging
+                console.log("Original magic link URL:", url);
+
+                // Parse the URL to make sure we have the correct callback
+                const parsedUrl = new URL(url);
+                const params = new URLSearchParams(parsedUrl.search);
+
+                // Get the current callbackUrl or default to /home
+                let callbackUrl =
+                    params.get("callbackUrl") ||
+                    `${process.env.NEXT_PUBLIC_FE_URL}/home`;
+
+                // If it's going to /forgot-password, override it
+                if (callbackUrl.includes("/forgot-password")) {
+                    callbackUrl = `${process.env.NEXT_PUBLIC_FE_URL}/home`;
+                    // Update the URL params
+                    params.set("callbackUrl", callbackUrl);
+                    parsedUrl.search = params.toString();
+                    url = parsedUrl.toString();
+                }
+
+                console.log("Modified magic link URL:", url);
+                console.log("Final callbackUrl:", callbackUrl);
+
+                // Email content
+                const { host } = new URL(url);
+                const escapedHost = host.replace(/\./g, "&#8203;.");
+
+                const email = {
+                    to: identifier,
+                    from: provider.from,
+                    subject: `Sign in to ${host}`,
+                    text: `Sign in to ${host}\n${url}\n\n`,
+                    html: `
+                        <body>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: #444444;">
+                                        <strong>Sign in to ${escapedHost}</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 20px 0;">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="border-radius: 5px;" bgcolor="#346df1">
+                                                    <a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid #346df1; display: inline-block; font-weight: bold;">Sign in</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: #444444;">
+                                        If you did not request this email you can safely ignore it.
+                                    </td>
+                                </tr>
+                            </table>
+                        </body>
+                    `,
+                };
+
+                try {
+                    const { createTransport } = await import("nodemailer");
+                    const transporter = createTransport(provider.server);
+                    await transporter.sendMail(email);
+                } catch (error) {
+                    console.error("SEND_VERIFICATION_EMAIL_ERROR", error);
+                    throw new Error("SEND_VERIFICATION_EMAIL_ERROR");
+                }
+            },
         }),
         Credentials({
             credentials: {
@@ -47,7 +119,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 },
             },
             authorize: async (credentials) => {
-
                 //@ts-expect-error - credentials.user is not defined in the type but is used in our custom implementation
                 if (!credentials?.user) {
                     console.error("No user data provided");

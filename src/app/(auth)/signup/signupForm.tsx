@@ -69,7 +69,6 @@ const SignUpForm = () => {
     const signupHandler: SubmitHandler<signUpSchemaType> = async (
         formData: signUpSchemaType
     ) => {
-        console.log(formData);
         const res = await fetch("/api/auth/signup", {
             method: "POST",
             headers: {

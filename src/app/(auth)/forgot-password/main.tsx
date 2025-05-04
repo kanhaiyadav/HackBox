@@ -10,8 +10,8 @@ import {
 import { MdLockReset } from "react-icons/md";
 import { IoSparklesSharp } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import MagicLinkForm from "./magicLinkForm";
 
 const Main = () => {
     const [btnClicked, setBtnClicked] = React.useState(false);
@@ -82,15 +82,10 @@ const Main = () => {
                         </CardHeader>
 
                         <CardContent className="mt-4">
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="Your email address"
-                            />
-                            <Button className="w-full mt-4">Send Email</Button>
+                                <MagicLinkForm emailType={emailType} />
                             <Button
-                                variant="outline"
-                                className="w-full mt-2"
+                                // variant="secondary"
+                                className="w-full my-2 text-white/80 !bg-accent"
                                 onClick={() => {
                                     setBtnClicked(false);
                                     setEmailType(undefined);

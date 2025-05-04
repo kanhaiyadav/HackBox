@@ -60,10 +60,15 @@ export async function verifyPassword(
     });
 }
 
-export const sendEmail = async (from: string, to: string, subject: string, html: string) => {
+export const sendEmail = async (
+    to: string,
+    subject: string,
+    html: string,
+    from?: string
+) => {
     try {
         const info = await transporter.sendMail({
-            from,
+            from: from || process.env.EMAIL_SERVER_USER,
             to,
             subject,
             html,
