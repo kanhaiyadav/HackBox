@@ -40,7 +40,7 @@ const Main = () => {
 
                         <CardContent className="mt-4">
                             <div
-                                className="flex items-center justify-center gap-4 bg-primary/30 hover:bg-primary/50 hover:outline hover:ouline-2 hover:outline-primary transition-colors shadow-input rounded-lg p-4 mb-4 text-center w-full text-white/80 text-lg font-semibold cursor-pointer"
+                                className="flex items-center justify-center gap-4 bg-accent hover:bg-primary/50 hover:outline hover:ouline-2 hover:outline-primary transition-colors shadow-input rounded-lg p-4 mb-4 text-center w-full text-white/80 text-lg font-semibold cursor-pointer"
                                 onClick={() => {
                                     setBtnClicked(true);
                                     setEmailType("reset");
@@ -50,7 +50,7 @@ const Main = () => {
                                 <span>Reset Your Password</span>
                             </div>
                             <div
-                                className="flex items-center justify-center gap-4 bg-primary/30 hover:bg-primary/50 hover:outline hover:ouline-2 hover:outline-primary transition-colors shadow-input rounded-lg p-4 mb-4 text-center w-full text-white/80 text-lg font-semibold cursor-pointer"
+                                className="flex items-center justify-center gap-4 bg-accent hover:bg-primary/50 hover:outline hover:ouline-2 hover:outline-primary transition-colors shadow-input rounded-lg p-4 mb-4 text-center w-full text-white/80 text-lg font-semibold cursor-pointer"
                                 onClick={() => {
                                     setBtnClicked(true);
                                     setEmailType("magic");
