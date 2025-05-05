@@ -2,6 +2,12 @@ import React from "react";
 import VerifyForm from "./VerifyForm";
 import { TbMailCheck } from "react-icons/tb";
 
+export const metadata = {
+    title: "Verify Email",
+    description: "Verify your email address",
+    keywords: ["hackbox", "verify-email", "email-verification"],
+};
+
 const page = () => {
     return (
         <div className="flex flex-col items-center justify-center px-6 py-12 w-full mx-auto">

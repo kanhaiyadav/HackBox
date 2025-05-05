@@ -12,14 +12,22 @@ import { FiTwitter } from "react-icons/fi";
 import SignUpForm from "./signupForm";
 import GoogleBtton from "../GoogleButton";
 import GithubBtton from "../GithubBtton";
+import { auth } from "@/auth";
+import AlredySignedIn from "@/components/alredySignedIn";
 
 export const metadata = {
     title: "Sign up",
-    description: "Sign in to your HackBox account",
-    keywords: ["hackbox", "signin", "login"],
+    description: "Create a new HackBox account",
+    keywords: ["hackbox", "signup", "register"],
 };
 
-const SignInPage = () => {
+const SignInPage = async () => {
+
+    const session = await auth();
+    if (session?.user) {
+        return <AlredySignedIn />;
+    }
+    
     return (
         <Card className="bg-transparent shadow-none border-none pb-0">
             <CardHeader className="space-y-1">

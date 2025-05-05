@@ -13,6 +13,8 @@ import { BsTwitterX } from "react-icons/bs";
 import SigninForm from "./signinForm";
 import GoogleBtton from "../GoogleButton";
 import GithubBtton from "../GithubBtton";
+import { auth } from "@/auth";
+import AlredySignedIn from "@/components/alredySignedIn";
 
 export const metadata = {
     title: "Sign in",
@@ -20,7 +22,14 @@ export const metadata = {
     keywords: ["hackbox", "signin", "login"],
 };
 
-const SignInPage = () => {
+const SignInPage = async () => {
+    const session = await auth();
+    if (session?.user) {
+        return (
+            <AlredySignedIn />
+        );
+    }
+
     return (
         <Card className="bg-transparent shadow-none border-none">
             <CardHeader className="space-y-1">
@@ -33,16 +42,6 @@ const SignInPage = () => {
             </CardHeader>
 
             <CardContent>
-                {/* <form
-                    action={async () => {
-                        "use server";
-                        await signIn("nodemailer", {
-                            email: "kanhaiya2004yadav@gmail.com"
-                        });
-                    }}
-                >
-                    <button type="submit">Sign In with magic link</button>
-                </form> */}
                 <SigninForm />
                 <div className="relative my-6 flex items-center gap-2">
                     <hr className="bg-gray-700 grow border-1 border-accent" />

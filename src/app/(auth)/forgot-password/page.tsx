@@ -1,14 +1,20 @@
 import { Card, CardFooter } from "@/components/ui/card";
 import Main from "./main";
 import Link from "next/link";
+import { auth } from "@/auth";
+import AlredySignedIn from "@/components/alredySignedIn";
 
 export const metadata = {
-    title: "Sign in",
-    description: "Sign in to your HackBox account",
-    keywords: ["hackbox", "signin", "login"],
+    title: "Forgot Password",
+    description: "Choose how you want to get back into your account",
+    keywords: ["hackbox", "forgot-password"],
 };
 
-const SignInPage = () => {
+const SignInPage = async () => {
+    const session = await auth();
+    if (session?.user) {
+        return <AlredySignedIn />;
+    }
     return (
         <Card className="bg-transparent shadow-none border-none">
             <Main />

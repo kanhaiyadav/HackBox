@@ -8,14 +8,22 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import ResetForm from "./resetForm";
+import { auth } from "@/auth";
+import AlredySignedIn from "@/components/alredySignedIn";
 
 export const metadata = {
-    title: "Sign in",
-    description: "Sign in to your HackBox account",
-    keywords: ["hackbox", "signin", "login"],
+    title: "Reset Password",
+    description: "Reset your password",
+    keywords: ["hackbox", "reset-password"],
 };
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage = async () => {
+
+    const session = await auth();
+    if (session?.user) {
+        return <AlredySignedIn />;
+    }
+    
     return (
         <Card className="bg-transparent shadow-none border-none">
             <CardHeader className="space-y-1">
