@@ -61,10 +61,11 @@ const Tools = () => {
                     <motion.a
                         href={`/home?category=${category.slug}`}
                         key={index}
-                        className="flex items-center gap-4 bg-accent p-3 sm:p-4 rounded-lg shadow-input"
+                        className="flex items-center gap-4 p-3 sm:p-4 glass shadow-input group"
                         variants={itemVariants}
+                        whileHover={{ scale: 1.05 }}
                     >
-                        <div className="p-2 rounded-sm bg-primary/20">
+                        <div className="p-2 rounded-sm bg-primary/20 group-hover:rotate-[-40deg] cursor-default transition-transform">
                             <category.icon className="text-primary" />
                         </div>
                         <span className="text-lg font-bold">

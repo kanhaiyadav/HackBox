@@ -170,6 +170,12 @@
         @apply bg-background text-white/80;
         font-family: var(--font-space);
     }
+    h1, h2, h3, h4, h5, h6 {
+        @apply cursor-default;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        @apply text-white/80;
+    }
 }
 
 .card:hover h3 {

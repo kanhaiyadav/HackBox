@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiMail, FiGithub, FiTwitter } from "react-icons/fi";
+import { FiMail, FiGithub, FiTwitter, FiLinkedin, FiFacebook } from "react-icons/fi";
 import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -7,13 +7,18 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-      <footer className="border-t-2 relative bg-[url('/footer.svg')] bg-cover lg:bg-center border-primary py-12">
-          <div className="absolute top-0 left-0 w-full h-full bg-black/30 lg:bg-black/60" />
+      <footer className="relative py-12">
+          <div className="absolute top-0 left-0 w-full h-full glass" />
           <div className="container relative mx-auto px-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
-                  <div className="col-span-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 grid-rows-2 lg:grid-rows-1 gap-8 mb-12 content-center lg:items-start">
+                  <div className="col-span-full lg:col-span-2">
                       <div className="flex items-center space-x-2 mb-4">
-                          <Image src="/logo.png" alt="" width={30} height={30}/>
+                          <Image
+                              src="/logo.png"
+                              alt=""
+                              width={30}
+                              height={30}
+                          />
                           <span className="text-xl font-bold">HackBox</span>
                       </div>
                       <p className="text-white/80 max-w-xs">
@@ -31,12 +36,25 @@ const Footer = () => {
                               href="#"
                               className="text-white/80 hover:text-primary transition-colors"
                           >
+                              <FiLinkedin className="w-5 h-5" />
+                          </a>
+                          <a
+                              href="#"
+                              className="text-white/80 hover:text-primary transition-colors"
+                          >
                               <FiTwitter className="w-5 h-5" />
+                          </a>
+                          <a
+                              href="#"
+                              className="text-white/80 hover:text-primary transition-colors"
+                          >
+                              <FiFacebook className="w-5 h-5" />
                           </a>
                       </div>
                   </div>
+
                   <div>
-                      <h3 className="font-medium mb-4">Categories</h3>
+                      <h3 className="font-semibold text-lg mb-4">Categories</h3>
                       <ul className="space-y-2">
                           <li>
                               <a
@@ -72,8 +90,9 @@ const Footer = () => {
                           </li>
                       </ul>
                   </div>
+
                   <div>
-                      <h3 className="font-medium mb-4">Company</h3>
+                      <h3 className="font-semibold text-lg mb-4">Company</h3>
                       <ul className="space-y-2">
                           <li>
                               <a
@@ -109,8 +128,11 @@ const Footer = () => {
                           </li>
                       </ul>
                   </div>
-                  <div>
-                      <h3 className="font-medium mb-4">Subscribe</h3>
+
+                  <div className="col-span-full md:col-span-1">
+                      <h3 className="font-semibold text-lg mb-4">
+                          Subscribe
+                      </h3>
                       <p className="text-white/80 mb-4 text-sm">
                           Get the latest updates and new tools directly to your
                           inbox.
@@ -119,9 +141,9 @@ const Footer = () => {
                           <Input
                               type="email"
                               placeholder="Your email"
-                              className="bg-gray-800 border-gray-700"
+                              className="bg-gray-800 border-gray-700 max-w-[350px]"
                           />
-                          <Button variant="outline">
+                          <Button variant="secondary" className="h-11">
                               <FiMail className="w-4 h-4" />
                           </Button>
                       </div>
