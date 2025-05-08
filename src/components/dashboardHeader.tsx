@@ -1,9 +1,5 @@
 import React from "react";
-import { FaCoffee } from "react-icons/fa";
 import { GrAnnounce } from "react-icons/gr";
-// import { FaGithub } from "react-icons/fa";
-// import { HiStar } from "react-icons/hi2";
-// import { HiOutlineStar } from "react-icons/hi2";
 import { LuSunMedium } from "react-icons/lu";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -26,7 +22,7 @@ const ToolNav = async () => {
     console.log(session, "session");
     
     return (
-        <nav className="flex justify-between items-center px-4 py-4 rounded-xl w-full foreground shadow-foreground my-4">
+        <nav className="flex justify-between items-center px-4 py-3 rounded-xl w-full foreground shadow-foreground my-2">
             <SearchBar />
             <div className="w-fit flex items-center gap-4 sm:gap-6">
                 {/* <div className="flex items-center gap-1">
@@ -42,26 +38,6 @@ const ToolNav = async () => {
                         </TooltipTrigger>
                         <TooltipContent>
                             <p>What new</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    {/* <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Link href="/">
-                                <FaGithub className="cursor-pointer text-xl text-white/40 hover:text-primary" />
-                            </Link>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Star HackBox</p>
-                        </TooltipContent>
-                    </Tooltip> */}
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Link href="/">
-                                <FaCoffee className="cursor-pointer text-xl text-white/40 hover:text-primary" />
-                            </Link>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Buy me a Coffee</p>
                         </TooltipContent>
                     </Tooltip>
                     <Tooltip>   
