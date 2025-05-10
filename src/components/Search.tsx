@@ -1,50 +1,45 @@
 "use client";
+
 import React, { useState, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { selectAllTools } from "@/lib/features/tools/tools.selector";
-import { Search as SearchIcon } from "lucide-react";
-import { BsTools } from "react-icons/bs";
 import Link from "next/link";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
+import {
+    InstantSearch,
+    SearchBox,
+    Hits,
+    Highlight,
+    RefinementList,
+} from "react-instantsearch";
+import Image from "next/image";
+
+function Hit({ hit }) {
+    return (
+        <article className="flex items-center gap-3 w-full rounded-lg py-2 px-3 hover:bg-accent">
+            <Image
+                src={`/tools/${hit?.categorySlug}/${hit?.slug}.png`}
+                alt={hit.name}
+                width={35}
+                height={35}
+            />
+            {hit.categories?.length > 0 && (
+                <p className="text-sm text-white/50">{hit.categories[0]}</p>
+            )}
+            <h1>
+                <Highlight attribute="name" hit={hit} />
+            </h1>
+        </article>
+    );
+}
+
+const searchClient = algoliasearch(
+    "XLP82CNMLF",
+    "5962097dc35d708b6ecc81087cef8e71"
+);
 
 const Search = () => {
-    const allTools = useSelector(selectAllTools)
-        .slice()
-        .sort((a, b) => a.name.localeCompare(b.name)); // Sort once at the start
-
-    const [searchQuery, setSearchQuery] = useState("");
-
-    // Use useMemo to memoize the filtered and sorted tools
-    const filteredTools = useMemo(() => {
-        // If search query is empty, return all tools
-        if (!searchQuery.trim()) return allTools;
-
-        const queryLower = searchQuery.toLowerCase();
-
-        // Separate tools into two groups
-        const startsWithTools = allTools.filter((tool) =>
-            tool.name.toLowerCase().startsWith(queryLower)
-        );
-
-        const includesTools = allTools.filter((tool) => {
-            const toolNameLower = tool.name.toLowerCase();
-            // Exclude tools that already start with the query to avoid duplicates
-            return (
-                toolNameLower.includes(queryLower) &&
-                !toolNameLower.startsWith(queryLower)
-            );
-        });
-
-        // Combine the two groups, with startsWith tools first
-        return [...startsWithTools, ...includesTools];
-    }, [allTools, searchQuery]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
-
     return (
         <div className="w-full">
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
                 <SearchIcon className="text-white" />
                 <input
                     onChange={handleChange}
@@ -92,7 +87,17 @@ const Search = () => {
                         </Link>
                     ))}
                 </div>
-            </div>
+            </div> */}
+            <InstantSearch
+                searchClient={searchClient}
+                indexName="HackBox.tools"
+            >
+                <SearchBox />
+                <RefinementList attribute="category" />
+                <div className="w-full max-h-[350px] overflow-y-auto styled-scrollbar pr-1">
+                    <Hits hitComponent={Hit} />
+                </div>
+            </InstantSearch>
         </div>
     );
 };
